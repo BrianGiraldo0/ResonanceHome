@@ -126,6 +126,24 @@ public class Hospedaje {
 		return descripcion;
 	}
     
+	/**
+	 * Metodo que anade una fecha reservada
+	 * @param fecha
+	 */
+	public void anadirFechaReservada(Date fecha)
+	{
+		fechasReservadas.add(fecha);
+	}
+
+	/**
+	 * Metodo que anade las fotos del hospedaje
+	 * @param urlsFotos
+	 */
+	public void setUrlsFotos(ArrayList<String> urlsFotos) {
+		this.urlsFotos = urlsFotos;
+	}
+	
+	
 	
     
 	
