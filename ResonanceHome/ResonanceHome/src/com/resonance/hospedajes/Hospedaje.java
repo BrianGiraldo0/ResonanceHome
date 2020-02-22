@@ -5,40 +5,66 @@ import java.util.Date;
 
 public class Hospedaje {
 
-	public String id="";
+	public String id ="";
 	public String direccion="";
 	public double precio=0;
 	public ArrayList<Date> fechasReservadas=new ArrayList<Date>();
 	public String nameTagPropietario="";
 	public ArrayList<String> urlsFotos= new ArrayList<String>();
-	public TipoHospejade tipoHospedaje;
-	public int maxPersonas=0;
-	public int banios=0;
     public String descripcion="";
+    public Servicios servicios;
     
     /**
      * Metodo constructor de la clase
-     * @param id
      * @param direccion
      * @param precio
      * @param nameTagPropietario
      * @param urlsFotos
-     * @param tipoHospedaje
-     * @param maxPersonas
-     * @param banios
      * @param descripcion
      */
 	public Hospedaje(String id, String direccion, double precio, String nameTagPropietario, ArrayList<String> urlsFotos,
-			TipoHospejade tipoHospedaje, int maxPersonas, int banios, String descripcion) {
+			String descripcion, Servicios servicios) {
 		super();
 		this.id = id;
 		this.direccion = direccion;
 		this.precio = precio;
 		this.nameTagPropietario = nameTagPropietario;
 		this.urlsFotos = urlsFotos;
-		this.tipoHospedaje = tipoHospedaje;
-		this.maxPersonas = maxPersonas;
-		this.banios = banios;
+		this.descripcion = descripcion;
+		this.servicios = servicios;
+	}
+	
+	/**
+	 * Metodo que obtiene el id
+	 * @return
+	 */
+	public String getId() {
+		return id;
+	}
+
+
+	/**
+	 * Metodo que cambia el id
+	 * @param id
+	 */
+	public void setId(String id) {
+		this.id = id;
+	}
+
+
+	/**
+	 * Metodo que cambia la direccion
+	 * @param direccion
+	 */
+	public void setDireccion(String direccion) {
+		this.direccion = direccion;
+	}
+
+	/**
+	 * Metodo que cambia la descripcion
+	 * @param descripcion
+	 */
+	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
 
@@ -56,14 +82,6 @@ public class Hospedaje {
 	 */
 	public void setPrecio(double precio) {
 		this.precio = precio;
-	}
-
-	/**
-	 * Metodo que retorna el numero de identificacion del hospedaje
-	 * @return
-	 */
-	public String getId() {
-		return id;
 	}
 
 	/**
@@ -99,26 +117,6 @@ public class Hospedaje {
 	}
 
 	/**
-	 * Metodo que retorna el tipo de hospedaje
-	 * @return
-	 */
-	public TipoHospejade getTipoHospedaje() {
-		return tipoHospedaje;
-	}
-
-	public int getMaxPersonas() {
-		return maxPersonas;
-	}
-
-	/**
-	 * Metodo que retorna el numero de baños que tiene el hospedaje
-	 * @return
-	 */
-	public int getBanios() {
-		return banios;
-	}
-
-	/**
 	 * Metodo que retorna una breve descripcion del hospedaje
 	 * @return
 	 */
@@ -142,10 +140,5 @@ public class Hospedaje {
 	public void setUrlsFotos(ArrayList<String> urlsFotos) {
 		this.urlsFotos = urlsFotos;
 	}
-	
-	
-	
-    
-	
 	
 }

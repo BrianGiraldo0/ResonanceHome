@@ -6,28 +6,28 @@ import java.util.ArrayList;
 
 public class Reserva {
 
-	public String idHospedaje="";
+	public Hospedaje hospedaje;
 	public String nameTagHuesped="";
 	public ArrayList<Date> fechaReservada;
 	
 	/**
 	 * Metodo constructor
-	 * @param idHospedaje
+	 * @param hospedaje
 	 * @param nameTagHuesped
 	 * @param fechaReservada
 	 */
-	public Reserva(String idHospedaje, String nameTagHuesped) {
+	public Reserva(Hospedaje hospedaje, String nameTagHuesped) {
 		super();
-		this.idHospedaje = idHospedaje;
+		this.hospedaje = hospedaje;
 		this.nameTagHuesped = nameTagHuesped;
 	}
 
 	/**
-	 * Metodo que retorna la id del hospedaje
+	 * Metodo que retorna el hospedaje
 	 * @return
 	 */
-	public String getIdHospedaje() {
-		return idHospedaje;
+	public Hospedaje getIdHospedaje() {
+		return hospedaje;
 	}
 	
 	/**
