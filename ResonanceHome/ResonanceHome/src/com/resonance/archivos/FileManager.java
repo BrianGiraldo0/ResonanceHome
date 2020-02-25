@@ -52,6 +52,7 @@ public class FileManager {
 //
 //	}
 
+	
 	/**
 	 * Metodo que crea una carpeta para un huesped nuevo
 	 * 
@@ -70,7 +71,7 @@ public class FileManager {
 	 * @param name
 	 */
 	public static void crearCarpetaAnfitrion(String name) {
-		File file = new File(urlMain + "/Usuarios/Anfitriones/Hospedajes" + name);
+		File file = new File(urlMain + "/Usuarios/Anfitriones/" + name);
 		if (!file.exists()) {
 			file.mkdirs();
 		}
