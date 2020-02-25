@@ -5,25 +5,27 @@ import java.util.Date;
 
 public class Hospedaje {
 
-	public String id ="";
-	public String direccion="";
-	public double precio=0;
-	public ArrayList<Date> fechasReservadas=new ArrayList<Date>();
-	public String nameTagPropietario="";
-	public ArrayList<String> urlsFotos= new ArrayList<String>();
-    public String descripcion="";
-    public Servicios servicios;
-    
-    /**
-     * Metodo constructor de la clase
-     * @param direccion
-     * @param precio
-     * @param nameTagPropietario
-     * @param urlsFotos
-     * @param descripcion
-     */
+	public String id = "";
+	public String direccion = "";
+	public double precio = 0;
+	public ArrayList<Date> fechasReservadas = new ArrayList<Date>();
+	public String nameTagPropietario = "";
+	public ArrayList<String> urlsFotos = new ArrayList<String>();
+	public String descripcion = "";
+	public Servicio servicios;
+	private TipoHospedaje tipoHospedaje;
+
+	/**
+	 * Metodo constructor de la clase
+	 * 
+	 * @param direccion
+	 * @param precio
+	 * @param nameTagPropietario
+	 * @param urlsFotos
+	 * @param descripcion
+	 */
 	public Hospedaje(String id, String direccion, double precio, String nameTagPropietario, ArrayList<String> urlsFotos,
-			String descripcion, Servicios servicios) {
+			String descripcion, Servicio servicios, TipoHospedaje tipoH) {
 		super();
 		this.id = id;
 		this.direccion = direccion;
@@ -32,28 +34,30 @@ public class Hospedaje {
 		this.urlsFotos = urlsFotos;
 		this.descripcion = descripcion;
 		this.servicios = servicios;
+		this.tipoHospedaje = tipoH;
 	}
-	
+
 	/**
 	 * Metodo que obtiene el id
+	 * 
 	 * @return
 	 */
 	public String getId() {
 		return id;
 	}
 
-
 	/**
 	 * Metodo que cambia el id
+	 * 
 	 * @param id
 	 */
 	public void setId(String id) {
 		this.id = id;
 	}
 
-
 	/**
 	 * Metodo que cambia la direccion
+	 * 
 	 * @param direccion
 	 */
 	public void setDireccion(String direccion) {
@@ -62,6 +66,7 @@ public class Hospedaje {
 
 	/**
 	 * Metodo que cambia la descripcion
+	 * 
 	 * @param descripcion
 	 */
 	public void setDescripcion(String descripcion) {
@@ -70,6 +75,7 @@ public class Hospedaje {
 
 	/**
 	 * Metodo que retorna el precio del hospedaje por dia
+	 * 
 	 * @return
 	 */
 	public double getPrecio() {
@@ -78,6 +84,7 @@ public class Hospedaje {
 
 	/**
 	 * Metodo que cambia el precio del hospedaje
+	 * 
 	 * @param precio
 	 */
 	public void setPrecio(double precio) {
@@ -86,6 +93,7 @@ public class Hospedaje {
 
 	/**
 	 * Metodo que retorna la direccion del hospedaje
+	 * 
 	 * @return
 	 */
 	public String getDireccion() {
@@ -94,6 +102,7 @@ public class Hospedaje {
 
 	/**
 	 * Metodo que retorna las fechas reservadas del hospedaje
+	 * 
 	 * @return
 	 */
 	public ArrayList<Date> getFechasReservadas() {
@@ -102,14 +111,16 @@ public class Hospedaje {
 
 	/**
 	 * Metodo que retorna el nombre de usuario del propietario
+	 * 
 	 * @return
 	 */
 	public String getNameTagPropietario() {
 		return nameTagPropietario;
 	}
-    
+
 	/**
 	 * Metodo que retorna las direcciones de las fotos
+	 * 
 	 * @return
 	 */
 	public ArrayList<String> getUrlsFotos() {
@@ -118,27 +129,38 @@ public class Hospedaje {
 
 	/**
 	 * Metodo que retorna una breve descripcion del hospedaje
+	 * 
 	 * @return
 	 */
 	public String getDescripcion() {
 		return descripcion;
 	}
-    
+
 	/**
 	 * Metodo que anade una fecha reservada
+	 * 
 	 * @param fecha
 	 */
-	public void anadirFechaReservada(Date fecha)
-	{
+	public void anadirFechaReservada(Date fecha) {
 		fechasReservadas.add(fecha);
 	}
 
 	/**
 	 * Metodo que anade las fotos del hospedaje
+	 * 
 	 * @param urlsFotos
 	 */
 	public void setUrlsFotos(ArrayList<String> urlsFotos) {
 		this.urlsFotos = urlsFotos;
 	}
-	
+
+	/**
+	 * Metodo que retorna el tipo de hospedaje
+	 * 
+	 * @return
+	 */
+	public TipoHospedaje getTipoHospedaje() {
+		return tipoHospedaje;
+	}
+
 }
