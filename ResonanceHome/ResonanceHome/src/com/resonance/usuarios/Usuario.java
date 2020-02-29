@@ -26,7 +26,7 @@ public class Usuario {
 	 * @param biografia breve descripcion del usuario
 	 */
 	public Usuario(String nombre, String email, String uRLFoto, String direccion, Date fechaNacimiento,
-			String contrasenia, String biografia) {
+			String contrasenia, String biografia, String nameTag) {
 		super();
 		this.nombre = nombre;
 		this.email = email;
@@ -35,6 +35,7 @@ public class Usuario {
 		this.fechaNacimiento = fechaNacimiento;
 		this.contrasenia = contrasenia;
 		this.biografia = biografia;
+		this.nametag = nameTag;
 	}
 	
 	
@@ -49,7 +50,7 @@ public class Usuario {
 	 * @param biografia breve descripcion del usuario
 	 */
 	public Usuario(String nombre, String email, String direccion, Date fechaNacimiento,
-			String contrasenia, String biografia) {
+			String contrasenia, String biografia, String nametag) {
 		super();
 		this.nombre = nombre;
 		this.email = email;
@@ -57,6 +58,7 @@ public class Usuario {
 		this.fechaNacimiento = fechaNacimiento;
 		this.contrasenia = contrasenia;
 		this.biografia = biografia;
+		this.nametag = nametag;
 		//llenar con foto por defecto
 	}
 

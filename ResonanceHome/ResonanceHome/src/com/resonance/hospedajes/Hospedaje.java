@@ -5,14 +5,15 @@ import java.util.Date;
 
 public class Hospedaje {
 
+	private Prestacion prestaciones;
 	public String id = "";
-	public String direccion = "";
+	public Direccion direccion;
 	public double precio = 0;
 	public ArrayList<Date> fechasReservadas = new ArrayList<Date>();
 	public String nameTagPropietario = "";
 	public ArrayList<String> urlsFotos = new ArrayList<String>();
 	public String descripcion = "";
-	public Servicio servicios;
+	public Plus servicios;
 	private TipoHospedaje tipoHospedaje;
 
 	/**
@@ -24,8 +25,8 @@ public class Hospedaje {
 	 * @param urlsFotos
 	 * @param descripcion
 	 */
-	public Hospedaje(String id, String direccion, double precio, String nameTagPropietario, ArrayList<String> urlsFotos,
-			String descripcion, Servicio servicios, TipoHospedaje tipoH) {
+	public Hospedaje(String id, Direccion direccion, double precio, String nameTagPropietario, ArrayList<String> urlsFotos,
+			String descripcion, Plus servicios, TipoHospedaje tipoH, Prestacion prestaciones) {
 		super();
 		this.id = id;
 		this.direccion = direccion;
@@ -35,8 +36,27 @@ public class Hospedaje {
 		this.descripcion = descripcion;
 		this.servicios = servicios;
 		this.tipoHospedaje = tipoH;
+		this.setPrestaciones(prestaciones);
 	}
 
+	/**
+	 * Metodo que verifica que un hospedaje esta disponible en unas fechas ingresadas
+	 * @param fecha
+	 * @return
+	 */
+	public boolean disponibleEnFecha(ArrayList<Date> fecha)
+	{
+		for(int i=0;i<fechasReservadas.size();i++) {
+			for(int j=0;j<fecha.size();j++) {
+				if(fechasReservadas.get(i).compareTo(fecha.get(j)) == 0)
+				{
+					return false;	
+				}
+			}
+		}
+		
+		return true;
+	}
 	/**
 	 * Metodo que obtiene el id
 	 * 
@@ -60,7 +80,7 @@ public class Hospedaje {
 	 * 
 	 * @param direccion
 	 */
-	public void setDireccion(String direccion) {
+	public void setDireccion(Direccion direccion) {
 		this.direccion = direccion;
 	}
 
@@ -96,7 +116,7 @@ public class Hospedaje {
 	 * 
 	 * @return
 	 */
-	public String getDireccion() {
+	public Direccion getDireccion() {
 		return direccion;
 	}
 
@@ -161,6 +181,19 @@ public class Hospedaje {
 	 */
 	public TipoHospedaje getTipoHospedaje() {
 		return tipoHospedaje;
+	}
+	
+	public String getCiudad()
+	{
+		return direccion.getCiudad();
+	}
+
+	public Prestacion getPrestaciones() {
+		return prestaciones;
+	}
+
+	public void setPrestaciones(Prestacion prestaciones) {
+		this.prestaciones = prestaciones;
 	}
 
 }

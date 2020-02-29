@@ -1,7 +1,8 @@
 package com.resonance.hospedajes;
 
-import java.sql.Date;
+
 import java.util.ArrayList;
+import java.util.Date;
 
 
 public class Reserva {
@@ -9,6 +10,7 @@ public class Reserva {
 	public Hospedaje hospedaje;
 	public String nameTagHuesped="";
 	public ArrayList<Date> fechaReservada;
+	
 	
 	/**
 	 * Metodo constructor
@@ -21,7 +23,23 @@ public class Reserva {
 		this.hospedaje = hospedaje;
 		this.nameTagHuesped = nameTagHuesped;
 	}
-
+	
+	
+	
+	
+	public boolean verificarDiaReserva (Date fecha) {
+		
+		
+		for (int i=0; i<fechaReservada.size();i++) {
+			
+			if (fechaReservada.get(i).compareTo(fecha)==0) {
+				return true;
+			}
+			
+		}
+		return false;
+	}
+	
 	/**
 	 * Metodo que retorna el hospedaje
 	 * @return

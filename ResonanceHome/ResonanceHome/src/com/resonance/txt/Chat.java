@@ -2,12 +2,14 @@ package com.resonance.txt;
 
 import java.util.ArrayList;
 
+import com.resonance.excepciones.NoExistException;
+
 
 public class Chat {
 
 	private String emisor;
 	private String receptor;
-	private ArrayList<Mensaje> mensaje;
+	private ArrayList<Mensaje> mensajes;
 	
 	/**
 	 * Metodo constructor de la clase
@@ -19,10 +21,23 @@ public class Chat {
 		super();
 		this.emisor = emisor;
 		this.receptor = receptor;
-		this.mensaje = mensaje;
+		this.mensajes = mensaje;
 	}
 
-	
+	/**
+	 * Metodo que permite agregar un mensaje al chat
+	 * @param mensaje
+	 * @throws NoExistException
+	 */
+	public void agregarMensaje(Mensaje mensaje) throws NoExistException
+	{
+		if(mensaje !=null)
+		{
+			mensajes.add(mensaje);
+		}else {
+			throw new NoExistException();
+		}
+	}
 	/*
 	 * Inicio de setters y getters
 	 */
@@ -44,11 +59,11 @@ public class Chat {
 	}
 
 	public ArrayList<Mensaje> getMensaje() {
-		return mensaje;
+		return mensajes;
 	}
 
 	public void setMensaje(ArrayList<Mensaje> mensaje) {
-		this.mensaje = mensaje;
+		this.mensajes = mensaje;
 	}
 	
 	/*

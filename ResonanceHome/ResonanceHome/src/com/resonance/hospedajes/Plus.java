@@ -1,6 +1,6 @@
 package com.resonance.hospedajes;
 
-public class Servicio {
+public class Plus {
 	private boolean cocina;
 	private boolean wifi;
 	private boolean utencilios;
@@ -16,7 +16,7 @@ public class Servicio {
 	 * @param aireAc
 	 * @param kitBanio
 	 */
-	public Servicio(boolean cocina, boolean wifi, boolean utencilios, boolean aireAc, boolean kitBanio) {
+	public Plus(boolean cocina, boolean wifi, boolean utencilios, boolean aireAc, boolean kitBanio) {
 		super();
 
 		this.cocina = cocina;

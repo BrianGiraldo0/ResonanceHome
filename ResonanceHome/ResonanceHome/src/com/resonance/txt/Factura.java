@@ -1,5 +1,8 @@
 package com.resonance.txt;
 
+import java.io.File;
+
+import com.resonance.archivos.FileManager;
 import com.resonance.hospedajes.Reserva;
 
 public class Factura {
@@ -8,6 +11,7 @@ public class Factura {
 	private String huesped;
 	private Reserva reserva;
 	private Tarjeta tarjeta;
+	private File facturaURL;
 	
 	/**
 	 * Metodo constructor
@@ -22,6 +26,23 @@ public class Factura {
 		this.huesped = huesped;
 		this.reserva = reserva;
 		this.tarjeta = tarjeta;
+		this.facturaURL = new File(FileManager.urlMain + "/Usuarios/Huespedes/Facturas" + huesped+".pdf");
+	}
+	
+	
+	public double calcularPrecioReserva() {
+		
+		double precioNocheHospedaje = reserva.getIdHospedaje().getPrecio();
+		int diasReserva = reserva.getFechaReservada().size();
+		double precioSinImpuestos = precioNocheHospedaje * diasReserva;
+		double impuestoLimpieza = precioSinImpuestos * 0.05;
+		double impuestoPlataforma = precioSinImpuestos * 0.15;
+		
+		
+		return precioSinImpuestos + impuestoLimpieza + impuestoPlataforma;
+		
+		
+		
 	}
 
 	/*
@@ -60,6 +81,10 @@ public class Factura {
 		this.tarjeta = tarjeta;
 	}
 	
+	public File getFacturaURL()
+	{
+		return facturaURL;
+	}
 	/*
 	 * fin de getters and setters
 	 */

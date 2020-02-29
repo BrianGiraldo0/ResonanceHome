@@ -8,7 +8,7 @@ import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 
 public class FileManager {
-	private static String urlMain = disco() + "/ResonanceHome";
+	public static String urlMain = disco() + "/ResonanceHome";
 	private static String urlHospedajes = urlMain + "/Hospedajes";
 
 	/**
@@ -20,7 +20,7 @@ public class FileManager {
 			file.mkdirs();
 		}
 
-		File file1 = new File(urlMain + "/Usuarios/Huespedes");
+		File file1 = new File(urlMain + "/Usuarios/Huespedes/Facturas");
 		if (!file1.exists()) {
 			file1.mkdirs();
 		}
