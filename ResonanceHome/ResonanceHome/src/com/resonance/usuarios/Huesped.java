@@ -4,10 +4,13 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import com.resonance.hospedajes.Reserva;
+import com.resonance.txt.Tarjeta;
 
 public class Huesped extends Usuario{
 	
-	ArrayList <Reserva> misReservas = new ArrayList<Reserva>();	
+	private ArrayList <Reserva> misReservas = new ArrayList<Reserva>();	
+	private Tarjeta tarjeta;
+	
 
 	public Huesped(String nombre, String email, String uRLFoto, String direccion, Date fechaNacimiento,
 			String contrasenia, String biografia, String nametag) {
@@ -20,6 +23,7 @@ public class Huesped extends Usuario{
 	public Huesped(String nombre, String email, String direccion, Date fechaNacimiento,
 			String contrasenia, String biografia, String nametag) {
 		super(nombre, email, direccion, fechaNacimiento, contrasenia, biografia, nametag);
+		
 		
 	}
 	
@@ -74,7 +78,24 @@ public class Huesped extends Usuario{
 		
 		
 	}
+
+	/* Inicio de Getters y Setters 
+	
+	*/
+	public Tarjeta getTarjeta() {
+		return tarjeta;
+	}
+
+	public void setTarjeta(Tarjeta tarjeta) {
+		this.tarjeta = tarjeta;
+	}
 	
 	
+	
+	
+	
+	
+	/* Fin de Getters y Setters
+	*/
 
 }
