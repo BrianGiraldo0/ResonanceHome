@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.resonance.view.controller.ControladorRegistro">
+   <children>
+      <Label alignment="CENTER" layoutX="106.0" layoutY="88.0" prefHeight="81.0" prefWidth="1050.0" text="Registro de cuenta ResonanceHome">
+         <font>
+            <Font size="27.0" />
+         </font>
+      </Label>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="506.0" layoutX="44.0" layoutY="171.0" stroke="#bfbfbf" strokeType="INSIDE" width="1076.0" />
+      <Label alignment="BASELINE_LEFT" layoutX="279.0" layoutY="171.0" prefHeight="81.0" prefWidth="180.0" text="Nombre completo">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </Label>
+      <TextField fx:id="textNombreCompleto" layoutX="279.0" layoutY="230.0" prefHeight="25.0" prefWidth="195.0" promptText="Ingresa nombre completo" />
+      <Label alignment="BASELINE_LEFT" layoutX="279.0" layoutY="243.0" prefHeight="81.0" prefWidth="195.0" text="Fecha de nacimiento">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </Label>
+      <DatePicker fx:id="dateFechaNacimiento" layoutX="279.0" layoutY="312.0" prefHeight="25.0" prefWidth="195.0" promptText="Busca fecha de nacimiento" />
+      <Label alignment="BASELINE_LEFT" layoutX="279.0" layoutY="337.0" prefHeight="81.0" prefWidth="180.0" text="Email">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </Label>
+      <TextField fx:id="textEmail" layoutX="279.0" layoutY="401.0" prefHeight="25.0" prefWidth="195.0" promptText="Ingresa email" />
+      <Label alignment="BASELINE_LEFT" layoutX="279.0" layoutY="418.0" prefHeight="81.0" prefWidth="180.0" text="Direccion">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </Label>
+      <TextField fx:id="textDireccion" layoutX="279.0" layoutY="474.0" prefHeight="25.0" prefWidth="195.0" promptText="Ingresa direccion" />
+      <Label alignment="BASELINE_LEFT" layoutX="279.0" layoutY="487.0" prefHeight="81.0" prefWidth="180.0" text="Nombre de usuario">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </Label>
+      <TextField fx:id="textNombreUsuario" layoutX="279.0" layoutY="556.0" prefHeight="25.0" prefWidth="195.0" promptText="Ingresa nombre de usuario" />
+      <Label alignment="BASELINE_LEFT" layoutX="279.0" layoutY="573.0" prefHeight="52.0" prefWidth="180.0" text="Clave">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </Label>
+      <PasswordField fx:id="textPasswordUsuario" layoutX="279.0" layoutY="612.0" prefHeight="25.0" prefWidth="195.0" promptText="Ingresa clave" />
+      <Label alignment="BASELINE_LEFT" layoutX="597.0" layoutY="171.0" prefHeight="81.0" prefWidth="180.0" text="Foto de perfil">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </Label>
+      <Rectangle fx:id="rectanguloFoto" arcHeight="5.0" arcWidth="5.0" fill="#f8fcff" height="132.0" layoutX="597.0" layoutY="230.0" stroke="BLACK" strokeType="INSIDE" width="133.0" />
+      <Label fx:id="interrogacionFoto" layoutX="653.0" layoutY="261.0" text="?">
+         <font>
+            <Font size="49.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnSubirFoto" layoutX="597.0" layoutY="378.0" mnemonicParsing="false" onAction="#subirFoto" prefHeight="25.0" prefWidth="133.0" style="-fx-background-color: black;" text="Subir" textFill="WHITE">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Label alignment="BASELINE_LEFT" layoutX="597.0" layoutY="414.0" prefHeight="81.0" prefWidth="180.0" text="Biografia">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </Label>
+      <TextArea fx:id="textBiografia" layoutX="597.0" layoutY="480.0" prefHeight="132.0" prefWidth="232.0" promptText="Ingresa una descripcion corta acerca de ti" />
+      <Button fx:id="btnContinuar" layoutX="952.0" layoutY="612.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="133.0" style="-fx-background-color: black;" text="Continuar" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <ImageView fx:id="picPerfil" fitHeight="132.0" fitWidth="133.0" layoutX="599.0" layoutY="228.0" pickOnBounds="true" preserveRatio="true" />
+      <Button fx:id="quitarFoto" layoutX="740.0" layoutY="378.0" mnemonicParsing="false" onAction="#quitarFoto" style="-fx-background-color: red;" text="Borrar foto" textFill="WHITE" visible="false">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+   </children>
+</AnchorPane>

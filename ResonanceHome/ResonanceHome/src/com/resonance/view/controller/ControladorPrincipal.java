@@ -92,6 +92,38 @@ public class ControladorPrincipal {
 			lFecha.setStyle("-fx-border-color: black; -fx-border-radius: 15");
 			lHuespedes.setStyle("-fx-border-color: black; -fx-border-radius: 15");
 
+		} else if (event.getSource() == btniniciarSesion) {
+			FXMLLoader loader = new FXMLLoader(getClass().getResource(Util.PANEL_INICIAR_SESION));
+			Parent root = null;
+			try {
+				root = loader.load();
+			} catch (IOException a) {
+				// TODO Auto-generated catch block
+				a.printStackTrace();
+			}
+
+			ControladorLogIn control = loader.getController();
+			control.setResonance(resonance);
+			control.setStage(stage);
+
+			stage.setResizable(false);
+			stage.getScene().setRoot(root);
+		} else if (event.getSource() == btnRegistro) {
+			FXMLLoader loader = new FXMLLoader(getClass().getResource(Util.PANEL_REGISTRO));
+			Parent root = null;
+			try {
+				root = loader.load();
+			} catch (IOException a) {
+				// TODO Auto-generated catch block
+				a.printStackTrace();
+			}
+
+			ControladorRegistro control = loader.getController();
+			control.setResonance(resonance);
+			control.setStage(stage);
+
+			stage.setResizable(false);
+			stage.getScene().setRoot(root);
 		}
 
 	}

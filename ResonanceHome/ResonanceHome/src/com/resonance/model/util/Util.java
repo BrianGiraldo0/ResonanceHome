@@ -8,8 +8,12 @@ import com.resonance.model.archivos.FileManager;
 public class Util {
 
 	public static final String LOGO_RESONANCE = "/com/resonance/view/imagenes/logo_resonance.png";
+	public static final String ICON_CORAZON_BLANCO = "/com/resonance/view/imagenes/icon_corazon.png";
 	public static final String VENTANA_PRINCIPAL = "/com/resonance/view/interfaz/ventanaPrincipal.fxml";
 	public static final String PANEL_LISTADO_HOSPEDAJES = "/com/resonance/view/interfaz/panelListadoHospedajes.fxml";
+	public static final String PANEL_HOSPEDAJE = "/com/resonance/view/interfaz/panelHospedaje.fxml";
+	public static final String PANEL_INICIAR_SESION = "/com/resonance/view/interfaz/panellogIn.fxml";
+	public static final String PANEL_REGISTRO = "/com/resonance/view/interfaz/panelRegistro.fxml";
 
 	public static ArrayList<String> listadoSugerencias = new ArrayList<>();
 

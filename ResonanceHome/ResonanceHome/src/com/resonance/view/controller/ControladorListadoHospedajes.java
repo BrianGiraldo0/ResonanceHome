@@ -1,8 +1,13 @@
 package com.resonance.view.controller;
 
+import java.io.IOException;
+
 import com.resonance.model.principal.ResonanceHome;
+import com.resonance.model.util.Util;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -62,7 +67,28 @@ public class ControladorListadoHospedajes {
 	}
 
 	public void inicializar() {
+		lBox.setStyle("-fx-background-color: #FFFFFF");
 		colorearBotones();
+		crearEjemplo();
+
+	}
+
+	public void crearEjemplo() {
+
+		for (int i = 0; i < 5; i++) {
+			FXMLLoader loader = new FXMLLoader(getClass().getResource(Util.PANEL_HOSPEDAJE));
+			Parent root = null;
+			try {
+				root = loader.load();
+			} catch (IOException a) {
+				// TODO Auto-generated catch block
+				a.printStackTrace();
+			}
+			lBox.getChildren().add(root);
+
+			ControladorHospedaje control = loader.getController();
+			control.inicializar();
+		}
 	}
 
 	public void colorearBotones() {
