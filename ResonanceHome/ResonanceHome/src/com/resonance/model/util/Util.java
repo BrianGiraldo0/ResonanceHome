@@ -9,6 +9,7 @@ public class Util {
 
 	public static final String LOGO_RESONANCE = "/com/resonance/view/imagenes/logo_resonance.png";
 	public static final String VENTANA_PRINCIPAL = "/com/resonance/view/interfaz/ventanaPrincipal.fxml";
+	public static final String PANEL_LISTADO_HOSPEDAJES = "/com/resonance/view/interfaz/panelListadoHospedajes.fxml";
 
 	public static ArrayList<String> listadoSugerencias = new ArrayList<>();
 

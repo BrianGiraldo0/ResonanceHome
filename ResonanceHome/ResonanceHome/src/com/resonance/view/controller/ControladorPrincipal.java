@@ -1,9 +1,14 @@
 package com.resonance.view.controller;
 
+import java.io.IOException;
+
 import com.resonance.model.principal.ResonanceHome;
+import com.resonance.model.util.Util;
 import com.resonance.view.interfaz.MultiDatePicker;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
@@ -18,6 +23,7 @@ public class ControladorPrincipal {
 	private ImageView btnBuscar;
 
 	private Stage stage;
+
 	private ResonanceHome resonance;
 
 	@FXML
@@ -57,6 +63,25 @@ public class ControladorPrincipal {
 		rangePicker.setMinWidth(200);
 		layout.getChildren().add(rangePicker);
 		colorearBotones();
+
+		btnBuscar.setOnMouseClicked((e) -> {
+			FXMLLoader loader = new FXMLLoader(getClass().getResource(Util.PANEL_LISTADO_HOSPEDAJES));
+			Parent root = null;
+			try {
+				root = loader.load();
+			} catch (IOException a) {
+				// TODO Auto-generated catch block
+				a.printStackTrace();
+			}
+
+			ControladorListadoHospedajes control = loader.getController();
+			control.inicializar();
+			control.setResonance(resonance);
+			control.setStage(stage);
+
+			stage.setResizable(false);
+			stage.getScene().setRoot(root);
+		});
 
 	}
 
