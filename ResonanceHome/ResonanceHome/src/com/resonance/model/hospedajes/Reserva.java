@@ -4,12 +4,27 @@ package com.resonance.model.hospedajes;
 import java.util.ArrayList;
 import java.util.Date;
 
+import com.resonance.model.usuarios.EstadoCivil;
+import com.resonance.model.usuarios.Estrato;
+import com.resonance.model.usuarios.Genero;
+import com.resonance.model.usuarios.NivelEstudio;
+
 
 public class Reserva {
 
 	public Hospedaje hospedaje;
 	public String nameTagHuesped="";
 	public ArrayList<Date> fechaReservada;
+	
+	private String identificacion;
+	private Genero genero;
+	private NivelEstudio estudio;
+	private Estrato estrato;
+	private EstadoCivil estado;
+	private String nombre;
+	private String direccion;
+	private String correo;
+	
 	
 	
 	/**
@@ -27,6 +42,46 @@ public class Reserva {
 	
 	
 	
+	
+	
+	/**
+	 *	Metodo constructor
+	 * 
+	 * @param hospedaje 
+	 * @param nameTagHuesped
+	 * @param identificacion
+	 * @param genero
+	 * @param estudio
+	 * @param estrato
+	 * @param nombre
+	 * @param direccion
+	 * @param correo
+	 */
+	
+	
+	public Reserva(Hospedaje hospedaje, String nameTagHuesped, String identificacion, Genero genero,
+			NivelEstudio estudio, Estrato estrato, String nombre, String direccion, String correo, EstadoCivil estado) {
+		super();
+		this.hospedaje = hospedaje;
+		this.nameTagHuesped = nameTagHuesped;
+		this.identificacion = identificacion;
+		this.genero = genero;
+		this.estudio = estudio;
+		this.estrato = estrato;
+		this.nombre = nombre;
+		this.direccion = direccion;
+		this.correo = correo;
+		this.estado = estado;
+	}
+
+
+
+
+
+
+
+
+
 	public boolean verificarDiaReserva (Date fecha) {
 		
 		
@@ -39,6 +94,16 @@ public class Reserva {
 		}
 		return false;
 	}
+	
+	
+	
+	
+	/*
+	 * Inicio de Getters y Setters
+	 */
+	
+	
+	
 	
 	/**
 	 * Metodo que retorna el hospedaje
@@ -71,6 +136,155 @@ public class Reserva {
 	public void setFechaReservada(ArrayList<Date> fechaReservada) {
 		this.fechaReservada = fechaReservada;
 	}
+
+
+
+	public Hospedaje getHospedaje() {
+		return hospedaje;
+	}
+
+
+
+	public void setHospedaje(Hospedaje hospedaje) {
+		this.hospedaje = hospedaje;
+	}
+
+
+
+
+	public String getIdentificacion() {
+		return identificacion;
+	}
+
+
+
+	public void setIdentificacion(String identificacion) {
+		this.identificacion = identificacion;
+	}
+
+
+
+
+	public Genero getGenero() {
+		return genero;
+	}
+
+
+
+
+	public void setGenero(Genero genero) {
+		this.genero = genero;
+	}
+
+
+
+	public NivelEstudio getEstudio() {
+		return estudio;
+	}
+
+
+	public void setEstudio(NivelEstudio estudio) {
+		this.estudio = estudio;
+	}
+
+
+
+	public Estrato getEstrato() {
+		return estrato;
+	}
+
+
+
+
+	public void setEstrato(Estrato estrato) {
+		this.estrato = estrato;
+	}
+
+
+
+
+	public String getNombre() {
+		return nombre;
+	}
+
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+
+
+
+	public String getDireccion() {
+		return direccion;
+	}
+
+
+
+
+
+
+
+
+
+	public void setDireccion(String direccion) {
+		this.direccion = direccion;
+	}
+
+
+
+
+
+
+
+
+
+	public String getCorreo() {
+		return correo;
+	}
+
+
+
+
+
+
+
+
+
+	public void setCorreo(String correo) {
+		this.correo = correo;
+	}
+
+
+
+
+
+
+	public EstadoCivil getEstado() {
+		return estado;
+	}
+
+
+
+
+
+
+	public void setEstado(EstadoCivil estado) {
+		this.estado = estado;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	/*
+	 * Fin de Getters y Setters
+	 */
+	
 	
 	
 }
