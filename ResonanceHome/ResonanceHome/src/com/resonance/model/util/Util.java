@@ -14,6 +14,10 @@ public class Util {
 	public static final String PANEL_HOSPEDAJE = "/com/resonance/view/interfaz/panelHospedaje.fxml";
 	public static final String PANEL_INICIAR_SESION = "/com/resonance/view/interfaz/panellogIn.fxml";
 	public static final String PANEL_REGISTRO = "/com/resonance/view/interfaz/panelRegistro.fxml";
+	public static final String PANEL_HOSPEDAJE_COMPLETO = "/com/resonance/view/interfaz/panelHospedajeCompleto.fxml";
+	public static final String PANEL_FOTOS_HOSPEDAJE = "/com/resonance/view/interfaz/panelFotosHospedaje.fxml";
+	public static final String PANEL_DESCRIPCION_HOSPEDAJE = "/com/resonance/view/interfaz/panelDescripcionHospedaje.fxml";
+	public static final String PANEL_COMENTARIO= "/com/resonance/view/interfaz/panelComentario.fxml";
 
 	public static ArrayList<String> listadoSugerencias = new ArrayList<>();
 

@@ -88,6 +88,10 @@ public class ControladorListadoHospedajes {
 
 			ControladorHospedaje control = loader.getController();
 			control.inicializar();
+			
+			control.setResonance(resonance);
+			control.setStage(stage);
+			
 		}
 	}
 

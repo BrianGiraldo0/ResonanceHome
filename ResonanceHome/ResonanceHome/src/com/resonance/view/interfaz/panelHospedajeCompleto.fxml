@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.resonance.view.controller.ControladorHospedajeCompleto">
+   <children>
+      <ScrollPane layoutX="32.0" layoutY="38.0" prefHeight="582.0" prefWidth="767.0">
+         <content>
+            <VBox fx:id="layoutScroll" prefHeight="579.0" prefWidth="763.0" />
+         </content>
+      </ScrollPane>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="582.0" layoutX="822.0" layoutY="38.0" stroke="#948b8b" strokeType="INSIDE" width="365.0" />
+      <VBox layoutX="828.0" layoutY="44.0" prefHeight="570.0" prefWidth="349.0">
+         <children>
+            <AnchorPane prefHeight="73.0" prefWidth="265.0" style="-fx-background-color: white;">
+               <children>
+                  <Label layoutX="33.0" layoutY="25.0" prefHeight="27.0" prefWidth="101.0" text="\$ 0,000,000">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="128.0" layoutY="25.0" prefHeight="27.0" prefWidth="149.0" text="/tipo (noche-mes)">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Separator layoutX="33.0" layoutY="56.0" prefHeight="5.0" prefWidth="295.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="385.0" prefWidth="349.0">
+               <children>
+                  <Label layoutX="35.0" layoutY="14.0" text="Fechas">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <DatePicker layoutX="35.0" layoutY="44.0" prefHeight="25.0" prefWidth="295.0" />
+                  <Label layoutX="35.0" layoutY="79.0" text="Huespedes">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <TextField layoutX="35.0" layoutY="107.0" prefHeight="25.0" prefWidth="295.0" promptText="cantidad de huespedes" />
+                  <Label layoutX="37.0" layoutY="153.0" text="Alojamiento">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER_RIGHT" layoutX="261.0" layoutY="153.0" text="\$ 0,000,000 ">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Label>
+                  <Separator layoutX="37.0" layoutY="179.0" prefHeight="5.0" prefWidth="295.0" />
+                  <Label layoutX="37.0" layoutY="193.0" text="Tarifa de limpieza">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER_RIGHT" layoutX="261.0" layoutY="193.0" prefHeight="19.0" prefWidth="69.0" text="\$ 0000 ">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Label>
+                  <Separator layoutX="37.0" layoutY="219.0" prefHeight="5.0" prefWidth="295.0" />
+                  <Label layoutX="37.0" layoutY="232.0" text="Comision por servicio">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER_RIGHT" layoutX="261.0" layoutY="232.0" prefHeight="19.0" prefWidth="69.0" text="\$ 000 ">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Label>
+                  <Separator layoutX="37.0" layoutY="259.0" prefHeight="5.0" prefWidth="295.0" />
+                  <Label layoutX="42.0" layoutY="275.0" text="Total">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER_RIGHT" layoutX="261.0" layoutY="275.0" text="\$ 0,000,000 ">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="154.0" prefWidth="349.0" style="-fx-background-color: white;">
+               <children>
+                  <Button layoutX="34.0" layoutY="14.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="295.0" style="-fx-background-color: black;" text="Reservar" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Label alignment="CENTER" layoutX="34.0" layoutY="81.0" prefHeight="17.0" prefWidth="295.0" text="No se hará ningun cargo por ahora" textFill="#464646" />
+               </children>
+            </AnchorPane>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

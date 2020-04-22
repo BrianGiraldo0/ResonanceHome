@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="613.0" prefWidth="767.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.resonance.view.controller.ControladorDescripcionHospedaje">
+   <children>
+      <Label fx:id="labelTituloAlojamiento" layoutX="63.0" layoutY="30.0" prefHeight="30.0" prefWidth="546.0" text="TITULO CON NOMBRE DEL ALOJAMIENTO">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="labelDireccionAlojamiento" layoutX="63.0" layoutY="60.0" prefHeight="30.0" prefWidth="201.0" text="Ciudad, Departamento, Pais">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="labelNumeroHuespedes" layoutX="64.0" layoutY="98.0" prefHeight="30.0" prefWidth="84.0" text="# Huespedes">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="labelNumeroHabitaciones" layoutX="164.0" layoutY="98.0" prefHeight="30.0" prefWidth="97.0" text="# Habitaciones">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="labelNumeroCamas" layoutX="270.0" layoutY="98.0" prefHeight="30.0" prefWidth="61.0" text="# Camas">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="lablBanos" layoutX="342.0" layoutY="98.0" prefHeight="30.0" prefWidth="61.0" text="# banos">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Separator layoutX="64.0" layoutY="130.0" prefHeight="0.0" prefWidth="378.0" />
+      <Label fx:id="labelCat1" layoutX="64.0" layoutY="148.0" prefHeight="30.0" prefWidth="113.0" text="Caracteristica 1">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="labelCatDesc1" layoutX="78.0" layoutY="178.0" prefHeight="17.0" prefWidth="359.0" text="Descripcion caracteristica 1" />
+      <Label fx:id="labelCat2" layoutX="64.0" layoutY="200.0" prefHeight="30.0" prefWidth="113.0" text="Caracteristica 2">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="labelCatDesc2" layoutX="78.0" layoutY="230.0" prefHeight="17.0" prefWidth="359.0" text="Descripcion caracteristica 1" />
+      <Label fx:id="labelCat3" layoutX="64.0" layoutY="247.0" prefHeight="30.0" prefWidth="113.0" text="Caracteristica 3">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="labelCatDesc3" layoutX="82.0" layoutY="277.0" prefHeight="17.0" prefWidth="359.0" text="Descripcion caracteristica 3" />
+      <Rectangle fx:id="fotoPerfilAnfitrion" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="106.0" layoutX="525.0" layoutY="22.0" stroke="BLACK" strokeType="INSIDE" width="104.0" />
+      <TextArea fx:id="textDescripcionAlojamiento" editable="false" layoutX="64.0" layoutY="305.0" prefHeight="106.0" prefWidth="378.0" text="Descripcion del alojamiento" wrapText="true" />
+      <TextArea fx:id="textDescripcionAnfitrion" editable="false" layoutX="525.0" layoutY="166.0" prefHeight="163.0" prefWidth="104.0" text="Descripcion del anfitrion&#10;" wrapText="true" />
+      <Label fx:id="labelNombreAnfitrion" layoutX="525.0" layoutY="140.0" prefHeight="17.0" prefWidth="97.0" text="Nombre Anfitrion" />
+      <AnchorPane layoutX="64.0" layoutY="427.0" prefHeight="151.0" prefWidth="378.0">
+         <children>
+            <Label layoutX="17.0" layoutY="14.0" prefHeight="30.0" prefWidth="113.0" text="Servicios">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="25.0" layoutY="44.0" prefHeight="30.0" prefWidth="84.0" text="Servicio 1">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="228.0" layoutY="44.0" prefHeight="30.0" prefWidth="84.0" text="Servicio 2">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="25.0" layoutY="87.0" prefHeight="30.0" prefWidth="84.0" text="Servicio 3">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="228.0" layoutY="87.0" prefHeight="30.0" prefWidth="84.0" text="Servicio 4">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <Label layoutX="64.0" layoutY="563.0" text="Comentarios">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

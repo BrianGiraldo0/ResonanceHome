@@ -63,7 +63,10 @@ public class ControladorPrincipal {
 		rangePicker.setMinWidth(200);
 		layout.getChildren().add(rangePicker);
 		colorearBotones();
-
+		
+		
+		
+		
 		btnBuscar.setOnMouseClicked((e) -> {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource(Util.PANEL_LISTADO_HOSPEDAJES));
 			Parent root = null;
@@ -75,14 +78,17 @@ public class ControladorPrincipal {
 			}
 
 			ControladorListadoHospedajes control = loader.getController();
-			control.inicializar();
+			
 			control.setResonance(resonance);
 			control.setStage(stage);
-
+			control.inicializar();
 			stage.setResizable(false);
 			stage.getScene().setRoot(root);
 		});
-
+		
+		
+		
+	
 	}
 
 	@FXML
@@ -93,6 +99,9 @@ public class ControladorPrincipal {
 			lHuespedes.setStyle("-fx-border-color: black; -fx-border-radius: 15");
 
 		} else if (event.getSource() == btniniciarSesion) {
+			
+			
+			
 			FXMLLoader loader = new FXMLLoader(getClass().getResource(Util.PANEL_INICIAR_SESION));
 			Parent root = null;
 			try {
@@ -108,6 +117,8 @@ public class ControladorPrincipal {
 
 			stage.setResizable(false);
 			stage.getScene().setRoot(root);
+			
+			
 		} else if (event.getSource() == btnRegistro) {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource(Util.PANEL_REGISTRO));
 			Parent root = null;
