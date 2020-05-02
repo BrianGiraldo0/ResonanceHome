@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="idPaso1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.resonance.view.controller.ControladorRegPropiedad4">
+   <children>
+      <ImageView fitHeight="138.0" fitWidth="54.0" layoutX="50.0" layoutY="48.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../../git/ResonanceHome/ResonanceHome/ResonanceHome/src/com/resonance/view/imagenes/logo_resonance.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="56.0" layoutY="145.0" text=" Comencemos a publicar tu espacio.">
+         <font>
+            <Font name="System Bold" size="22.0" />
+         </font>
+      </Label>
+      <Separator layoutX="56.0" layoutY="189.0" prefHeight="6.0" prefWidth="370.0" style="-fx-background-color: black;" />
+      <Label layoutX="56.0" layoutY="204.0" prefHeight="17.0" prefWidth="252.0" text="Paso 4" textFill="#868585">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="117.0" layoutY="58.0" prefHeight="35.0" prefWidth="513.0" text="Paso 4: Enseñanos más sobre tu hospedaje">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <AnchorPane layoutX="56.0" layoutY="120.0" prefHeight="30.0" prefWidth="1190.0">
+         <children>
+            <AnchorPane fx:id="lUbicacion" prefHeight="10.0" prefWidth="290.0" style="-fx-background-radius: 10; -fx-border-color: #B8B8B8; -fx-background-color: #32C4FF; -fx-border-radius: 10;" />
+            <AnchorPane fx:id="lFecha" layoutX="290.0" prefHeight="10.0" prefWidth="290.0" style="-fx-background-radius: 10; -fx-background-color: #32C4FF; -fx-border-color: #B8B8B8; -fx-border-radius: 10;" />
+            <AnchorPane fx:id="lHuespedes" layoutX="580.0" prefHeight="10.0" prefWidth="290.0" style="-fx-background-radius: 10; -fx-background-color: #32C4FF; -fx-border-color: #B8B8B8; -fx-border-radius: 10;" />
+            <AnchorPane fx:id="lHuespedes1" layoutX="870.0" prefHeight="10.0" prefWidth="290.0" style="-fx-background-radius: 10; -fx-background-color: #32C4FF; -fx-border-color: #B8B8B8; -fx-border-radius: 10;" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="idImage" layoutX="576.0" layoutY="145.0" prefHeight="626.0" prefWidth="642.0">
+         <children>
+            <ImageView fx:id="idImagen" fitHeight="626.0" fitWidth="642.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../imagenes/Minimal.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="56.0" layoutY="241.0" prefHeight="447.0" prefWidth="556.0">
+         <children>
+            <Label contentDisplay="BOTTOM" layoutY="-1.0" prefHeight="30.0" prefWidth="244.0" text="Agrega fotos a tu anuncio." textAlignment="CENTER">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label layoutY="148.0" prefHeight="30.0" prefWidth="215.0" text="Describe tu alojamiento.">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label layoutY="349.0" prefHeight="30.0" prefWidth="297.0" text="Escribe un titulo para tu anuncio.">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label layoutY="29.0" text="Las fotos ayudan a que los huéspedes se imaginen cómo es alojarse en tu espacio." />
+            <Label layoutY="179.0" prefHeight="17.0" prefWidth="556.0" text="Puedes destacar qué tiene de especial tu espacio y la zona, así como tu interacción " />
+            <Label layoutY="379.0" text="Atrae la atención de los huéspedes con un título que destaque que tu alojamiento" />
+            <TextField fx:id="txtTitulo" layoutY="422.0" prefHeight="25.0" prefWidth="436.0" />
+            <Label layoutY="396.0" prefHeight="17.0" prefWidth="91.0" text="es especial." />
+            <Label layoutY="196.0" text="con los huéspedes." />
+            <TextArea fx:id="txtDescripcion" layoutY="224.0" prefHeight="116.0" prefWidth="436.0" />
+            <AnchorPane layoutX="1.0" layoutY="54.0" prefHeight="90.0" prefWidth="436.0">
+               <children>
+                  <AnchorPane prefHeight="90.0" prefWidth="90.0" style="-fx-border-color: #D3D3D3;">
+                     <children>
+                        <ImageView fx:id="image1" fitHeight="90.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true" />
+                        <Label fx:id="interrogacionFoto" layoutX="29.0" layoutY="10.0" prefHeight="35.0" prefWidth="34.0" text="+">
+                           <font>
+                              <Font size="49.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="113.0" prefHeight="90.0" prefWidth="90.0" style="-fx-border-color: #D3D3D3;">
+                     <children>
+                        <ImageView fx:id="image2" fitHeight="90.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true" />
+                        <Label fx:id="interrogacionFoto1" layoutX="28.0" layoutY="10.0" prefHeight="35.0" prefWidth="34.0" text="+">
+                           <font>
+                              <Font size="49.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="227.0" prefHeight="90.0" prefWidth="90.0" style="-fx-border-color: #D3D3D3;">
+                     <children>
+                        <ImageView fx:id="image3" fitHeight="90.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true" />
+                        <Label fx:id="interrogacionFoto11" layoutX="28.0" layoutY="10.0" prefHeight="35.0" prefWidth="34.0" text="+">
+                           <font>
+                              <Font size="49.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="344.0" prefHeight="90.0" prefWidth="90.0" style="-fx-border-color: #D3D3D3;">
+                     <children>
+                        <ImageView fx:id="image4" fitHeight="90.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true" />
+                        <Label fx:id="interrogacionFoto111" layoutX="29.0" layoutY="10.0" prefHeight="35.0" prefWidth="34.0" text="+">
+                           <font>
+                              <Font size="49.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+      <Button fx:id="btnAtras" layoutX="76.0" layoutY="715.0" mnemonicParsing="false" onMouseClicked="#onClic" prefHeight="30.0" prefWidth="83.0" style="-fx-background-color: #F4F4F4; -fx-background-radius: 20;" text="Atras">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnPublicar" layoutX="321.0" layoutY="715.0" mnemonicParsing="false" onMouseClicked="#onClic" prefHeight="30.0" prefWidth="83.0" style="-fx-background-color: #09C419; -fx-background-radius: 20;" text="Publicar" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

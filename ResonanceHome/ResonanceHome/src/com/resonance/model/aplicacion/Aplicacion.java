@@ -27,6 +27,7 @@ public class Aplicacion extends Application {
 		Parent root = loader.load();
 		ControladorPrincipal control = loader.getController();
 		control.setResonance(resonance);
+
 		control.setStage(stage);
 		Scene scene = new Scene(root);
 

@@ -17,7 +17,11 @@ public class Util {
 	public static final String PANEL_HOSPEDAJE_COMPLETO = "/com/resonance/view/interfaz/panelHospedajeCompleto.fxml";
 	public static final String PANEL_FOTOS_HOSPEDAJE = "/com/resonance/view/interfaz/panelFotosHospedaje.fxml";
 	public static final String PANEL_DESCRIPCION_HOSPEDAJE = "/com/resonance/view/interfaz/panelDescripcionHospedaje.fxml";
-	public static final String PANEL_COMENTARIO= "/com/resonance/view/interfaz/panelComentario.fxml";
+	public static final String PANEL_COMENTARIO = "/com/resonance/view/interfaz/panelComentario.fxml";
+	public static final String PANEL_REGPROPIEDAD_1 = "/com/resonance/view/interfaz/panelRegPropiedad1.fxml";
+	public static final String PANEL_REGPROPIEDAD_2 = "/com/resonance/view/interfaz/panelRegPropiedad2.fxml";
+	public static final String PANEL_REGPROPIEDAD_3 = "/com/resonance/view/interfaz/panelRegPropiedad3.fxml";
+	public static final String PANEL_REGPROPIEDAD_4 = "/com/resonance/view/interfaz/panelRegPropiedad4.fxml";
 
 	public static ArrayList<String> listadoSugerencias = new ArrayList<>();
 
@@ -55,4 +59,5 @@ public class Util {
 
 		return id;
 	}
+
 }

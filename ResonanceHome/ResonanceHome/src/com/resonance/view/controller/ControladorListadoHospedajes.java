@@ -87,11 +87,10 @@ public class ControladorListadoHospedajes {
 			lBox.getChildren().add(root);
 
 			ControladorHospedaje control = loader.getController();
-			control.inicializar();
-			
 			control.setResonance(resonance);
 			control.setStage(stage);
-			
+			control.inicializar();
+
 		}
 	}
 

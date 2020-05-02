@@ -16,12 +16,11 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class ControladorHospedaje {
-	
-	
+
 	private Stage stage;
-	
+
 	private ResonanceHome resonance;
-	
+
 	@FXML
 	private ImageView imageFotos;
 
@@ -48,6 +47,7 @@ public class ControladorHospedaje {
 
 	public void inicializar() {
 
+		AnchorPane pane = new AnchorPane();
 		btnAnterior.setVisible(false);
 		btnSiguiente.setVisible(false);
 		lHospedaje.setStyle("-fx-background-color: #FFFFFF");
@@ -72,12 +72,9 @@ public class ControladorHospedaje {
 		});
 
 	}
-	
-	
-	
+
 	public void tocarHospedaje() {
-		
-	
+
 		FXMLLoader loader = new FXMLLoader(getClass().getResource(Util.PANEL_HOSPEDAJE_COMPLETO));
 		Parent root = null;
 		try {
@@ -94,35 +91,24 @@ public class ControladorHospedaje {
 
 		stage.setResizable(false);
 		stage.getScene().setRoot(root);
-		
+
 	}
-
-
 
 	public Stage getStage() {
 		return stage;
 	}
 
-
-
 	public void setStage(Stage stage) {
 		this.stage = stage;
 	}
-
-
 
 	public ResonanceHome getResonance() {
 		return resonance;
 	}
 
-
-
 	public void setResonance(ResonanceHome resonance) {
-		
-		
+
 		this.resonance = resonance;
 	}
-	
-	
 
 }

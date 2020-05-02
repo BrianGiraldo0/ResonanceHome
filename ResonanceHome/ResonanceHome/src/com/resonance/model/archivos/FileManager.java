@@ -52,7 +52,6 @@ public class FileManager {
 //
 //	}
 
-	
 	/**
 	 * Metodo que crea una carpeta para un huesped nuevo
 	 * 
