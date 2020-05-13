@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 
+import com.resonance.model.archivos.FileManager;
 import com.resonance.model.excepciones.NoExistException;
 import com.resonance.model.hospedajes.Direccion;
 import com.resonance.model.hospedajes.Hospedaje;
@@ -12,7 +13,11 @@ import com.resonance.model.hospedajes.Plus;
 import com.resonance.model.hospedajes.Prestacion;
 import com.resonance.model.hospedajes.TipoHospedaje;
 import com.resonance.model.usuarios.Anfitrion;
+import com.resonance.model.usuarios.EstadoCivil;
+import com.resonance.model.usuarios.Estrato;
+import com.resonance.model.usuarios.Genero;
 import com.resonance.model.usuarios.Huesped;
+import com.resonance.model.usuarios.NivelEstudio;
 import com.resonance.model.util.Util;
 
 public class ResonanceHome {
@@ -25,9 +30,39 @@ public class ResonanceHome {
 	 * Metodo constructor de la clase principal
 	 */
 	public ResonanceHome() {
+		llenarPruebas();
+		FileManager.inicializar();
+	}
+	
+	/**
+	 * Método rellena datos de prueba
+	 */
+	public void llenarPruebas()
+	{
+		fillHuespedes();
+		fillHospedajes();
+	}
+	
+	/**
+	 * Método que rellena huespedes de prueba
+	 */
+	public void fillHuespedes()
+	{
+		Date fecha1 = new Date(2000, 11, 29);
+		agregarHuesped("Cesar Marquez","cesar@gmail.com", "","Calle 12 # 4", fecha1, "cesar", "Hola, soy cesar", "cemarquez",NivelEstudio.PREGRADO, EstadoCivil.SOLTERO, Genero.MASCULINO, Estrato.ESTRATO_2);
+		
 
 	}
 
+	/**
+	 * Método que rellena hospedajes de prueba
+	 */
+	public void fillHospedajes()
+	{
+		
+	}
+	
+	
 	/**
 	 * Metodo que obtiene un huesped mediante su nombre de usuario
 	 * 
@@ -113,13 +148,15 @@ public class ResonanceHome {
 	 * @param nametag
 	 */
 	public void agregarAnfitrion(String nombre, String email, String uRLFoto, String direccion, Date fechaNacimiento,
-			String contrasenia, String biografia, String nametag) {
+			String contrasenia, String biografia, String nametag, NivelEstudio nivelEstudio,EstadoCivil estadoCivil, Genero genero, Estrato estrato ) {
 		Anfitrion anfitrion;
 		if(uRLFoto == null || uRLFoto.equals("")) {
 			anfitrion = new Anfitrion(nombre, email, direccion, fechaNacimiento, contrasenia, biografia, nametag);
 		}else {
 			anfitrion = new Anfitrion(nombre, email, uRLFoto, direccion, fechaNacimiento, contrasenia, biografia, nametag);
 		}
+		anfitrion.llenarDatos(nivelEstudio, estadoCivil, genero, estrato);
+		FileManager.crearCarpetaAnfitrion(nametag);
 		anfitriones.put(nametag, anfitrion);
 		
 	}
@@ -136,13 +173,15 @@ public class ResonanceHome {
 	 * @param nametag
 	 */
 	public void agregarHuesped(String nombre, String email, String uRLFoto, String direccion, Date fechaNacimiento,
-			String contrasenia, String biografia, String nametag) {
+			String contrasenia, String biografia, String nametag, NivelEstudio nivelEstudio,EstadoCivil estadoCivil, Genero genero, Estrato estrato ) {
 		Huesped huesped;
 		if(uRLFoto == null || uRLFoto.equals("")) {
 			huesped = new Huesped(nombre, email, direccion, fechaNacimiento, contrasenia, biografia, nametag);
 		}else {
 			huesped = new Huesped(nombre, email, uRLFoto, direccion, fechaNacimiento, contrasenia, biografia, nametag);
 		}
+		huesped.llenarDatos(nivelEstudio, estadoCivil, genero, estrato);
+		FileManager.crearCarpetaHuesped(nametag);
 		huespedes.put(nametag, huesped);
 		
 	}
@@ -207,5 +246,7 @@ public class ResonanceHome {
 		}
 		return resultado;
 	}
+	
+	
 	
 }

@@ -23,9 +23,11 @@ public class Aplicacion extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		this.stage = primaryStage;
+		inicializarResonance();
 		FXMLLoader loader = new FXMLLoader(getClass().getResource(Util.VENTANA_PRINCIPAL));
 		Parent root = loader.load();
 		ControladorPrincipal control = loader.getController();
+		
 		control.setResonance(resonance);
 
 		control.setStage(stage);
@@ -39,6 +41,15 @@ public class Aplicacion extends Application {
 		primaryStage.show();
 		control.inicializar();
 
+	}
+	
+	/**
+	 * Método donde se inicializa la clase principal
+	 */
+	public void inicializarResonance()
+	{
+		//Invocar aqui la serialización
+		resonance = new ResonanceHome();
 	}
 
 }

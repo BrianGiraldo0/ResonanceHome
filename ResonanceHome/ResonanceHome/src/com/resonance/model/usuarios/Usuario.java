@@ -17,6 +17,10 @@ public class Usuario {
 	private String nametag = "";
 	private String id = "";
 	private ArrayList<Chat> chats;
+	private Estrato estrato;
+	private Genero genero;
+	private EstadoCivil estadoCivil;
+	private NivelEstudio nivelEstudio;
 
 	/**
 	 * Método constructor de la clase en caso de que se seleccione alguna foto
@@ -72,6 +76,13 @@ public class Usuario {
 		// llenar con foto por defecto
 	}
 
+	public void llenarDatos(NivelEstudio nivelEstudio,EstadoCivil estadoCivil, Genero genero, Estrato estrato )
+	{
+		this.nivelEstudio = nivelEstudio;
+		this.estadoCivil = estadoCivil;
+		this.genero = genero;
+		this.estrato = estrato;
+	}
 	/**
 	 * Metodo que retorna el nombre del usuario
 	 * 
@@ -276,4 +287,38 @@ public class Usuario {
 		return null;
 	}
 
+	public Estrato getEstrato() {
+		return estrato;
+	}
+
+	public void setEstrato(Estrato estrato) {
+		this.estrato = estrato;
+	}
+
+	public Genero getGenero() {
+		return genero;
+	}
+
+	public void setGenero(Genero genero) {
+		this.genero = genero;
+	}
+
+	public EstadoCivil getEstadoCivil() {
+		return estadoCivil;
+	}
+
+	public void setEstadoCivil(EstadoCivil estadoCivil) {
+		this.estadoCivil = estadoCivil;
+	}
+
+	public NivelEstudio getNivelEstudio() {
+		return nivelEstudio;
+	}
+
+	public void setNivelEstudio(NivelEstudio nivelEstudio) {
+		this.nivelEstudio = nivelEstudio;
+	}
+
+	
+	
 }

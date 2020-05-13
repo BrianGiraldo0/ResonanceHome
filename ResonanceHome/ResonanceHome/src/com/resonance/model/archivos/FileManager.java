@@ -58,7 +58,7 @@ public class FileManager {
 	 * @param name
 	 */
 	public static void crearCarpetaHuesped(String name) {
-		File file = new File(urlMain + "/Usuarios/Huespedes" + name);
+		File file = new File(urlMain + "/Usuarios/Huespedes/" + name);
 		if (!file.exists()) {
 			file.mkdirs();
 		}
