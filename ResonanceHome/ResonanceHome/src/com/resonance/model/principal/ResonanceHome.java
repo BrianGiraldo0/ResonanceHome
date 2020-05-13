@@ -23,6 +23,7 @@ import com.resonance.model.usuarios.Huesped;
 import com.resonance.model.usuarios.NivelEstudio;
 import com.resonance.model.util.Fecha;
 import com.resonance.model.util.Util;
+import com.sun.prism.Presentable;
 
 public class ResonanceHome {
 
@@ -33,8 +34,9 @@ public class ResonanceHome {
 
 	/**
 	 * Metodo constructor de la clase principal
+	 * @throws NoExistException Excepcion necesaria para el metodo llenarPruebas
 	 */
-	public ResonanceHome() {
+	public ResonanceHome() throws NoExistException {
 		Date date = new Date();
 		LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 		int month = localDate.getMonthValue();
@@ -44,36 +46,85 @@ public class ResonanceHome {
 		llenarPruebas();
 		FileManager.inicializar();
 	}
-	
+
 	/**
 	 * Método rellena datos de prueba
+	 * @throws NoExistException Excepcion en caso de no existir un anfitrion para el hospedaje.}
 	 */
-	public void llenarPruebas()
-	{
-		fillHuespedes();
+	public void llenarPruebas() throws NoExistException {
 		fillHospedajes();
+		//las contraseñas de los usuarios son el primer nombre. Ejemplo: "Oscar Gomez" contraseña = "oscar".
+		fillHuespedes();
+		fillAnfitriones();
 	}
-	
+
 	/**
 	 * Método que rellena huespedes de prueba
 	 */
-	public void fillHuespedes()
-	{
+	public void fillHuespedes() {
 		Date fecha1 = new Date(2000, 11, 29);
-		agregarHuesped("Cesar Marquez","cesar@gmail.com", "","Calle 12 # 4", fecha1, "cesar", "Hola, soy cesar", "cemarquez");
-		
+		Date fecha2 = new Date(1997, 4, 9);
+		Date fecha3 = new Date(1990, 10, 27);
+
+		agregarHuesped("Cesar Marquez", "cesar@gmail.com", "", "Calle 12 # 4", fecha1, "cesar", "Hola, soy cesar",
+				"cemarquez");
+		agregarHuesped("Antonio Sepulveda", "antoniel9704@gmail.com", "", "Calle 51B # 12 - 04", fecha2, "antonio",
+				"Soy estudiante de literatura, me gusta disfrutar de un buen lugar", "sepultonio");
+		agregarHuesped("Estela Aguilar", "ester.aguila@gmail.com", "", "Carre 16N # 13 - 42", fecha3, "estela",
+				"Me gusta viajar por el mundo, disfrutar de la vida, soy buena inquilina", "esterguila");
 
 	}
 
 	/**
 	 * Método que rellena hospedajes de prueba
+	 * 
+	 * @throws NoExistException Excepcion en caso de no existir el anfitrion.
 	 */
-	public void fillHospedajes()
-	{
-		
+	public void fillHospedajes() throws NoExistException {
+		Plus plus1 = new Plus(false, true, false, true, true);
+		Plus plus2 = new Plus(true, true, true, true, true);
+		Plus plus3 = new Plus(true, true, false, false, true);
+
+		Prestacion pres1 = new Prestacion(2, 1, false);
+		Prestacion pres2 = new Prestacion(4, 2, true);
+		Prestacion pres3 = new Prestacion(1, 1, true);
+
+		Direccion direc1 = new Direccion("Armenia", "Quindio", "Colombia", "Calle 57 # 13 - 14");
+		Direccion direc2 = new Direccion("Cartagena", "Bolivar", "Colombia", "Carrera 43 # 22 - 21");
+		Direccion direc3 = new Direccion("Medellin", "Antioquia", "Colombia", "Calle 13 # 07 - 22");
+
+		ArrayList<String> fotos1 = new ArrayList<String>();
+		ArrayList<String> fotos2 = new ArrayList<String>();
+		ArrayList<String> fotos3 = new ArrayList<String>();
+
+		agregarHospedaje(direc1, 87000.0, "gustavomene", fotos1,
+				"Habitacion con gran espacio perfecto para parejas, buena iluminación natural y buena convivencia",
+				plus1, TipoHospedaje.HABITACION, pres1);
+		agregarHospedaje(direc2, 320000.0, "oscarlop", fotos2,
+				"Apartamento comodo, amplio y agradables vistas para pasar una estadia agradable en familia, amigos o pareja",
+				plus2, TipoHospedaje.APARTAMENTO, pres2);
+		agregarHospedaje(direc3, 95000.0, "patyherrera", fotos3,
+				"Habitacion pequeña pero bien amoblada, fresca y se realiza aseo semanal; el resto de la casa en la mayor parte del dia esta disponible para el huesped",
+				plus3, TipoHospedaje.HABITACION, pres3);
 	}
-	
-	
+
+	/**
+	 * Método que rellena anfitriones de prueba
+	 */
+	public void fillAnfitriones() {
+		Date fecha1 = new Date(1968, 1, 12);
+		Date fecha2 = new Date(1995, 8, 26);
+		Date fecha3 = new Date(1982, 12, 8);
+
+		agregarAnfitrion("Gustavo Meneses", "sergio.meneses95", "", "Calle 57 # 13 - 14", fecha1, "gustavo",
+				"Me considero una persona simpatica, ordenada y mantengo todo de la mejor manera", "gustavomene");
+		agregarAnfitrion("Oscar Lopez", "oscarin.lop@gmail.com", "", "Carrera 24 # 20 - 47", fecha2, "oscar",
+				"Me gusta la buena musica, intento mantener siempre un ambiente agradable", "oscarlop");
+		agregarAnfitrion("Patricia Herrera", "patyherrera@gmail.com", "", "Calle 13 # 07 - 22", fecha3, "patricia",
+				"Soy economista, experta en negocios internacionale, viajo mucho y me considero una persona social y carismatica",
+				"patyherrera");
+	}
+
 	/**
 	 * Metodo que obtiene un huesped mediante su nombre de usuario
 	 * 
@@ -124,6 +175,7 @@ public class ResonanceHome {
 
 	/**
 	 * Metodo que permite agregar un hospedaje a la lista global de hospedajes
+	 * 
 	 * @param direccion
 	 * @param precio
 	 * @param nameTagPropietario
@@ -133,22 +185,24 @@ public class ResonanceHome {
 	 * @param tipoH
 	 */
 	public void agregarHospedaje(Direccion direccion, double precio, String nameTagPropietario,
-			ArrayList<String> urlsFotos, String descripcion, Plus servicios, TipoHospedaje tipoH, Prestacion prestaciones) throws NoExistException {
-		
-		
-		if(anfitriones.get(nameTagPropietario) != null) {
+			ArrayList<String> urlsFotos, String descripcion, Plus servicios, TipoHospedaje tipoH,
+			Prestacion prestaciones) throws NoExistException {
+
+		if (anfitriones.get(nameTagPropietario) != null) {
 			String id = Util.generarIDHospedaje();
 			Hospedaje hosp = new Hospedaje(id, direccion, precio, nameTagPropietario, urlsFotos, descripcion, servicios,
 					tipoH, prestaciones);
 			anfitriones.get(nameTagPropietario).agregarHospedaje(id);
 			Util.agregarSugerencia(direccion.toString());
 			hospedajes.put(id, hosp);
-		}else {
-			throw new NoExistException();		}
+		} else {
+			throw new NoExistException();
+		}
 	}
-	
+
 	/**
 	 * Metodo que agrega un anfitrion a la lista
+	 * 
 	 * @param nombre
 	 * @param email
 	 * @param uRLFoto
@@ -161,18 +215,20 @@ public class ResonanceHome {
 	public void agregarAnfitrion(String nombre, String email, String uRLFoto, String direccion, Date fechaNacimiento,
 			String contrasenia, String biografia, String nametag) {
 		Anfitrion anfitrion;
-		if(uRLFoto == null || uRLFoto.equals("")) {
+		if (uRLFoto == null || uRLFoto.equals("")) {
 			anfitrion = new Anfitrion(nombre, email, direccion, fechaNacimiento, contrasenia, biografia, nametag);
-		}else {
-			anfitrion = new Anfitrion(nombre, email, uRLFoto, direccion, fechaNacimiento, contrasenia, biografia, nametag);
+		} else {
+			anfitrion = new Anfitrion(nombre, email, uRLFoto, direccion, fechaNacimiento, contrasenia, biografia,
+					nametag);
 		}
 		FileManager.crearCarpetaAnfitrion(nametag);
 		anfitriones.put(nametag, anfitrion);
-		
+
 	}
-	
+
 	/**
 	 * Metodo que permite agregar un huesped a la lista
+	 * 
 	 * @param nombre
 	 * @param email
 	 * @param uRLFoto
@@ -185,90 +241,82 @@ public class ResonanceHome {
 	public void agregarHuesped(String nombre, String email, String uRLFoto, String direccion, Date fechaNacimiento,
 			String contrasenia, String biografia, String nametag) {
 		Huesped huesped;
-		if(uRLFoto == null || uRLFoto.equals("")) {
+		if (uRLFoto == null || uRLFoto.equals("")) {
 			huesped = new Huesped(nombre, email, direccion, fechaNacimiento, contrasenia, biografia, nametag);
-		}else {
+		} else {
 			huesped = new Huesped(nombre, email, uRLFoto, direccion, fechaNacimiento, contrasenia, biografia, nametag);
 		}
 		FileManager.crearCarpetaHuesped(nametag);
 		huespedes.put(nametag, huesped);
-		
+
 	}
-	
-	
+
 	/**
-	 * Metodo que permite obtener todos los hospedajes que pasan por el primer filtro
+	 * Metodo que permite obtener todos los hospedajes que pasan por el primer
+	 * filtro
+	 * 
 	 * @param fecha
 	 * @param ciudadDestino
 	 * @param cantidadHuespedes
 	 * @return
 	 */
-	public ArrayList<Hospedaje> obtenerHospedajes(ArrayList<Date> fecha, String ciudadDestino, int cantidadHuespedes )
-	{
-		ArrayList<Hospedaje> resultado= new ArrayList<Hospedaje>();
-		
+	public ArrayList<Hospedaje> obtenerHospedajes(ArrayList<Date> fecha, String ciudadDestino, int cantidadHuespedes) {
+		ArrayList<Hospedaje> resultado = new ArrayList<Hospedaje>();
+
 		Iterator<String> keys = hospedajes.keySet().iterator();
-		while(keys.hasNext())
-		{
+		while (keys.hasNext()) {
 			String key = keys.next();
 			Hospedaje h = hospedajes.get(key);
-			
-			if(h.getCiudad().equalsIgnoreCase(ciudadDestino))
-			{
-				if(h.getPrestaciones().getNumHuesped() >= cantidadHuespedes)
-				{
-					if(h.disponibleEnFecha(fecha))
-					{
+
+			if (h.getCiudad().equalsIgnoreCase(ciudadDestino)) {
+				if (h.getPrestaciones().getNumHuesped() >= cantidadHuespedes) {
+					if (h.disponibleEnFecha(fecha)) {
 						resultado.add(h);
 					}
 				}
 			}
 		}
-		
-		
+
 		return resultado;
 	}
-	
-	
+
 	/**
-	 * Metodo que permite filtrar hopedajes dependiendo de una serie de especificaciones
+	 * Metodo que permite filtrar hopedajes dependiendo de una serie de
+	 * especificaciones
+	 * 
 	 * @param hospedajesF
 	 * @param tipoH
 	 * @param valorMin
 	 * @param valorMax
 	 * @return
 	 */
-	public ArrayList<Hospedaje> filtarHospedajes(ArrayList<Hospedaje> hospedajesF, TipoHospedaje tipoH, double valorMin, double valorMax)
-	{
-		ArrayList<Hospedaje> resultado= new ArrayList<Hospedaje>();
-	
-		for(int i=0;i<hospedajesF.size();i++)
-		{
+	public ArrayList<Hospedaje> filtarHospedajes(ArrayList<Hospedaje> hospedajesF, TipoHospedaje tipoH, double valorMin,
+			double valorMax) {
+		ArrayList<Hospedaje> resultado = new ArrayList<Hospedaje>();
+
+		for (int i = 0; i < hospedajesF.size(); i++) {
 			Hospedaje hAux = hospedajesF.get(i);
-			if(hAux.getTipoHospedaje() == tipoH)
-			{
-				if(hAux.getPrecio() > valorMin && hAux.getPrecio() < valorMax) {
-					
+			if (hAux.getTipoHospedaje() == tipoH) {
+				if (hAux.getPrecio() > valorMin && hAux.getPrecio() < valorMax) {
+
 					resultado.add(hAux);
 				}
 			}
 		}
 		return resultado;
 	}
-	
+
 	/**
-	 * Metodo que añade un dia a una fecha y ademas actualiza las reservas y hospedajes
+	 * Metodo que añade un dia a una fecha y ademas actualiza las reservas y
+	 * hospedajes
 	 */
-	public void anadirDia()
-	{
+	public void anadirDia() {
 		fecha.anadirDia();
 		Iterator<String> keys = huespedes.keySet().iterator();
-		while(keys.hasNext())
-		{
-			String key=keys.next();
+		while (keys.hasNext()) {
+			String key = keys.next();
 			huespedes.get(key).update(fecha);
 		}
 	}
-	
-	
+
 }
