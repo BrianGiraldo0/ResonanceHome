@@ -52,11 +52,12 @@ public class ResonanceHome {
 	 * @throws NoExistException Excepcion en caso de no existir un anfitrion para el hospedaje.}
 	 */
 	public void llenarPruebas() throws NoExistException {
-		fillHospedajes();
+		
 		//las contraseñas de los usuarios son el primer nombre. Ejemplo: "Oscar Gomez" contraseña = "oscar".
 		fillHuespedes();
 		fillAnfitriones();
-	}
+		fillHospedajes();
+		}
 
 	/**
 	 * Método que rellena huespedes de prueba
@@ -194,6 +195,7 @@ public class ResonanceHome {
 					tipoH, prestaciones);
 			anfitriones.get(nameTagPropietario).agregarHospedaje(id);
 			Util.agregarSugerencia(direccion.toString());
+			FileManager.agregarHospedaje(id, nameTagPropietario, urlsFotos);
 			hospedajes.put(id, hosp);
 		} else {
 			throw new NoExistException();

@@ -1,5 +1,6 @@
 package com.resonance.model.aplicacion;
 
+import com.resonance.model.excepciones.NoExistException;
 import com.resonance.model.principal.ResonanceHome;
 import com.resonance.model.util.Util;
 import com.resonance.view.controller.ControladorPrincipal;
@@ -49,7 +50,12 @@ public class Aplicacion extends Application {
 	public void inicializarResonance()
 	{
 		//Invocar aqui la serialización
-		resonance = new ResonanceHome();
+		try {
+			resonance = new ResonanceHome();
+		} catch (NoExistException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }

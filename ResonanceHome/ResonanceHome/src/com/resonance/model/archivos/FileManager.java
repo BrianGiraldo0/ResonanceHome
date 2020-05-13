@@ -130,7 +130,7 @@ public class FileManager {
 	 * @param urlsFotos
 	 */
 	public static void agregarHospedaje(String idHos, String nameTagOwner, ArrayList<String> urlsFotos) {
-		File nuHosp = new File(urlHospedajes + "/idHos");
+		File nuHosp = new File(urlHospedajes +"/" + idHos);
 		if (!nuHosp.exists()) {
 			nuHosp.mkdirs();
 		}
@@ -151,7 +151,8 @@ public class FileManager {
 	public static boolean idHospAlreadyExist(String id) {
 		File file = new File(urlHospedajes);
 		File[] files = file.listFiles();
-		for (int i = 0; i < file.listFiles().length; i++) {
+		if(files!=null)
+		for (int i = 0; i < files.length; i++) {
 			if (files[i].getName().equals(id)) {
 				return true;
 			}
