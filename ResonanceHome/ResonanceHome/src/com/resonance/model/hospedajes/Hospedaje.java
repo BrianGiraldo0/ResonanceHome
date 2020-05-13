@@ -3,6 +3,8 @@ package com.resonance.model.hospedajes;
 import java.util.ArrayList;
 import java.util.Date;
 
+import com.resonance.model.util.Fecha;
+
 public class Hospedaje {
 
 	private Prestacion prestaciones;
@@ -56,6 +58,15 @@ public class Hospedaje {
 		}
 		
 		return true;
+	}
+	public void update(Fecha fecha)
+	{
+		for (int i = 0; i < fechasReservadas.size(); i++) {
+			if(fecha.isMayor(fechasReservadas.get(i)))
+			{
+				fechasReservadas.remove(i);
+			}
+		}
 	}
 	/**
 	 * Metodo que obtiene el id

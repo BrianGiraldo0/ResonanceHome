@@ -5,10 +5,11 @@ import java.util.Date;
 
 import com.resonance.model.hospedajes.Reserva;
 import com.resonance.model.txt.Tarjeta;
+import com.resonance.model.util.Fecha;
 
 public class Huesped extends Usuario{
 	
-	private ArrayList <Reserva> misReservas = new ArrayList<Reserva>();	
+	private ArrayList <Reserva> reservas = new ArrayList<Reserva>();	
 	private Tarjeta tarjeta;
 	
 
@@ -33,7 +34,7 @@ public class Huesped extends Usuario{
 	 */
 	public void agregarReserva(Reserva reserva) {
 		
-		misReservas.add(reserva);
+		reservas.add(reserva);
 	}
 	
 	/**
@@ -43,8 +44,8 @@ public class Huesped extends Usuario{
 	 */
 	public void eliminarReserva (Reserva reserva) {
 		
-		if (misReservas.size()!=0) {
-		misReservas.remove(reserva);
+		if (reservas.size()!=0) {
+		reservas.remove(reserva);
 		}
 		
 	}
@@ -59,11 +60,11 @@ public class Huesped extends Usuario{
 		
 		ArrayList<Reserva> reservasPorDia = new ArrayList<>();
 		
-		if (misReservas.size()!=0) {
+		if (reservas.size()!=0) {
 
-			for (int i=0; i<misReservas.size();i++) {
+			for (int i=0; i<reservas.size();i++) {
 				
-				Reserva miR = misReservas.get(i);
+				Reserva miR = reservas.get(i);
 				
 				if (miR.verificarDiaReserva(fecha)) {
 					
@@ -91,7 +92,12 @@ public class Huesped extends Usuario{
 	}
 	
 	
-	
+	public void update(Fecha fecha)
+	{
+		for (int i = 0; i < reservas.size(); i++) {
+			reservas.get(i).update(fecha);
+		}
+	}
 	
 	
 	

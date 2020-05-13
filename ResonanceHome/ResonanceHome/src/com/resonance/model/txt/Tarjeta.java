@@ -43,7 +43,7 @@ public class Tarjeta {
 	}
 	
 	/*
-	 * Inicio de getters y setters
+	 * Fin de getters y setters
 	 */
 	
 }

@@ -1,6 +1,9 @@
 package com.resonance.model.principal;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -18,6 +21,7 @@ import com.resonance.model.usuarios.Estrato;
 import com.resonance.model.usuarios.Genero;
 import com.resonance.model.usuarios.Huesped;
 import com.resonance.model.usuarios.NivelEstudio;
+import com.resonance.model.util.Fecha;
 import com.resonance.model.util.Util;
 
 public class ResonanceHome {
@@ -25,11 +29,18 @@ public class ResonanceHome {
 	private HashMap<String, Huesped> huespedes = new HashMap<String, Huesped>();
 	private HashMap<String, Anfitrion> anfitriones = new HashMap<String, Anfitrion>();
 	private HashMap<String, Hospedaje> hospedajes = new HashMap<String, Hospedaje>();
+	private Fecha fecha;
 
 	/**
 	 * Metodo constructor de la clase principal
 	 */
 	public ResonanceHome() {
+		Date date = new Date();
+		LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+		int month = localDate.getMonthValue();
+		int year = localDate.getYear();
+		int day = localDate.getDayOfMonth();
+		fecha = new Fecha(day, month, year);
 		llenarPruebas();
 		FileManager.inicializar();
 	}
@@ -49,7 +60,7 @@ public class ResonanceHome {
 	public void fillHuespedes()
 	{
 		Date fecha1 = new Date(2000, 11, 29);
-		agregarHuesped("Cesar Marquez","cesar@gmail.com", "","Calle 12 # 4", fecha1, "cesar", "Hola, soy cesar", "cemarquez",NivelEstudio.PREGRADO, EstadoCivil.SOLTERO, Genero.MASCULINO, Estrato.ESTRATO_2);
+		agregarHuesped("Cesar Marquez","cesar@gmail.com", "","Calle 12 # 4", fecha1, "cesar", "Hola, soy cesar", "cemarquez");
 		
 
 	}
@@ -148,14 +159,13 @@ public class ResonanceHome {
 	 * @param nametag
 	 */
 	public void agregarAnfitrion(String nombre, String email, String uRLFoto, String direccion, Date fechaNacimiento,
-			String contrasenia, String biografia, String nametag, NivelEstudio nivelEstudio,EstadoCivil estadoCivil, Genero genero, Estrato estrato ) {
+			String contrasenia, String biografia, String nametag) {
 		Anfitrion anfitrion;
 		if(uRLFoto == null || uRLFoto.equals("")) {
 			anfitrion = new Anfitrion(nombre, email, direccion, fechaNacimiento, contrasenia, biografia, nametag);
 		}else {
 			anfitrion = new Anfitrion(nombre, email, uRLFoto, direccion, fechaNacimiento, contrasenia, biografia, nametag);
 		}
-		anfitrion.llenarDatos(nivelEstudio, estadoCivil, genero, estrato);
 		FileManager.crearCarpetaAnfitrion(nametag);
 		anfitriones.put(nametag, anfitrion);
 		
@@ -173,14 +183,13 @@ public class ResonanceHome {
 	 * @param nametag
 	 */
 	public void agregarHuesped(String nombre, String email, String uRLFoto, String direccion, Date fechaNacimiento,
-			String contrasenia, String biografia, String nametag, NivelEstudio nivelEstudio,EstadoCivil estadoCivil, Genero genero, Estrato estrato ) {
+			String contrasenia, String biografia, String nametag) {
 		Huesped huesped;
 		if(uRLFoto == null || uRLFoto.equals("")) {
 			huesped = new Huesped(nombre, email, direccion, fechaNacimiento, contrasenia, biografia, nametag);
 		}else {
 			huesped = new Huesped(nombre, email, uRLFoto, direccion, fechaNacimiento, contrasenia, biografia, nametag);
 		}
-		huesped.llenarDatos(nivelEstudio, estadoCivil, genero, estrato);
 		FileManager.crearCarpetaHuesped(nametag);
 		huespedes.put(nametag, huesped);
 		
@@ -247,6 +256,19 @@ public class ResonanceHome {
 		return resultado;
 	}
 	
+	/**
+	 * Metodo que añade un dia a una fecha y ademas actualiza las reservas y hospedajes
+	 */
+	public void anadirDia()
+	{
+		fecha.anadirDia();
+		Iterator<String> keys = huespedes.keySet().iterator();
+		while(keys.hasNext())
+		{
+			String key=keys.next();
+			huespedes.get(key).update(fecha);
+		}
+	}
 	
 	
 }

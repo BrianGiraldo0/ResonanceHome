@@ -8,14 +8,15 @@ import com.resonance.model.usuarios.EstadoCivil;
 import com.resonance.model.usuarios.Estrato;
 import com.resonance.model.usuarios.Genero;
 import com.resonance.model.usuarios.NivelEstudio;
+import com.resonance.model.util.Fecha;
 
 
 public class Reserva {
 
-	public Hospedaje hospedaje;
-	public String nameTagHuesped="";
-	public ArrayList<Date> fechaReservada;
-	
+	private Hospedaje hospedaje;
+	private String nameTagHuesped="";
+	private ArrayList<Date> fechaReservada;
+	private boolean vencido=false;
 	private String identificacion;
 	private Genero genero;
 	private NivelEstudio estudio;
@@ -38,11 +39,6 @@ public class Reserva {
 		this.hospedaje = hospedaje;
 		this.nameTagHuesped = nameTagHuesped;
 	}
-	
-	
-	
-	
-	
 	
 	/**
 	 *	Metodo constructor
@@ -75,11 +71,17 @@ public class Reserva {
 	}
 
 
-
-
-
-
-
+	public void update(Fecha fecha)
+	{
+		if(fecha.isMayor(getFechaFinal()))
+		{
+			hospedaje.update(fecha);
+			vencido=true;
+			//Invocar aquí para enviar el correo
+	
+		}
+		
+	}
 
 
 	public boolean verificarDiaReserva (Date fecha) {
@@ -94,7 +96,6 @@ public class Reserva {
 		}
 		return false;
 	}
-	
 	
 	
 	
@@ -188,20 +189,13 @@ public class Reserva {
 	}
 
 
-
 	public Estrato getEstrato() {
 		return estrato;
 	}
 
-
-
-
 	public void setEstrato(Estrato estrato) {
 		this.estrato = estrato;
 	}
-
-
-
 
 	public String getNombre() {
 		return nombre;
@@ -212,69 +206,40 @@ public class Reserva {
 		this.nombre = nombre;
 	}
 
-
-
-
 	public String getDireccion() {
 		return direccion;
 	}
-
-
-
-
-
-
-
-
-
 	public void setDireccion(String direccion) {
 		this.direccion = direccion;
 	}
-
-
-
-
-
-
-
-
-
 	public String getCorreo() {
 		return correo;
 	}
-
-
-
-
-
-
-
-
-
 	public void setCorreo(String correo) {
 		this.correo = correo;
 	}
-
-
-
-
-
 
 	public EstadoCivil getEstado() {
 		return estado;
 	}
 
-
-
-
-
-
 	public void setEstado(EstadoCivil estado) {
 		this.estado = estado;
 	}
+
+	public boolean isVencido() {
+		return vencido;
+	}
 	
+	public Date getFechaInicial()
+	{
+		return fechaReservada.get(0);
+	}
 	
-	
+	public Date getFechaFinal()
+	{
+		return fechaReservada.get(fechaReservada.size()-1);
+	}
 	
 	
 	
