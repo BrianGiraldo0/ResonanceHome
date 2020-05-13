@@ -1,16 +1,21 @@
 package com.resonance.view.controller;
 
 import java.io.IOException;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
 import com.resonance.model.principal.ResonanceHome;
 import com.resonance.model.util.Util;
+import com.resonance.view.interfaz.AutoCompleteTextField;
 import com.resonance.view.interfaz.MultiDatePicker;
 
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -41,8 +46,7 @@ public class ControladorPrincipal {
 	@FXML
 	private AnchorPane lUbicacion;
 
-	@FXML
-	private TextField tfUbicacion;
+	private AutoCompleteTextField<String> tfUbicacion;
 
 	@FXML
 	private TextField tfHuespedes;
@@ -82,6 +86,33 @@ public class ControladorPrincipal {
 			stage.setResizable(false);
 			stage.getScene().setRoot(root);
 		});
+		
+		SortedSet<String> entries = new TreeSet<>((String o1, String o2) -> o1.toString().compareTo(o2.toString()));
+
+    	for(int i=0;i<Util.listadoSugerencias.size();i++)
+    	{
+    		entries.add(Util.listadoSugerencias.get(i));
+    	}
+
+    	 tfUbicacion = new AutoCompleteTextField<String>(entries);
+
+    	tfUbicacion.getEntryMenu().setOnAction(e ->
+    	{
+    	    ((MenuItem) e.getTarget()).addEventHandler(Event.ANY, event ->
+    	    {
+    	         if (tfUbicacion.getLastSelectedObject() != null)
+    	         {
+    	            tfUbicacion.setText(tfUbicacion.getLastSelectedObject().toString());
+    	         }
+    	    });
+    	});
+    	
+    	tfUbicacion.setPrefWidth(252);
+    	tfUbicacion.setPrefHeight(25);
+    	tfUbicacion.setPromptText("Ingrese la ciudad de referencia.");
+    	lUbicacion.getChildren().add(tfUbicacion);
+    	tfUbicacion.setLayoutX(16);
+    	tfUbicacion.setLayoutY(22);
 
 	}
 
