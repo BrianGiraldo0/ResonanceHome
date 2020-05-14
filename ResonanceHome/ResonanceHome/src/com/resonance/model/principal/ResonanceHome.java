@@ -95,8 +95,17 @@ public class ResonanceHome {
 		Direccion direc3 = new Direccion("Medellin", "Antioquia", "Colombia", "Calle 13 # 07 - 22");
 
 		ArrayList<String> fotos1 = new ArrayList<String>();
+		fotos1.add("src/view/imagenes/hospedajes/hospedaje01/1b.jpg");
+		fotos1.add("src/view/imagenes/hospedajes/hospedaje01/2b.jpg");
+		
 		ArrayList<String> fotos2 = new ArrayList<String>();
+		fotos2.add("src/view/imagenes/hospedajes/hospedaje02/1a.jpg");
+		fotos2.add("src/view/imagenes/hospedajes/hospedaje02/2a.jpg");
+		fotos2.add("src/view/imagenes/hospedajes/hospedaje02/3a.jpg");
+		
 		ArrayList<String> fotos3 = new ArrayList<String>();
+		fotos3.add("src/view/imagenes/hospedajes/hospedaje03/1c.jpg");
+		fotos3.add("src/view/imagenes/hospedajes/hospedaje03/2c.jpg");
 
 		agregarHospedaje(direc1, 87000.0, "gustavomene", fotos1,
 				"Habitacion con gran espacio perfecto para parejas, buena iluminación natural y buena convivencia",
