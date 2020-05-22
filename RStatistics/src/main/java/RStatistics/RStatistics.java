@@ -24,23 +24,14 @@ import com.google.api.services.sheets.v4.model.ValueRange;
 
 
 public class RStatistics {
-	 private static final String APPLICATION_NAME = "Google Sheets API Java Quickstart";
+	 private static final String APPLICATION_NAME = "Resonance Statistics";
 	    private static final JsonFactory JSON_FACTORY = JacksonFactory.getDefaultInstance();
 	    private static final String TOKENS_DIRECTORY_PATH = "tokens";
-
-	    /**
-	     * Global instance of the scopes required by this quickstart.
-	     * If modifying these scopes, delete your previously saved tokens/ folder.
-	     */
+	    private static final String SPREAD_ID = "1JvjImsSHhlerzZrvGypqUP4vwXfnh1jzuYDxoq-TUNs";
 	    private static final List<String> SCOPES = Collections.singletonList(SheetsScopes.SPREADSHEETS_READONLY);
 	    private static final String CREDENTIALS_FILE_PATH = "/credentials.json";
 
-	    /**
-	     * Creates an authorized Credential object.
-	     * @param HTTP_TRANSPORT The network HTTP Transport.
-	     * @return An authorized Credential object.
-	     * @throws IOException If the credentials.json file cannot be found.
-	     */
+	    
 	    private static Credential getCredentials(final NetHttpTransport HTTP_TRANSPORT) throws IOException {
 	        // Load client secrets.
 	        InputStream in = RStatistics.class.getResourceAsStream(CREDENTIALS_FILE_PATH);
@@ -58,37 +49,33 @@ public class RStatistics {
 	        LocalServerReceiver receiver = new LocalServerReceiver.Builder().setPort(8888).build();
 	        return new AuthorizationCodeInstalledApp(flow, receiver).authorize("user");
 	    }
-
-	    /**
-	     * Prints the names and majors of students in a sample spreadsheet:
-	     * https://docs.google.com/spreadsheets/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit
-	     */
-	    public static void main(String... args) throws IOException, GeneralSecurityException {
-//	      lanzar();
-	    }
 	    
 	    
-	    public static void lanzar() throws IOException, GeneralSecurityException
+	    public static String[][] obtenerRespuestas() throws IOException, GeneralSecurityException
 	    {
+	    	String[][] respuestas;
 	    	  // Build a new authorized API client service.
 	        final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
-	        final String spreadsheetId = "1JvjImsSHhlerzZrvGypqUP4vwXfnh1jzuYDxoq-TUNs";
 	        final String range = "respuestas!A2:G";
 	        Sheets service = new Sheets.Builder(HTTP_TRANSPORT, JSON_FACTORY, getCredentials(HTTP_TRANSPORT))
 	                .setApplicationName(APPLICATION_NAME)
 	                .build();
 	        ValueRange response = service.spreadsheets().values()
-	                .get(spreadsheetId, range)
+	                .get(SPREAD_ID, range)
 	                .execute();
 	        List<List<Object>> values = response.getValues();
+	        respuestas = new String[values.size()][values.get(0).size()];
 	        if (values == null || values.isEmpty()) {
-	            System.out.println("No data found.");
+	            System.out.println("No se encontraron datos en la encuesta.");
 	        } else {
-	            System.out.println("Name, Major");
-	            for (List row : values) {
-	                // Print columns A and E, which correspond to indices 0 and 4.
-	                System.out.printf("%s, %s\n", row.get(0), row.get(2));
-	            }
+	        	for(int i=0;i<values.size();i++){
+	        		for(int j=0;j<values.get(i).size();j++) {
+	        			respuestas[i][j] = (String) values.get(i).get(j);
+	        		}
+	   
+	        	}
 	        }
+	        
+	        return respuestas;
 	    }
 }
