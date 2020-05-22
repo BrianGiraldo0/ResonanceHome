@@ -95,7 +95,7 @@ public class ResonanceHome {
 		Direccion direc3 = new Direccion("Medellin", "Antioquia", "Colombia", "Calle 13 # 07 - 22");
 
 		ArrayList<String> fotos1 = new ArrayList<String>();
-		fotos1.add("src/view/imagenes/hospedajes/hospedaje01/1b.jpg");
+		fotos1.add("/com/resonance/view/imagenes/hospedajes/hospedaje01/1b.jpg");
 		fotos1.add("src/view/imagenes/hospedajes/hospedaje01/2b.jpg");
 		
 		ArrayList<String> fotos2 = new ArrayList<String>();

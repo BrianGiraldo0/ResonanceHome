@@ -7,5 +7,6 @@
 	</classpathentry>
 	<classpathentry kind="src" path="ResonanceHome/src"/>
 	<classpathentry kind="src" path="test"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/RStatistics"/>
 	<classpathentry kind="output" path="ResonanceHome/bin"/>
 </classpath>

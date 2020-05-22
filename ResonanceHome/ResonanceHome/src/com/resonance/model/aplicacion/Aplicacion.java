@@ -37,7 +37,6 @@ public class Aplicacion extends Application {
 		primaryStage.setResizable(false);
 		primaryStage.setTitle("Resonance Home");
 		primaryStage.getIcons().add(new Image(Util.LOGO_RESONANCE));
-//		primaryStage.setMaximized(true);
 		primaryStage.setScene(scene);
 		primaryStage.show();
 		control.inicializar();
