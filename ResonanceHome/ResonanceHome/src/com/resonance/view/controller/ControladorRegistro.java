@@ -1,11 +1,8 @@
 package com.resonance.view.controller;
 import java.io.File;
 
-import javax.swing.JFileChooser;
-import javax.swing.filechooser.FileNameExtensionFilter;
-
 import com.resonance.model.principal.ResonanceHome;
-
+import com.resonance.view.interfaz.StageR;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -18,11 +15,10 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.FileChooser;
-import javafx.stage.Stage;
 public class ControladorRegistro {
 
 	
-		private Stage stage;
+	private StageR stage;
 		private ResonanceHome resonance;
 		
 		
@@ -123,7 +119,7 @@ public class ControladorRegistro {
 			this.resonance = resonance;
 		}
 
-		public void setStage(Stage stage) {
+	public void setStage(StageR stage) {
 			this.stage = stage;
 		}
 

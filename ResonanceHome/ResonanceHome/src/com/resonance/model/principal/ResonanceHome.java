@@ -3,7 +3,6 @@ package com.resonance.model.principal;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -16,14 +15,9 @@ import com.resonance.model.hospedajes.Plus;
 import com.resonance.model.hospedajes.Prestacion;
 import com.resonance.model.hospedajes.TipoHospedaje;
 import com.resonance.model.usuarios.Anfitrion;
-import com.resonance.model.usuarios.EstadoCivil;
-import com.resonance.model.usuarios.Estrato;
-import com.resonance.model.usuarios.Genero;
 import com.resonance.model.usuarios.Huesped;
-import com.resonance.model.usuarios.NivelEstudio;
 import com.resonance.model.util.Fecha;
 import com.resonance.model.util.Util;
-import com.sun.prism.Presentable;
 
 public class ResonanceHome {
 
@@ -95,17 +89,17 @@ public class ResonanceHome {
 		Direccion direc3 = new Direccion("Medellin", "Antioquia", "Colombia", "Calle 13 # 07 - 22");
 
 		ArrayList<String> fotos1 = new ArrayList<String>();
-		fotos1.add("/com/resonance/view/imagenes/hospedajes/hospedaje01/1b.jpg");
-		fotos1.add("src/view/imagenes/hospedajes/hospedaje01/2b.jpg");
+//		fotos1.add("/com/resonance/view/imagenes/hospedajes/hospedaje01/1b.jpg");
+//		fotos1.add("src/view/imagenes/hospedajes/hospedaje01/2b.jpg");
 		
 		ArrayList<String> fotos2 = new ArrayList<String>();
-		fotos2.add("src/view/imagenes/hospedajes/hospedaje02/1a.jpg");
-		fotos2.add("src/view/imagenes/hospedajes/hospedaje02/2a.jpg");
-		fotos2.add("src/view/imagenes/hospedajes/hospedaje02/3a.jpg");
+//		fotos2.add("src/view/imagenes/hospedajes/hospedaje02/1a.jpg");
+//		fotos2.add("src/view/imagenes/hospedajes/hospedaje02/2a.jpg");
+//		fotos2.add("src/view/imagenes/hospedajes/hospedaje02/3a.jpg");
 		
 		ArrayList<String> fotos3 = new ArrayList<String>();
-		fotos3.add("src/view/imagenes/hospedajes/hospedaje03/1c.jpg");
-		fotos3.add("src/view/imagenes/hospedajes/hospedaje03/2c.jpg");
+//		fotos3.add("src/view/imagenes/hospedajes/hospedaje03/1c.jpg");
+//		fotos3.add("src/view/imagenes/hospedajes/hospedaje03/2c.jpg");
 
 		agregarHospedaje(direc1, 87000.0, "gustavomene", fotos1,
 				"Habitacion con gran espacio perfecto para parejas, buena iluminación natural y buena convivencia",
@@ -317,6 +311,36 @@ public class ResonanceHome {
 		return resultado;
 	}
 
+	public ArrayList<Hospedaje> buscarHospedajes(String ubicacion, ArrayList<Date> date, String huespedes) {
+		ArrayList<Hospedaje> ltsHospedajes = new ArrayList<Hospedaje>();
+		Iterator<String> keys = hospedajes.keySet().iterator();
+
+		while (keys.hasNext()) {
+			String key = keys.next();
+			Hospedaje hosp = hospedajes.get(key);
+			if (hosp.getDireccion().toString().equals(ubicacion)) {
+				if (date.size() != 0) {
+					if (hosp.disponibleEnFecha(date)) {
+						int h = Integer.parseInt(huespedes);
+						if (hosp.getPrestaciones().getNumHuesped() >= h) {
+							ltsHospedajes.add(hosp);
+						}
+					}
+				} else {
+					if (hosp.disponibleEnFecha(date)) {
+						int h = Integer.parseInt(huespedes);
+						if (hosp.getPrestaciones().getNumHuesped() >= h) {
+							ltsHospedajes.add(hosp);
+						}
+					}
+				}
+
+			}
+		}
+
+		return ltsHospedajes;
+	}
+
 	/**
 	 * Metodo que añade un dia a una fecha y ademas actualiza las reservas y
 	 * hospedajes
@@ -328,6 +352,27 @@ public class ResonanceHome {
 			String key = keys.next();
 			huespedes.get(key).update(fecha);
 		}
+	}
+
+	/**
+	 * @return the huespedes
+	 */
+	public HashMap<String, Huesped> getHuespedes() {
+		return huespedes;
+	}
+
+	/**
+	 * @return the anfitriones
+	 */
+	public HashMap<String, Anfitrion> getAnfitriones() {
+		return anfitriones;
+	}
+
+	/**
+	 * @return the hospedajes
+	 */
+	public HashMap<String, Hospedaje> getHospedajes() {
+		return hospedajes;
 	}
 
 }

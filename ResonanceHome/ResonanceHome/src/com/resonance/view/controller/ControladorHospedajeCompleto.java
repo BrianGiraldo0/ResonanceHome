@@ -3,18 +3,18 @@ import java.io.IOException;
 
 import com.resonance.model.principal.ResonanceHome;
 import com.resonance.model.util.Util;
+import com.resonance.view.interfaz.StageR;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 
 public class ControladorHospedajeCompleto {
 	
 	
 	private ResonanceHome resonance;
-	private Stage stage;
+	private StageR stage;
 	
 	
 		@FXML
@@ -82,7 +82,7 @@ public class ControladorHospedajeCompleto {
 			this.resonance = resonance;
 		}
 
-		public void setStage(Stage stage) {
+	public void setStage(StageR stage) {
 			this.stage = stage;
 		}
 	

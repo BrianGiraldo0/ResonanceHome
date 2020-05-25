@@ -10,6 +10,7 @@ public class Hospedaje {
 	private Prestacion prestaciones;
 	public String id = "";
 	public Direccion direccion;
+	private String titulo;
 	public double precio = 0;
 	public ArrayList<Date> fechasReservadas = new ArrayList<Date>();
 	public String nameTagPropietario = "";
@@ -205,6 +206,14 @@ public class Hospedaje {
 
 	public void setPrestaciones(Prestacion prestaciones) {
 		this.prestaciones = prestaciones;
+	}
+
+	public String getTitulo() {
+		return titulo;
+	}
+
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
 	}
 
 }

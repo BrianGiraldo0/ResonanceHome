@@ -4,6 +4,7 @@ import com.resonance.model.excepciones.NoExistException;
 import com.resonance.model.principal.ResonanceHome;
 import com.resonance.model.util.Util;
 import com.resonance.view.controller.ControladorPrincipal;
+import com.resonance.view.interfaz.StageR;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -23,7 +24,8 @@ public class Aplicacion extends Application {
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		this.stage = primaryStage;
+		StageR stage = new StageR();
+		this.stage = stage;
 		inicializarResonance();
 		FXMLLoader loader = new FXMLLoader(getClass().getResource(Util.VENTANA_PRINCIPAL));
 		Parent root = loader.load();
@@ -34,11 +36,11 @@ public class Aplicacion extends Application {
 		control.setStage(stage);
 		Scene scene = new Scene(root);
 
-		primaryStage.setResizable(false);
-		primaryStage.setTitle("Resonance Home");
-		primaryStage.getIcons().add(new Image(Util.LOGO_RESONANCE));
-		primaryStage.setScene(scene);
-		primaryStage.show();
+		stage.setResizable(false);
+		stage.setTitle("Resonance Home");
+		stage.getIcons().add(new Image(Util.LOGO_RESONANCE));
+		stage.setScene(scene);
+		stage.show();
 		control.inicializar();
 
 	}

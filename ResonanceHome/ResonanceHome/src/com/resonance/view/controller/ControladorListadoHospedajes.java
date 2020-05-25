@@ -1,9 +1,12 @@
 package com.resonance.view.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
+import com.resonance.model.hospedajes.Hospedaje;
 import com.resonance.model.principal.ResonanceHome;
 import com.resonance.model.util.Util;
+import com.resonance.view.interfaz.StageR;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,10 +18,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 
 public class ControladorListadoHospedajes {
-	private Stage stage;
+	private StageR stage;
 
 	private ResonanceHome resonance;
 
@@ -61,21 +63,25 @@ public class ControladorListadoHospedajes {
 	@FXML
 	private VBox lBox;
 
+	private ArrayList<Hospedaje> hospedajes;
+
 	@FXML
 	void onClick(MouseEvent event) {
 
 	}
 
 	public void inicializar() {
+
 		lBox.setStyle("-fx-background-color: #FFFFFF");
 		colorearBotones();
-		crearEjemplo();
+		crearHospedajes();
 
 	}
 
-	public void crearEjemplo() {
+	public void crearHospedajes() {
 
-		for (int i = 0; i < 5; i++) {
+		System.out.println(hospedajes.size());
+		for (int i = 0; i < hospedajes.size(); i++) {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource(Util.PANEL_HOSPEDAJE));
 			Parent root = null;
 			try {
@@ -89,6 +95,7 @@ public class ControladorListadoHospedajes {
 			ControladorHospedaje control = loader.getController();
 			control.setResonance(resonance);
 			control.setStage(stage);
+			control.setHospedaje(hospedajes.get(i));
 			control.inicializar();
 
 		}
@@ -118,8 +125,22 @@ public class ControladorListadoHospedajes {
 		this.resonance = resonance;
 	}
 
-	public void setStage(Stage stage) {
+	public void setStage(StageR stage) {
 		this.stage = stage;
+	}
+
+	/**
+	 * @return the hospedajes
+	 */
+	public ArrayList<Hospedaje> getHospedajes() {
+		return hospedajes;
+	}
+
+	/**
+	 * @param hospedajes the hospedajes to set
+	 */
+	public void setHospedajes(ArrayList<Hospedaje> hospedajes) {
+		this.hospedajes = hospedajes;
 	}
 
 }

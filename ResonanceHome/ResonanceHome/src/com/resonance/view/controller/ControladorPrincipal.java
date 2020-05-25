@@ -1,13 +1,17 @@
 package com.resonance.view.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
+import com.resonance.model.hospedajes.Hospedaje;
 import com.resonance.model.principal.ResonanceHome;
 import com.resonance.model.util.Util;
 import com.resonance.view.interfaz.AutoCompleteTextField;
 import com.resonance.view.interfaz.MultiDatePicker;
+import com.resonance.view.interfaz.StageR;
 
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -20,14 +24,13 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
 
 public class ControladorPrincipal {
 
 	@FXML
 	private ImageView btnBuscar;
 
-	private Stage stage;
+	private StageR stage;
 
 	private ResonanceHome resonance;
 
@@ -67,9 +70,13 @@ public class ControladorPrincipal {
 		rangePicker.setMinWidth(200);
 		layout.getChildren().add(rangePicker);
 		colorearBotones();
-
 		btnBuscar.setOnMouseClicked((e) -> {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource(Util.PANEL_LISTADO_HOSPEDAJES));
+			String ubicacion = tfUbicacion.getText();
+			String huespedes = tfHuespedes.getText();
+			ArrayList<Date> date = new ArrayList<Date>();
+			ArrayList<Hospedaje> ltsHospedajes = resonance.buscarHospedajes(ubicacion, date, huespedes);
+
+ 			FXMLLoader loader = new FXMLLoader(getClass().getResource(Util.PANEL_LISTADO_HOSPEDAJES));
 			Parent root = null;
 			try {
 				root = loader.load();
@@ -79,6 +86,7 @@ public class ControladorPrincipal {
 			}
 
 			ControladorListadoHospedajes control = loader.getController();
+			control.setHospedajes(ltsHospedajes);
 
 			control.setResonance(resonance);
 			control.setStage(stage);
@@ -134,9 +142,10 @@ public class ControladorPrincipal {
 				a.printStackTrace();
 			}
 
+			stage.setVentanaAnterior(Util.VENTANA_PRINCIPAL);
 			ControladorLogIn control = loader.getController();
-			control.setResonance(resonance);
 			control.setStage(stage);
+			control.setResonance(resonance);
 
 			stage.setResizable(false);
 			stage.getScene().setRoot(root);
@@ -206,11 +215,16 @@ public class ControladorPrincipal {
 		});
 	}
 
+	public void update() {
+		/*
+		 * Aquí va para actualizar cuando inicie sesión
+		 */
+	}
 	public void setResonance(ResonanceHome resonance) {
 		this.resonance = resonance;
 	}
 
-	public void setStage(Stage stage) {
+	public void setStage(StageR stage) {
 		this.stage = stage;
 	}
 }

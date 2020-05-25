@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import com.resonance.model.principal.ResonanceHome;
 import com.resonance.model.util.Util;
+import com.resonance.view.interfaz.StageR;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,11 +16,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
 
 public class ControladorRegPropiedad1 {
 
-	private Stage stage;
+	private StageR stage;
 
 	private ResonanceHome resonance;
 	@FXML
@@ -153,7 +153,7 @@ public class ControladorRegPropiedad1 {
 		this.resonance = resonance;
 	}
 
-	public void setStage(Stage stage) {
+	public void setStage(StageR stage) {
 		this.stage = stage;
 	}
 }

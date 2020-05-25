@@ -51,18 +51,18 @@ public class RStatistics {
 	    }
 	    
 	    
-	    public static String[][] obtenerRespuestas() throws IOException, GeneralSecurityException
-	    {
+	public static String[][] obtenerRespuestas() throws IOException, GeneralSecurityException {
 	    	String[][] respuestas;
 	    	  // Build a new authorized API client service.
 	        final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
-	        final String range = "respuestas!A2:G";
+		final String range = "respuestas!A2:H";
 	        Sheets service = new Sheets.Builder(HTTP_TRANSPORT, JSON_FACTORY, getCredentials(HTTP_TRANSPORT))
 	                .setApplicationName(APPLICATION_NAME)
 	                .build();
 	        ValueRange response = service.spreadsheets().values()
 	                .get(SPREAD_ID, range)
 	                .execute();
+
 	        List<List<Object>> values = response.getValues();
 	        respuestas = new String[values.size()][values.get(0).size()];
 	        if (values == null || values.isEmpty()) {

@@ -4,11 +4,30 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import com.resonance.model.archivos.FileManager;
+import com.resonance.model.hospedajes.TipoHospedaje;
+import com.resonance.model.principal.ResonanceHome;
+import com.resonance.view.controller.ControladorComentario;
+import com.resonance.view.controller.ControladorDescripcionHospedaje;
+import com.resonance.view.controller.ControladorFotosHospedaje;
+import com.resonance.view.controller.ControladorHospedaje;
+import com.resonance.view.controller.ControladorHospedajeCompleto;
+import com.resonance.view.controller.ControladorListadoHospedajes;
+import com.resonance.view.controller.ControladorPrincipal;
+import com.resonance.view.controller.ControladorRegPropiedad1;
+import com.resonance.view.controller.ControladorRegPropiedad2;
+import com.resonance.view.controller.ControladorRegPropiedad3;
+import com.resonance.view.controller.ControladorRegPropiedad4;
+import com.resonance.view.controller.ControladorRegistro;
+import com.resonance.view.interfaz.StageR;
+
+import javafx.fxml.FXMLLoader;
+import javafx.scene.control.TextField;
 
 public class Util {
 
 	public static final String LOGO_RESONANCE = "/com/resonance/view/imagenes/logo_resonance.png";
 	public static final String ICON_CORAZON_BLANCO = "/com/resonance/view/imagenes/icon_corazon.png";
+	public static final String ICON_CORAZON_ROJO = "/com/resonance/view/imagenes/icon_corazonRojo.png";
 	public static final String VENTANA_PRINCIPAL = "/com/resonance/view/interfaz/ventanaPrincipal.fxml";
 	public static final String PANEL_LISTADO_HOSPEDAJES = "/com/resonance/view/interfaz/panelListadoHospedajes.fxml";
 	public static final String PANEL_HOSPEDAJE = "/com/resonance/view/interfaz/panelHospedaje.fxml";
@@ -32,15 +51,63 @@ public class Util {
 	 */
 	public static void agregarSugerencia(String sugerencia) {
 
-		if (listadoSugerencias.size() != 0) {
-
 			if (!listadoSugerencias.contains(sugerencia)) {
 
 				listadoSugerencias.add(sugerencia);
 			}
 
-		}
+	}
 
+	public static void updateController(FXMLLoader loader, StageR stage, ResonanceHome resonance) {
+		if (loader.getController() instanceof ControladorPrincipal) {
+			ControladorPrincipal control = loader.getController();
+			control.setStage(stage);
+			control.setResonance(resonance);
+		} else if (loader.getController() instanceof ControladorComentario) {
+			ControladorComentario control = loader.getController();
+//			control.setStage(stage);
+//			control.setResonance(resonance);
+		} else if (loader.getController() instanceof ControladorHospedaje) {
+			ControladorPrincipal control = loader.getController();
+			control.setStage(stage);
+			control.setResonance(resonance);
+		} else if (loader.getController() instanceof ControladorDescripcionHospedaje) {
+			ControladorPrincipal control = loader.getController();
+			control.setStage(stage);
+			control.setResonance(resonance);
+		} else if (loader.getController() instanceof ControladorFotosHospedaje) {
+			ControladorPrincipal control = loader.getController();
+			control.setStage(stage);
+			control.setResonance(resonance);
+		} else if (loader.getController() instanceof ControladorListadoHospedajes) {
+			ControladorPrincipal control = loader.getController();
+			control.setStage(stage);
+			control.setResonance(resonance);
+		} else if (loader.getController() instanceof ControladorHospedajeCompleto) {
+			ControladorPrincipal control = loader.getController();
+			control.setStage(stage);
+			control.setResonance(resonance);
+		} else if (loader.getController() instanceof ControladorRegPropiedad1) {
+			ControladorPrincipal control = loader.getController();
+			control.setStage(stage);
+			control.setResonance(resonance);
+		} else if (loader.getController() instanceof ControladorRegPropiedad2) {
+			ControladorPrincipal control = loader.getController();
+			control.setStage(stage);
+			control.setResonance(resonance);
+		} else if (loader.getController() instanceof ControladorRegPropiedad3) {
+			ControladorPrincipal control = loader.getController();
+			control.setStage(stage);
+			control.setResonance(resonance);
+		} else if (loader.getController() instanceof ControladorRegPropiedad4) {
+			ControladorPrincipal control = loader.getController();
+			control.setStage(stage);
+			control.setResonance(resonance);
+		} else if (loader.getController() instanceof ControladorRegistro) {
+			ControladorPrincipal control = loader.getController();
+			control.setStage(stage);
+			control.setResonance(resonance);
+		}
 	}
 
 	public static String generarIDHospedaje() {
@@ -58,6 +125,21 @@ public class Util {
 		}
 
 		return id;
+	}
+
+	public static boolean isEmpty(TextField text) {
+		if (text.getText().equals(""))
+			return true;
+
+		return false;
+	}
+
+	public static String getTipoHospedaje(TipoHospedaje tipo) {
+		if (tipo == TipoHospedaje.APARTAMENTO) {
+			return "Apartamento";
+		} else {
+			return "Habitación";
+		}
 	}
 
 	
