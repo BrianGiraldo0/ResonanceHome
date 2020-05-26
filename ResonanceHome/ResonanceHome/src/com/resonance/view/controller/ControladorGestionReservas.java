@@ -10,6 +10,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class ControladorGestionReservas {
@@ -26,7 +27,10 @@ public class ControladorGestionReservas {
 
     @FXML
     private VBox vBoxReservas;
-
+    
+    @FXML
+    private Text btnAtras;
+    
     private ResonanceHome resonance;
     private Stage stage;
  

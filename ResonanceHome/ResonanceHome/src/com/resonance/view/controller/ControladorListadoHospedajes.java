@@ -23,6 +23,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 
 public class ControladorListadoHospedajes {
 	private StageR stage;
@@ -34,7 +35,10 @@ public class ControladorListadoHospedajes {
 
 	@FXML
 	private Button btniniciarSesion;
-
+	
+    @FXML
+    private Text btnAtras;
+    
 	@FXML
 	private Button btnRegistro;
 

@@ -16,18 +16,20 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Text;
 
 public class ControladorRegPropiedad1 {
 
 	private StageR stage;
 
 	private ResonanceHome resonance;
-	@FXML
-	private Button btnAtras;
+	
+    @FXML
+    private Text btnAtras;
 
 	@FXML
-
 	private Button btnSiguiente;
+	
 	@FXML
 	private AnchorPane idPaso1;
 
