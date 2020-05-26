@@ -87,7 +87,7 @@ public class ControladorPrincipal {
 
 			ControladorListadoHospedajes control = loader.getController();
 			control.setHospedajes(ltsHospedajes);
-
+			control.setEstadia(tfUbicacion.getText());
 			control.setResonance(resonance);
 			control.setStage(stage);
 			control.inicializar();

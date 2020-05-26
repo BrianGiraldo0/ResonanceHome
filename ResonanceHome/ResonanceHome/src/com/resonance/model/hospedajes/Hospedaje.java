@@ -194,26 +194,61 @@ public class Hospedaje {
 	public TipoHospedaje getTipoHospedaje() {
 		return tipoHospedaje;
 	}
-	
-	public String getCiudad()
-	{
-		return direccion.getCiudad();
-	}
 
+	/**
+	 * @return the prestaciones
+	 */
 	public Prestacion getPrestaciones() {
 		return prestaciones;
 	}
 
+	/**
+	 * @param prestaciones the prestaciones to set
+	 */
 	public void setPrestaciones(Prestacion prestaciones) {
 		this.prestaciones = prestaciones;
 	}
 
+	/**
+	 * @return the titulo
+	 */
 	public String getTitulo() {
 		return titulo;
 	}
 
+	/**
+	 * @param titulo the titulo to set
+	 */
 	public void setTitulo(String titulo) {
 		this.titulo = titulo;
+	}
+
+	/**
+	 * @return the servicios
+	 */
+	public Plus getServicios() {
+		return servicios;
+	}
+
+	/**
+	 * @param servicios the servicios to set
+	 */
+	public void setServicios(Plus servicios) {
+		this.servicios = servicios;
+	}
+
+	/**
+	 * @param fechasReservadas the fechasReservadas to set
+	 */
+	public void setFechasReservadas(ArrayList<Date> fechasReservadas) {
+		this.fechasReservadas = fechasReservadas;
+	}
+
+	/**
+	 * @param tipoHospedaje the tipoHospedaje to set
+	 */
+	public void setTipoHospedaje(TipoHospedaje tipoHospedaje) {
+		this.tipoHospedaje = tipoHospedaje;
 	}
 
 }

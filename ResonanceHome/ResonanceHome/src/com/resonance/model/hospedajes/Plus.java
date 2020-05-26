@@ -71,4 +71,24 @@ public class Plus {
 		return kitBanio;
 	}
 
+	public String toString() {
+		String a = "";
+		if (cocina)
+			a += "cocina, ";
+
+		if (wifi)
+			a += "wifi, ";
+
+		if (utencilios)
+			a += "utencilios, ";
+
+		if (aireAc)
+			a += "aire acondicionado, ";
+
+		if (kitBanio)
+			a += "kit de baño";
+
+		return a;
+	}
+
 }

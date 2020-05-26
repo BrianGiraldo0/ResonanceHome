@@ -103,13 +103,13 @@ public class ResonanceHome {
 
 		agregarHospedaje(direc1, 87000.0, "gustavomene", fotos1,
 				"Habitacion con gran espacio perfecto para parejas, buena iluminación natural y buena convivencia",
-				plus1, TipoHospedaje.HABITACION, pres1);
+				plus1, TipoHospedaje.HABITACION, pres1, "Habitación con baño propio");
 		agregarHospedaje(direc2, 320000.0, "oscarlop", fotos2,
 				"Apartamento comodo, amplio y agradables vistas para pasar una estadia agradable en familia, amigos o pareja",
-				plus2, TipoHospedaje.APARTAMENTO, pres2);
+				plus2, TipoHospedaje.APARTAMENTO, pres2, "Apartamento con vista al mar");
 		agregarHospedaje(direc3, 95000.0, "patyherrera", fotos3,
 				"Habitacion pequeña pero bien amoblada, fresca y se realiza aseo semanal; el resto de la casa en la mayor parte del dia esta disponible para el huesped",
-				plus3, TipoHospedaje.HABITACION, pres3);
+				plus3, TipoHospedaje.HABITACION, pres3, "Apartamento bonito");
 	}
 
 	/**
@@ -190,12 +190,13 @@ public class ResonanceHome {
 	 */
 	public void agregarHospedaje(Direccion direccion, double precio, String nameTagPropietario,
 			ArrayList<String> urlsFotos, String descripcion, Plus servicios, TipoHospedaje tipoH,
-			Prestacion prestaciones) throws NoExistException {
+			Prestacion prestaciones, String titulo) throws NoExistException {
 
 		if (anfitriones.get(nameTagPropietario) != null) {
 			String id = Util.generarIDHospedaje();
 			Hospedaje hosp = new Hospedaje(id, direccion, precio, nameTagPropietario, urlsFotos, descripcion, servicios,
 					tipoH, prestaciones);
+			hosp.setTitulo(titulo);
 			anfitriones.get(nameTagPropietario).agregarHospedaje(id);
 			Util.agregarSugerencia(direccion.toString());
 			FileManager.agregarHospedaje(id, nameTagPropietario, urlsFotos);
@@ -256,34 +257,7 @@ public class ResonanceHome {
 
 	}
 
-	/**
-	 * Metodo que permite obtener todos los hospedajes que pasan por el primer
-	 * filtro
-	 * 
-	 * @param fecha
-	 * @param ciudadDestino
-	 * @param cantidadHuespedes
-	 * @return
-	 */
-	public ArrayList<Hospedaje> obtenerHospedajes(ArrayList<Date> fecha, String ciudadDestino, int cantidadHuespedes) {
-		ArrayList<Hospedaje> resultado = new ArrayList<Hospedaje>();
 
-		Iterator<String> keys = hospedajes.keySet().iterator();
-		while (keys.hasNext()) {
-			String key = keys.next();
-			Hospedaje h = hospedajes.get(key);
-
-			if (h.getCiudad().equalsIgnoreCase(ciudadDestino)) {
-				if (h.getPrestaciones().getNumHuesped() >= cantidadHuespedes) {
-					if (h.disponibleEnFecha(fecha)) {
-						resultado.add(h);
-					}
-				}
-			}
-		}
-
-		return resultado;
-	}
 
 	/**
 	 * Metodo que permite filtrar hopedajes dependiendo de una serie de

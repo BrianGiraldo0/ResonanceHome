@@ -2,17 +2,22 @@ package com.resonance.view.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
 import com.resonance.model.hospedajes.Hospedaje;
 import com.resonance.model.principal.ResonanceHome;
 import com.resonance.model.util.Util;
+import com.resonance.view.interfaz.AutoCompleteTextField;
 import com.resonance.view.interfaz.StageR;
 
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -23,7 +28,7 @@ public class ControladorListadoHospedajes {
 	private StageR stage;
 
 	private ResonanceHome resonance;
-
+	private String estadia;
 	@FXML
 	private Button btnAyuda;
 
@@ -39,8 +44,7 @@ public class ControladorListadoHospedajes {
 	@FXML
 	private AnchorPane lUbicacion;
 
-	@FXML
-	private TextField tfUbicacion;
+	private AutoCompleteTextField<String> tfUbicacion;
 
 	@FXML
 	private AnchorPane lFecha;
@@ -71,6 +75,27 @@ public class ControladorListadoHospedajes {
 	}
 
 	public void inicializar() {
+		SortedSet<String> entries = new TreeSet<>((String o1, String o2) -> o1.toString().compareTo(o2.toString()));
+
+		for (int i = 0; i < Util.listadoSugerencias.size(); i++) {
+			entries.add(Util.listadoSugerencias.get(i));
+		}
+
+		tfUbicacion = new AutoCompleteTextField<String>(entries);
+
+		tfUbicacion.getEntryMenu().setOnAction(e -> {
+			((MenuItem) e.getTarget()).addEventHandler(Event.ANY, event -> {
+				if (tfUbicacion.getLastSelectedObject() != null) {
+					tfUbicacion.setText(tfUbicacion.getLastSelectedObject().toString());
+				}
+			});
+		});
+		tfUbicacion.setPrefWidth(180);
+		tfUbicacion.setPrefHeight(25);
+		tfUbicacion.setPromptText("Ingrese la ciudad de referencia.");
+		lUbicacion.getChildren().add(tfUbicacion);
+		tfUbicacion.setLayoutX(16);
+		tfUbicacion.setLayoutY(22);
 
 		lBox.setStyle("-fx-background-color: #FFFFFF");
 		colorearBotones();
@@ -79,6 +104,8 @@ public class ControladorListadoHospedajes {
 	}
 
 	public void crearHospedajes() {
+		lblNumEstadias.setText(hospedajes.size() + " estadias");
+		lblEstadias.setText("Estadias en " + estadia);
 
 		System.out.println(hospedajes.size());
 		for (int i = 0; i < hospedajes.size(); i++) {
@@ -116,6 +143,7 @@ public class ControladorListadoHospedajes {
 
 			btniniciarSesion.setStyle("-fx-background-color: #EBE8EE");
 		});
+
 		btniniciarSesion.setOnMouseExited((e) -> {
 			btniniciarSesion.setStyle("-fx-background-color: #FFFFFF");
 		});
@@ -141,6 +169,14 @@ public class ControladorListadoHospedajes {
 	 */
 	public void setHospedajes(ArrayList<Hospedaje> hospedajes) {
 		this.hospedajes = hospedajes;
+	}
+
+	public String getEstadia() {
+		return estadia;
+	}
+
+	public void setEstadia(String estadia) {
+		this.estadia = estadia;
 	}
 
 }

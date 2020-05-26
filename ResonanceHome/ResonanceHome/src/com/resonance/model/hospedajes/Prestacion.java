@@ -38,6 +38,14 @@ public class Prestacion {
 		this.cocina = cocina;
 	}
 	
+	public String toString() {
+		String cocinaS = "con cocina";
+
+		if (cocina)
+			cocinaS = "sin cocina";
+
+		return numBanios + " huespedes, " + numBanios + " baños, " + cocinaS;
+	}
 	
 	
 }
