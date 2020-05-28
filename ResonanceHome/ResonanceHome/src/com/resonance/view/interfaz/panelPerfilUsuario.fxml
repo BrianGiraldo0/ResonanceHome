@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.resonance.view.controller.ControladorPerfilUsuario">
+   <children>
+      <Label layoutX="121.0" layoutY="118.0" text="Perfil">
+         <font>
+            <Font size="33.0" />
+         </font>
+      </Label>
+      <Text fx:id="btnAtras" layoutX="75.0" layoutY="96.0" strokeType="OUTSIDE" strokeWidth="0.0" text="←" wrappingWidth="46.5908203125">
+         <font>
+            <Font size="54.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Text>
+      <Pane layoutX="66.0" layoutY="182.0" prefHeight="534.0" prefWidth="302.0" style="-fx-border-color: #cccccc;">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <children>
+            <ImageView fx:id="picPerfil" fitHeight="132.0" fitWidth="133.0" layoutX="78.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true" />
+            <Rectangle fx:id="rectanguloFoto" arcHeight="5.0" arcWidth="5.0" fill="#f8fcff" height="132.0" layoutX="76.0" layoutY="34.0" stroke="BLACK" strokeType="INSIDE" width="133.0" />
+            <Label fx:id="labelNombreUsuario" layoutX="78.0" layoutY="183.0" prefHeight="38.0" prefWidth="179.0" text="Nombre">
+               <font>
+                  <Font size="26.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Label>
+         </children>
+      </Pane>
+      <Label layoutX="476.0" layoutY="125.0" prefHeight="47.0" prefWidth="179.0" text="Descripcion">
+         <font>
+            <Font size="32.0" />
+         </font>
+      </Label>
+      <TextArea fx:id="textDescripcion" disable="true" editable="false" layoutX="478.0" layoutY="209.0" prefHeight="194.0" prefWidth="590.0" wrapText="true">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </TextArea>
+      <Label fx:id="labelActualizarFoto1" layoutX="498.0" layoutY="165.0" prefHeight="38.0" prefWidth="60.0" text="Editar" textFill="#575454" visible="false">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnGuardar" layoutX="486.0" layoutY="425.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="143.0" style="-fx-background-color: black;" text="Guardar" textFill="WHITE" visible="false">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <font>
+            <Font size="21.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnCancelar" layoutX="656.0" layoutY="425.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="143.0" style="-fx-background-color: red;" text="Cancelar" textFill="WHITE" visible="false">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <font>
+            <Font size="21.0" />
+         </font>
+      </Button>
+      <Label layoutX="492.0" layoutY="492.0" prefHeight="36.0" prefWidth="294.0" text="Hospedajes visitados">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Label>
+      <VBox fx:id="vBoxListadoHospedajes" layoutX="20.0" layoutY="20.0" prefHeight="222.0" prefWidth="582.0" />
+      <ScrollPane fx:id="scrollHospedajes" layoutX="496.0" layoutY="544.0" prefHeight="223.0" prefWidth="590.0">
+         <content>
+            <VBox fx:id="vBoxListadoHospedajes" prefHeight="222.0" prefWidth="582.0" />
+         </content>
+      </ScrollPane>
+   </children>
+</AnchorPane>

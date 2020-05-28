@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.*?>
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
@@ -61,7 +62,10 @@
       <Rectangle fx:id="fotoPerfilAnfitrion" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="106.0" layoutX="525.0" layoutY="22.0" stroke="BLACK" strokeType="INSIDE" width="104.0" />
       <TextArea fx:id="textDescripcionAlojamiento" editable="false" layoutX="64.0" layoutY="305.0" prefHeight="106.0" prefWidth="378.0" text="Descripcion del alojamiento" wrapText="true" />
       <TextArea fx:id="textDescripcionAnfitrion" editable="false" layoutX="525.0" layoutY="166.0" prefHeight="163.0" prefWidth="104.0" text="Descripcion del anfitrion&#10;" wrapText="true" />
-      <Label fx:id="labelNombreAnfitrion" layoutX="525.0" layoutY="140.0" prefHeight="17.0" prefWidth="97.0" text="Nombre Anfitrion" />
+      <Label fx:id="labelNombreAnfitrion" layoutX="525.0" layoutY="140.0" prefHeight="17.0" prefWidth="97.0" text="Nombre Anfitrion">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Label>
       <AnchorPane layoutX="64.0" layoutY="427.0" prefHeight="151.0" prefWidth="378.0">
          <children>
             <Label layoutX="17.0" layoutY="14.0" prefHeight="30.0" prefWidth="113.0" text="Servicios">
@@ -96,5 +100,10 @@
             <Font size="20.0" />
          </font>
       </Label>
+      <Button fx:id="btnVerPerfilAnfitrion" layoutX="525.0" layoutY="136.0" mnemonicParsing="false" onAction="#verPerfil" opacity="0.0" prefHeight="25.0" prefWidth="97.0" text="Button">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
    </children>
 </AnchorPane>

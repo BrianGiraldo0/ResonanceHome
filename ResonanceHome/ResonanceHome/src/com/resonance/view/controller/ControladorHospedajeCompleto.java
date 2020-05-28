@@ -9,19 +9,59 @@ import com.resonance.view.interfaz.StageR;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
-
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 public class ControladorHospedajeCompleto {
 
 	private ResonanceHome resonance;
 	private StageR stage;
+	
+	
+	
+	  
+	@FXML
+	private Label labelTotal;
+
+	@FXML
+	private TextField textCantidadHuespedes;
+
+
+	@FXML
+	private Label labelPrecioAlojamiento;
+
+	@FXML
+	private Label labelPrecioDia;
+
+	@FXML
+	private Button btnReservar;
+
+	@FXML
+	private Label labelPrecioLimpieza;
+
+	@FXML
+	private DatePicker dateFechas;
+
+	@FXML
+	private Label labelComision;
+
+	@FXML
+	private Label labelTipo;
 
 	@FXML
 	private VBox layoutScroll;
 
 	@FXML
 	private Text btnAtras;
+	
 
 	public void inicializar() {
 
@@ -49,6 +89,8 @@ public class ControladorHospedajeCompleto {
 		layoutScroll.getChildren().add(root2);
 
 		ControladorDescripcionHospedaje con = loader2.getController();
+		con.setResonance(resonance);
+		con.setStage(stage);
 		con.inicializar();
 
 		for (int i = 0; i < 5; i++) {
@@ -69,6 +111,37 @@ public class ControladorHospedajeCompleto {
 		}
 
 	}
+	
+	
+	public void reservar() {
+		
+	
+		FXMLLoader loader = new FXMLLoader(getClass().getResource(Util.PANEL_RESERVAR));
+		Parent root = null;
+		
+		try {
+			root = loader.load();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		ControladorRealizarReserva con = loader.getController();
+		con.setStage(stage);
+		con.setResonance(resonance);
+		Scene scene = new Scene(root);
+
+		stage.setResizable(false);
+		stage.setTitle("Resonance Home");
+		stage.getIcons().add(new Image(Util.LOGO_RESONANCE));
+		stage.setScene(scene);
+		stage.show();
+		con.inicializar();
+		
+		
+	}
+	
+	
 
 	public void setResonance(ResonanceHome resonance) {
 		this.resonance = resonance;
