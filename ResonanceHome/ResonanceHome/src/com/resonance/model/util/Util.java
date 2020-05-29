@@ -28,23 +28,31 @@ public class Util {
 	public static final String LOGO_RESONANCE = "/com/resonance/view/imagenes/logo_resonance.png";
 	public static final String ICON_CORAZON_BLANCO = "/com/resonance/view/imagenes/icon_corazon.png";
 	public static final String ICON_CORAZON_ROJO = "/com/resonance/view/imagenes/icon_corazonRojo.png";
-	public static final String VENTANA_PRINCIPAL = "/com/resonance/view/interfaz/ventanaPrincipal.fxml";
-	public static final String PANEL_LISTADO_HOSPEDAJES = "/com/resonance/view/interfaz/panelListadoHospedajes.fxml";
-	public static final String PANEL_HOSPEDAJE = "/com/resonance/view/interfaz/panelHospedaje.fxml";
-	public static final String PANEL_INICIAR_SESION = "/com/resonance/view/interfaz/panellogIn.fxml";
-	public static final String PANEL_REGISTRO = "/com/resonance/view/interfaz/panelRegistro.fxml";
-	public static final String PANEL_HOSPEDAJE_COMPLETO = "/com/resonance/view/interfaz/panelHospedajeCompleto.fxml";
-	public static final String PANEL_FOTOS_HOSPEDAJE = "/com/resonance/view/interfaz/panelFotosHospedaje.fxml";
-	public static final String PANEL_DESCRIPCION_HOSPEDAJE = "/com/resonance/view/interfaz/panelDescripcionHospedaje.fxml";
+
+	/*
+	 * Direccion de las ventanas usadas en la UI
+	 */
+	public static final String PANEL_ADMINISTRADOR = "/com/resonance/view/interfaz/panelAdministrador.fxml";
 	public static final String PANEL_COMENTARIO = "/com/resonance/view/interfaz/panelComentario.fxml";
-	public static final String PANEL_RESERVAR = "/com/resonance/view/interfaz/panelRealizarReserva.fxml";
+	public static final String PANEL_DESCRIPCION_HOSPEDAJE = "/com/resonance/view/interfaz/panelDescripcionHospedaje.fxml";
+	public static final String PANEL_DESCRIPCION_RESERVA = "/com/resonance/view/interfaz/panelDescripcionReserva.fxml";
+	public static final String PANEL_FAVORITOS = "/com/resonance/view/interfaz/panelFavoritos.fxml";
+	public static final String PANEL_FOTOS_HOSPEDAJE = "/com/resonance/view/interfaz/panelFotosHospedaje.fxml";
+	public static final String PANEL_GESTION_RESERVAS = "/com/resonance/view/interfaz/panelGestionReservas.fxml";
+	public static final String PANEL_HOSPEDAJE = "/com/resonance/view/interfaz/panelHospedaje.fxml";
+	public static final String PANEL_HOSPEDAJE_COMPLETO = "/com/resonance/view/interfaz/panelHospedajeCompleto.fxml";
+	public static final String PANEL_HOSPEDAJE_PERFIL = "/com/resonance/view/interfaz/panelHospedajeEnPerfil.fxml";
+	public static final String PANEL_LISTADO_HOSPEDAJES = "/com/resonance/view/interfaz/panelListadoHospedajes.fxml";
+	public static final String PANEL_INICIAR_SESION = "/com/resonance/view/interfaz/panellogIn.fxml";
 	public static final String PANEL_PERFIL_USUARIO   = "/com/resonance/view/interfaz/panelPerfilUsuario.fxml";
 	public static final String PANEL_PERFIL_ANFITRION = "/com/resonance/view/interfaz/panelPerfilAnfitrion.fxml";
-	public static final String PANEL_HOSPEDAJE_PERFIL = "/com/resonance/view/interfaz/panelHospedajeEnPerfil.fxml";
+	public static final String PANEL_RESERVAR = "/com/resonance/view/interfaz/panelRealizarReserva.fxml";
+	public static final String PANEL_REGISTRO = "/com/resonance/view/interfaz/panelRegistro.fxml";
 	public static final String PANEL_REGPROPIEDAD_1 = "/com/resonance/view/interfaz/panelRegPropiedad1.fxml";
 	public static final String PANEL_REGPROPIEDAD_2 = "/com/resonance/view/interfaz/panelRegPropiedad2.fxml";
 	public static final String PANEL_REGPROPIEDAD_3 = "/com/resonance/view/interfaz/panelRegPropiedad3.fxml";
 	public static final String PANEL_REGPROPIEDAD_4 = "/com/resonance/view/interfaz/panelRegPropiedad4.fxml";
+	public static final String VENTANA_PRINCIPAL = "/com/resonance/view/interfaz/ventanaPrincipal.fxml";
 
 	public static ArrayList<String> listadoSugerencias = new ArrayList<>();
 

@@ -2,10 +2,10 @@ package com.resonance.view.controller;
 import java.io.IOException;
 
 import com.resonance.model.principal.ResonanceHome;
+import com.resonance.model.usuarios.Anfitrion;
 import com.resonance.model.util.Util;
 import com.resonance.view.interfaz.StageR;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -25,6 +25,7 @@ public class ControladorPerfilAnfitrion {
 	
 	private StageR stage;
 	
+	private Anfitrion anfitrion;
 	@FXML
     private Text btnAtras;
 
@@ -117,6 +118,20 @@ public void inicializar () {
 
 	public void setStage(StageR stage) {
 		this.stage = stage;
+	}
+
+	/**
+	 * @return the anfitrion
+	 */
+	public Anfitrion getAnfitrion() {
+		return anfitrion;
+	}
+
+	/**
+	 * @param anfitrion the anfitrion to set
+	 */
+	public void setAnfitrion(Anfitrion anfitrion) {
+		this.anfitrion = anfitrion;
 	}
 	
 	

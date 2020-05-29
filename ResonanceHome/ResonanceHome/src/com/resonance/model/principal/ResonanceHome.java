@@ -119,7 +119,8 @@ public class ResonanceHome {
 		Date fecha1 = new Date(1968, 1, 12);
 		Date fecha2 = new Date(1995, 8, 26);
 		Date fecha3 = new Date(1982, 12, 8);
-
+		// agregarAnfitrion(nombre, email, uRLFoto, direccion, fechaNacimiento,
+		// contrasenia, biografia, nametag);
 		agregarAnfitrion("Gustavo Meneses", "sergio.meneses95", "", "Calle 57 # 13 - 14", fecha1, "gustavo",
 				"Me considero una persona simpatica, ordenada y mantengo todo de la mejor manera", "gustavomene");
 		agregarAnfitrion("Oscar Lopez", "oscarin.lop@gmail.com", "", "Carrera 24 # 20 - 47", fecha2, "oscar",

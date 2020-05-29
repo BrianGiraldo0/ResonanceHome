@@ -1,11 +1,16 @@
 package com.resonance.view.controller;
 
 import java.io.File;
+import java.io.IOException;
+import java.time.LocalDate;
 
 import com.resonance.model.principal.ResonanceHome;
+import com.resonance.model.util.Util;
 import com.resonance.view.interfaz.StageR;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
@@ -22,7 +27,7 @@ public class ControladorRegistro {
 
 	private StageR stage;
 	private ResonanceHome resonance;
-
+	private File fileFoto;
 	@FXML
 	private Text btnAtras;
 
@@ -68,6 +73,10 @@ public class ControladorRegistro {
 	@FXML
 	private TextField textNombreCompleto;
 
+	public void inicializar() {
+		inicializar();
+		continuar();
+	}
 	public void subirFoto() {
 
 		FileChooser fileChooser = new FileChooser();
@@ -77,6 +86,7 @@ public class ControladorRegistro {
 		);
 
 		File selectedFile = fileChooser.showOpenDialog(stage);
+		fileFoto = selectedFile;
 
 		if (selectedFile != null) {
 			rectanguloFoto.setVisible(false);
@@ -109,6 +119,50 @@ public class ControladorRegistro {
 
 	public void setStage(StageR stage) {
 		this.stage = stage;
+	}
+
+	public void continuar() {
+		String nombre = textNombreCompleto.getText();
+		LocalDate fecha = dateFechaNacimiento.getValue();
+		String email = textEmail.getText();
+		String direccion = textDireccion.getText();
+		String nametag = textNombreUsuario.getText();
+		String clave = textPasswordUsuario.getText();
+		String biografia = textBiografia.getText();
+		String urlFoto = fileFoto.getAbsolutePath();
+		btnContinuar.setOnMouseClicked((e) -> {
+
+		});
+	}
+
+	private void atras() {
+		btnAtras.setOnMouseClicked((e) -> {
+			abrirVentanaAnterior();
+
+		});
+	}
+
+	public void abrirVentanaAnterior() {
+		FXMLLoader loader = new FXMLLoader(getClass().getResource(stage.getVentanaAnterior()));
+		try {
+			Parent root = loader.load();
+			limpiarCampos();
+			stage.getScene().setRoot(root);
+			Util.updateController(loader, stage, resonance);
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+	}
+
+	public void limpiarCampos() {
+		textNombreCompleto.setText("");
+		textEmail.setText("");
+		textDireccion.setText("");
+		textDireccion.setText("");
+		textNombreUsuario.setText("");
+		textPasswordUsuario.setText("");
+		textBiografia.setText("");
 	}
 
 }
