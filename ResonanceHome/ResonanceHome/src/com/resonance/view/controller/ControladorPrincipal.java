@@ -8,6 +8,7 @@ import java.util.TreeSet;
 
 import com.resonance.model.hospedajes.Hospedaje;
 import com.resonance.model.principal.ResonanceHome;
+import com.resonance.model.usuarios.Huesped;
 import com.resonance.model.util.Util;
 import com.resonance.view.interfaz.AutoCompleteTextField;
 import com.resonance.view.interfaz.MultiDatePicker;
@@ -151,6 +152,10 @@ public class ControladorPrincipal {
 			stage.getScene().setRoot(root);
 
 		} else if (event.getSource() == btnRegistro) {
+			
+			if (!btnRegistro.getText().equals("Ver perfil"))
+			
+			{
 			FXMLLoader loader = new FXMLLoader(getClass().getResource(Util.PANEL_REGISTRO));
 			Parent root = null;
 			try {
@@ -161,11 +166,38 @@ public class ControladorPrincipal {
 			}
 
 			ControladorRegistro control = loader.getController();
+			control.inicializar();
 			control.setResonance(resonance);
 			control.setStage(stage);
 
 			stage.setResizable(false);
 			stage.getScene().setRoot(root);
+			
+			
+			} else {
+				
+				FXMLLoader loader = new FXMLLoader(getClass().getResource(Util.PANEL_PERFIL_USUARIO));
+				Parent root = null;
+				try {
+					root = loader.load();
+				} catch (IOException a) {
+					// TODO Auto-generated catch block
+					a.printStackTrace();
+				}
+
+				ControladorPerfilUsuario control = loader.getController();
+				control.inicializar();
+				control.setResonance(resonance);
+				control.setStage(stage);
+
+				stage.setResizable(false);
+				stage.getScene().setRoot(root);
+				
+				
+			}
+			
+			
+			
 
 		} else if (event.getSource() == btnCrearPropiedad) {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource(Util.PANEL_REGPROPIEDAD_1));
@@ -219,6 +251,29 @@ public class ControladorPrincipal {
 		/*
 		 * Aquí va para actualizar cuando inicie sesión
 		 */
+		
+		
+		
+		if (stage.getUsuarioLogeado() instanceof Huesped) {
+			
+			
+			btnCrearPropiedad.setVisible(false);
+			btnAyuda.setVisible(false);
+			btniniciarSesion.setVisible(false);
+			btnRegistro.setText("Ver perfil");
+			
+			
+			
+			
+			
+			
+		}
+		
+		
+		
+		
+		
+		
 	}
 	public void setResonance(ResonanceHome resonance) {
 		this.resonance = resonance;

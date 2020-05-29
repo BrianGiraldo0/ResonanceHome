@@ -77,11 +77,13 @@ public class ControladorLogIn {
 			abrirVentanaRegistro();
 		});
 	}
+	
 	private void iniciarSesion() {
 
 		btnInicioSesion.setOnMouseClicked((e) -> {
 			String error = "";
 			if (!Util.isEmpty(textPassword) && !Util.isEmpty(textUsuario)) {
+
 				try {
 					if (resonance.obtenerAnfitrion(textUsuario.getText()) != null) {
 						Anfitrion anfitrion = resonance.obtenerAnfitrion(textUsuario.getText());
@@ -93,7 +95,14 @@ public class ControladorLogIn {
 							getWidth(error.length());
 							lblError.setText(error);
 						}
-					} else if (resonance.obtenerHuesped(textUsuario.getText()) != null) {
+					}
+				} catch (NoExistException e1) {
+					error = "Usuario";
+					getWidth(error.length());
+					lblError.setText(error);
+				}
+				try {
+					if (resonance.obtenerHuesped(textUsuario.getText()) != null) {
 						Huesped huesped = resonance.obtenerHuesped(textUsuario.getText());
 						if (huesped.getContrasenia().equals(textPassword.getText())) {
 							stage.setHuespedLogeado(huesped);
@@ -103,18 +112,21 @@ public class ControladorLogIn {
 							getWidth(error.length());
 							lblError.setText(error);
 						}
-					}
+						}
 				} catch (NoExistException e1) {
-					error = "Usuario o contraseña incorrectos";
+					error = "Usuario";
 					getWidth(error.length());
 					lblError.setText(error);
 				}
+
 
 			} else {
 				error = "Se deben llenar todos los campos";
 				getWidth(error.length());
 				lblError.setText(error);
 			}
+
+
 		});
 	}
     

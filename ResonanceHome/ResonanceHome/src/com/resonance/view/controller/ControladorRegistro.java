@@ -8,10 +8,13 @@ import com.resonance.model.principal.ResonanceHome;
 import com.resonance.model.util.Util;
 import com.resonance.view.interfaz.StageR;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -30,7 +33,13 @@ public class ControladorRegistro {
 	private File fileFoto;
 	@FXML
 	private Text btnAtras;
-
+	
+	
+	@FXML
+	private ComboBox<String> comboTipoCuenta;
+	
+	 private ObservableList<String> items = FXCollections.observableArrayList();
+	
 	@FXML
 	private ImageView picPerfil;
 	@FXML
@@ -74,6 +83,7 @@ public class ControladorRegistro {
 	private TextField textNombreCompleto;
 
 	public void inicializar() {
+		inicializarCombo();
 		continuar();
 		atras();
 	}
@@ -112,6 +122,17 @@ public class ControladorRegistro {
 		interrogacionFoto.setVisible(true);
 
 	}
+	
+	public void inicializarCombo() {
+		
+		items.add("Huesped");
+		items.add("Anfitrion");
+		
+    	comboTipoCuenta.getItems().addAll(items);
+    	
+		
+	}
+	
 
 	public void setResonance(ResonanceHome resonance) {
 		this.resonance = resonance;
