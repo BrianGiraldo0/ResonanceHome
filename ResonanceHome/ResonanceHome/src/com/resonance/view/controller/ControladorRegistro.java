@@ -121,7 +121,7 @@ public class ControladorRegistro {
 		this.stage = stage;
 	}
 
-	public void continuar() {
+	private void continuar() {
 		String nombre = textNombreCompleto.getText();
 		LocalDate fecha = dateFechaNacimiento.getValue();
 		String email = textEmail.getText();
