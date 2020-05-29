@@ -74,8 +74,8 @@ public class ControladorRegistro {
 	private TextField textNombreCompleto;
 
 	public void inicializar() {
-		inicializar();
 		continuar();
+		atras();
 	}
 	public void subirFoto() {
 
@@ -122,16 +122,15 @@ public class ControladorRegistro {
 	}
 
 	private void continuar() {
-		String nombre = textNombreCompleto.getText();
-		LocalDate fecha = dateFechaNacimiento.getValue();
-		String email = textEmail.getText();
-		String direccion = textDireccion.getText();
-		String nametag = textNombreUsuario.getText();
-		String clave = textPasswordUsuario.getText();
-		String biografia = textBiografia.getText();
-		String urlFoto = fileFoto.getAbsolutePath();
 		btnContinuar.setOnMouseClicked((e) -> {
-
+			String nombre = textNombreCompleto.getText();
+			LocalDate fecha = dateFechaNacimiento.getValue();
+			String email = textEmail.getText();
+			String direccion = textDireccion.getText();
+			String nametag = textNombreUsuario.getText();
+			String clave = textPasswordUsuario.getText();
+			String biografia = textBiografia.getText();
+			String urlFoto = fileFoto.getAbsolutePath();
 		});
 	}
 
@@ -143,7 +142,7 @@ public class ControladorRegistro {
 	}
 
 	public void abrirVentanaAnterior() {
-		FXMLLoader loader = new FXMLLoader(getClass().getResource(stage.getVentanaAnterior()));
+		FXMLLoader loader = new FXMLLoader(getClass().getResource(Util.VENTANA_PRINCIPAL));
 		try {
 			Parent root = loader.load();
 			limpiarCampos();

@@ -75,50 +75,62 @@ public class Util {
 			ControladorPrincipal control = loader.getController();
 			control.setStage(stage);
 			control.setResonance(resonance);
+			control.inicializar();
 		} else if (loader.getController() instanceof ControladorComentario) {
 			ControladorComentario control = loader.getController();
 //			control.setStage(stage);
 //			control.setResonance(resonance);
+			control.inicializar();
 		} else if (loader.getController() instanceof ControladorHospedaje) {
 			ControladorPrincipal control = loader.getController();
 			control.setStage(stage);
 			control.setResonance(resonance);
+			control.inicializar();
 		} else if (loader.getController() instanceof ControladorDescripcionHospedaje) {
 			ControladorPrincipal control = loader.getController();
 			control.setStage(stage);
 			control.setResonance(resonance);
+			control.inicializar();
 		} else if (loader.getController() instanceof ControladorFotosHospedaje) {
 			ControladorPrincipal control = loader.getController();
 			control.setStage(stage);
 			control.setResonance(resonance);
+			control.inicializar();
 		} else if (loader.getController() instanceof ControladorListadoHospedajes) {
 			ControladorPrincipal control = loader.getController();
 			control.setStage(stage);
 			control.setResonance(resonance);
+			control.inicializar();
 		} else if (loader.getController() instanceof ControladorHospedajeCompleto) {
 			ControladorPrincipal control = loader.getController();
 			control.setStage(stage);
 			control.setResonance(resonance);
+			control.inicializar();
 		} else if (loader.getController() instanceof ControladorRegPropiedad1) {
 			ControladorPrincipal control = loader.getController();
 			control.setStage(stage);
 			control.setResonance(resonance);
+			control.inicializar();
 		} else if (loader.getController() instanceof ControladorRegPropiedad2) {
 			ControladorPrincipal control = loader.getController();
 			control.setStage(stage);
 			control.setResonance(resonance);
+			control.inicializar();
 		} else if (loader.getController() instanceof ControladorRegPropiedad3) {
 			ControladorPrincipal control = loader.getController();
 			control.setStage(stage);
 			control.setResonance(resonance);
+			control.inicializar();
 		} else if (loader.getController() instanceof ControladorRegPropiedad4) {
 			ControladorPrincipal control = loader.getController();
 			control.setStage(stage);
 			control.setResonance(resonance);
+			control.inicializar();
 		} else if (loader.getController() instanceof ControladorRegistro) {
 			ControladorPrincipal control = loader.getController();
 			control.setStage(stage);
 			control.setResonance(resonance);
+			control.inicializar();
 		}
 	}
 

@@ -158,7 +158,7 @@ public class ControladorLogIn {
 			Parent root = loader.load();
 			ControladorRegistro control = loader.getController();
 			control.setResonance(resonance);
-			stage.setVentanaAnterior(Util.VENTANA_PRINCIPAL);
+			stage.setVentanaAnterior(Util.PANEL_INICIAR_SESION);
 			control.setStage(stage);
 			control.inicializar();
 			stage.getScene().setRoot(root);
