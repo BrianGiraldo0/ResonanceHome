@@ -2,6 +2,7 @@ package com.resonance.view.controller;
 
 import java.io.IOException;
 
+import com.resonance.model.hospedajes.Hospedaje;
 import com.resonance.model.principal.ResonanceHome;
 import com.resonance.model.util.Util;
 import com.resonance.view.interfaz.StageR;
@@ -20,14 +21,15 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+
 public class ControladorHospedajeCompleto {
 
 	private ResonanceHome resonance;
+	
 	private StageR stage;
-	
-	
-	
 	  
+	private Hospedaje hospedaje;
+	
 	@FXML
 	private Label labelTotal;
 
@@ -91,6 +93,7 @@ public class ControladorHospedajeCompleto {
 		ControladorDescripcionHospedaje con = loader2.getController();
 		con.setResonance(resonance);
 		con.setStage(stage);
+		con.setHospedaje(hospedaje);
 		con.inicializar();
 
 		for (int i = 0; i < 5; i++) {
@@ -140,8 +143,14 @@ public class ControladorHospedajeCompleto {
 		
 		
 	}
-	
-	
+
+	public Hospedaje getHospedaje() {
+		return hospedaje;
+	}
+
+	public void setHospedaje(Hospedaje hospedaje) {
+		this.hospedaje = hospedaje;
+	}
 
 	public void setResonance(ResonanceHome resonance) {
 		this.resonance = resonance;

@@ -18,6 +18,8 @@ public class Hospedaje {
 	public String descripcion = "";
 	public Plus servicios;
 	private TipoHospedaje tipoHospedaje;
+	private ArrayList<Calificacion> calificaciones = new ArrayList<Calificacion>();
+
 	/**
 	 * Metodo constructor de la clase
 	 * 
@@ -30,7 +32,6 @@ public class Hospedaje {
 	public Hospedaje(String id, Direccion direccion, double precio, String nameTagPropietario, ArrayList<String> urlsFotos,
 			String descripcion, Plus servicios, TipoHospedaje tipoH, Prestacion prestaciones) {
 		super();
-
 		this.id = id;
 		this.direccion = direccion;
 		this.precio = precio;
@@ -60,6 +61,12 @@ public class Hospedaje {
 		
 		return true;
 	}
+
+	/**
+	 * Método que hace las operaciones necesarias al cambiar de día
+	 * 
+	 * @param fecha
+	 */
 	public void update(Fecha fecha)
 	{
 		for (int i = 0; i < fechasReservadas.size(); i++) {
@@ -68,6 +75,77 @@ public class Hospedaje {
 				fechasReservadas.remove(i);
 			}
 		}
+	}
+
+	/**
+	 * Método que obtiene el promedio de calificaciones con respecto a la limpieza
+	 * 
+	 * @return
+	 */
+	public double obtenerPromedioLimpieza() {
+		double promedio = 0;
+		for (int i = 0; i < calificaciones.size(); i++) {
+			promedio += calificaciones.get(i).getLimpieza();
+		}
+
+		return promedio / calificaciones.size();
+	}
+
+	/**
+	 * Método que obtiene el promedio de calificaciones con respecto a la atención
+	 * del anfitrion
+	 * 
+	 * @return
+	 */
+	public double obtenerPromedioAtencion() {
+		double promedio = 0;
+		for (int i = 0; i < calificaciones.size(); i++) {
+			promedio += calificaciones.get(i).getAtencion();
+		}
+
+		return promedio / calificaciones.size();
+	}
+
+	/**
+	 * Método que obtiene el promedio de calificaciones con respecto al
+	 * profesionalismo del anfitrion
+	 * 
+	 * @return
+	 */
+	public double obtenerPromedioProfesionalismo() {
+		double promedio = 0;
+		for (int i = 0; i < calificaciones.size(); i++) {
+			promedio += calificaciones.get(i).getProfesionalismoAnfitrion();
+		}
+
+		return promedio / calificaciones.size();
+	}
+
+	/**
+	 * Método que obtiene el promedio de calificaciones con respecto a la ubicacion
+	 * 
+	 * @return
+	 */
+	public double obtenerPromedioUbicacion() {
+		double promedio = 0;
+		for (int i = 0; i < calificaciones.size(); i++) {
+			promedio += calificaciones.get(i).getUbicacion();
+		}
+
+		return promedio / calificaciones.size();
+	}
+
+	/**
+	 * Método que obtiene el promedio de calificaciones del hospedaje
+	 * 
+	 * @return
+	 */
+	public double obtenerPromedioCalificaciones() {
+		double promedio = 0;
+		promedio = obtenerPromedioAtencion() + obtenerPromedioUbicacion() + obtenerPromedioLimpieza()
+				+ obtenerPromedioProfesionalismo();
+
+		return promedio / 4;
 	}
 	/**
 	 * Metodo que obtiene el id

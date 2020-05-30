@@ -21,7 +21,7 @@ public class ControladorHospedaje {
 	private StageR stage;
 
 	private boolean favorito = false;
-
+	
 	private Hospedaje hospedaje;
 
 	private ResonanceHome resonance;
@@ -124,6 +124,7 @@ public class ControladorHospedaje {
 		ControladorHospedajeCompleto control = loader.getController();
 		control.setResonance(resonance);
 		control.setStage(stage);
+		control.setHospedaje(hospedaje);
 		control.inicializar();
 
 		stage.setResizable(false);

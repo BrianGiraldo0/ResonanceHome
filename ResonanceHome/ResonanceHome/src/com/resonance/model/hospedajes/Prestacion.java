@@ -57,6 +57,34 @@ public class Prestacion {
 
 		return numBanios + " huespedes, " + numBanios + " baños, " + cocinaS;
 	}
+
+	/**
+	 * @return the numCamas
+	 */
+	public int getNumCamas() {
+		return numCamas;
+	}
+
+	/**
+	 * @param numCamas the numCamas to set
+	 */
+	public void setNumCamas(int numCamas) {
+		this.numCamas = numCamas;
+	}
+
+	/**
+	 * @return the numHabitaciones
+	 */
+	public int getNumHabitaciones() {
+		return numHabitaciones;
+	}
+
+	/**
+	 * @param numHabitaciones the numHabitaciones to set
+	 */
+	public void setNumHabitaciones(int numHabitaciones) {
+		this.numHabitaciones = numHabitaciones;
+	}
 	
 	
 }

@@ -28,6 +28,9 @@ public class Util {
 	public static final String LOGO_RESONANCE = "/com/resonance/view/imagenes/logo_resonance.png";
 	public static final String ICON_CORAZON_BLANCO = "/com/resonance/view/imagenes/icon_corazon.png";
 	public static final String ICON_CORAZON_ROJO = "/com/resonance/view/imagenes/icon_corazonRojo.png";
+	public static final String ICON_STAR_LLENA = "/com/resonance/view/imagenes/EstrellaLlena.png";
+	public static final String ICON_STAR_MEDIO_LLENA = "/com/resonance/view/imagenes/EstrellaMedioLlena.png";
+	public static final String ICON_STAR_VACIA = "/com/resonance/view/imagenes/EstrellaVacia.png";
 
 	/*
 	 * Direccion de las ventanas usadas en la UI

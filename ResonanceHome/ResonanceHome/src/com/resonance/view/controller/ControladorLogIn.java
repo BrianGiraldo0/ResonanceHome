@@ -84,8 +84,8 @@ public class ControladorLogIn {
 			if (!Util.isEmpty(textPassword) && !Util.isEmpty(textUsuario)) {
 				if (textPassword.getText().equalsIgnoreCase("admin")
 						&& textUsuario.getText().equalsIgnoreCase("admin")) {
-
-				}
+					abrirVentanaAdmin();
+				} else {
 				try {
 					if (resonance.obtenerAnfitrion(textUsuario.getText()) != null) {
 						Anfitrion anfitrion = resonance.obtenerAnfitrion(textUsuario.getText());
@@ -121,7 +121,7 @@ public class ControladorLogIn {
 					lblError.setText(error);
 				}
 
-
+				}
 			} else {
 				error = "Se deben llenar todos los campos";
 				getWidth(error.length());
@@ -139,7 +139,7 @@ public class ControladorLogIn {
 
 	public void abrirVentanaAdmin() {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource(Util.PANEL_ADMINISTRADOR));
-		Parent root;
+		Parent root = null;
 
 		try {
 			root = loader.load();
@@ -150,6 +150,8 @@ public class ControladorLogIn {
 		ControladorAdministrador control = loader.getController();
 		control.setResonance(resonance);
 		control.setStage(stage);
+		control.inicializar();
+		stage.getScene().setRoot(root);
 
 	}
 	public void abrirVentanaAnterior() {

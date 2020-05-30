@@ -13,6 +13,7 @@ import com.resonance.model.hospedajes.Direccion;
 import com.resonance.model.hospedajes.Hospedaje;
 import com.resonance.model.hospedajes.Plus;
 import com.resonance.model.hospedajes.Prestacion;
+import com.resonance.model.hospedajes.Reserva;
 import com.resonance.model.hospedajes.TipoHospedaje;
 import com.resonance.model.usuarios.Anfitrion;
 import com.resonance.model.usuarios.Huesped;
@@ -208,6 +209,25 @@ public class ResonanceHome {
 	}
 
 	/**
+	 * Metodo que permite agregar un hospedaje a la lista global de hospedajes
+	 * 
+	 * @param hospedaje
+	 * @throws NoExistException
+	 */
+	public void agregarHospedaje(Hospedaje hospedaje) throws NoExistException {
+		if (anfitriones.get(hospedaje.getNameTagPropietario()) != null) {
+			String id = Util.generarIDHospedaje();
+			anfitriones.get(hospedaje.getNameTagPropietario()).agregarHospedaje(id);
+			Util.agregarSugerencia(hospedaje.getDireccion().toString());
+			FileManager.agregarHospedaje(id, hospedaje.getNameTagPropietario(), hospedaje.getUrlsFotos());
+			hospedajes.put(id, hospedaje);
+
+		} else {
+			throw new NoExistException();
+		}
+	}
+
+	/**
 	 * Metodo que agrega un anfitrion a la lista
 	 * 
 	 * @param nombre
@@ -286,6 +306,14 @@ public class ResonanceHome {
 		return resultado;
 	}
 
+	/**
+	 * Método que retorna los hospedajes que pasan por un determinado filtro
+	 * 
+	 * @param ubicacion
+	 * @param date
+	 * @param huespedes
+	 * @return
+	 */
 	public ArrayList<Hospedaje> buscarHospedajes(String ubicacion, ArrayList<Date> date, String huespedes) {
 		ArrayList<Hospedaje> ltsHospedajes = new ArrayList<Hospedaje>();
 		Iterator<String> keys = hospedajes.keySet().iterator();
@@ -314,6 +342,24 @@ public class ResonanceHome {
 		}
 
 		return ltsHospedajes;
+	}
+
+	/**
+	 * Método que retorna la lista de reservas hecha por todos los huespedes de
+	 * resonancehome
+	 * 
+	 * @return
+	 */
+	public ArrayList<Reserva> obtenerReservas() {
+		ArrayList<Reserva> reservas = new ArrayList<Reserva>();
+
+		Iterator<String> keys = huespedes.keySet().iterator();
+		while (keys.hasNext()) {
+			String key = keys.next();
+			reservas.addAll(huespedes.get(key).getReservas());
+		}
+
+		return reservas;
 	}
 
 	/**
@@ -348,6 +394,10 @@ public class ResonanceHome {
 	 */
 	public HashMap<String, Hospedaje> getHospedajes() {
 		return hospedajes;
+	}
+
+	public Fecha getFecha() {
+		return fecha;
 	}
 
 }

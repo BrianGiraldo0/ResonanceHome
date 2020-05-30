@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="lComentario" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="768.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.resonance.view.controller.ControladorGrafica">
+   <children>
+      <Separator layoutX="7.0" layoutY="189.0" prefHeight="9.0" prefWidth="754.0" />
+      <Label fx:id="lblNombreGrafica" alignment="CENTER" layoutX="10.0" layoutY="20.0" prefHeight="25.0" prefWidth="203.0" text="Grafica">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblCalifiación" alignment="CENTER" layoutX="12.0" layoutY="57.0" prefHeight="19.0" prefWidth="203.0" text="0.0">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Label>
+      <BarChart fx:id="Grafica" barGap="5.0" layoutX="198.0" layoutY="8.0" prefHeight="200.0" prefWidth="500.0">
+        <xAxis>
+          <CategoryAxis side="BOTTOM" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis side="LEFT" />
+        </yAxis>
+      </BarChart>
+   </children>
+</AnchorPane>
