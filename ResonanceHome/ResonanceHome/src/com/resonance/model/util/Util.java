@@ -49,7 +49,7 @@ public class Util {
 	public static final String PANEL_INICIAR_SESION = "/com/resonance/view/interfaz/panellogIn.fxml";
 	public static final String PANEL_PERFIL_USUARIO   = "/com/resonance/view/interfaz/panelPerfilUsuario.fxml";
 	public static final String PANEL_PERFIL_ANFITRION = "/com/resonance/view/interfaz/panelPerfilAnfitrion.fxml";
-	public static final String PANEL_RESERVAR = "/com/resonance/view/interfaz/panelRealizarReserva.fxml";
+	public static final String PANEL_PAGO = "/com/resonance/view/interfaz/panelPago.fxml";
 	public static final String PANEL_REGISTRO = "/com/resonance/view/interfaz/panelRegistro.fxml";
 	public static final String PANEL_REGPROPIEDAD_1 = "/com/resonance/view/interfaz/panelRegPropiedad1.fxml";
 	public static final String PANEL_REGPROPIEDAD_2 = "/com/resonance/view/interfaz/panelRegPropiedad2.fxml";

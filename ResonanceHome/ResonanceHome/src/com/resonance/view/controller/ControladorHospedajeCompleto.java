@@ -114,7 +114,7 @@ public class ControladorHospedajeCompleto {
 	public void reservar() {
 		
 	
-		FXMLLoader loader = new FXMLLoader(getClass().getResource(Util.PANEL_RESERVAR));
+		FXMLLoader loader = new FXMLLoader(getClass().getResource(Util.PANEL_PAGO));
 		Parent root = null;
 		
 		try {
