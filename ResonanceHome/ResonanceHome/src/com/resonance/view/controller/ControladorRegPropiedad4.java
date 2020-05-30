@@ -265,6 +265,31 @@ public class ControladorRegPropiedad4 {
 		alert.showAndWait();
 	}
 
+	public void abrirVentanaAnterior() {
+		FXMLLoader loader = new FXMLLoader(getClass().getResource(Util.PANEL_REGPROPIEDAD_3));
+		Parent root = null;
+		try {
+			root = loader.load();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		ControladorRegPropiedad3 control = loader.getController();
+		control.setResonance(resonance);
+		control.setHospedaje(hospedaje);
+		control.setStageR(stage);
+		control.inicializar();
+
+		stage.getScene().setRoot(root);
+
+	}
+
+	public void inicializar() {
+		btnAtras.setOnMouseClicked((e) -> {
+			abrirVentanaAnterior();
+		});
+	}
 	private void abrirVentanaAnfitrion(Anfitrion anfitrion) {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource(Util.PANEL_PERFIL_ANFITRION));
 		try {

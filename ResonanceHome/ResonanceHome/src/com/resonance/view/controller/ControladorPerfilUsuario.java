@@ -28,7 +28,8 @@ public class ControladorPerfilUsuario {
     private ResonanceHome resonance;
     private StageR stage;
 
-	
+	@FXML
+	private Button btnMensajes;
 
     @FXML
     private Text btnAtras;
@@ -78,7 +79,7 @@ public class ControladorPerfilUsuario {
     	
     	
 public void inicializar () {
-	
+		colorearBotones();
 	labelNombreUsuario.setText(stage.getUsuarioLogeado().getNombre());
 	
 	if (!stage.getUsuarioLogeado().getURLFoto().equals("")) {
@@ -94,6 +95,19 @@ public void inicializar () {
 			abrirVentanaPrincipal();
 		});
     }
+
+	public void colorearBotones() {
+		Image image = new Image(getClass().getResourceAsStream(Util.ICON_MENSAJES));
+		btnMensajes.setGraphic(new ImageView(image));
+		btnMensajes.setOnMouseEntered((e) -> {
+
+			btnMensajes.setStyle("-fx-background-color: #EBE8EE; -fx-background-radius: 15");
+		});
+		btnMensajes.setOnMouseExited((e) -> {
+			btnMensajes.setStyle("-fx-background-color: #FFFFFF; -fx-background-radius: 15");
+		});
+
+	}
 
 	public void abrirVentanaPrincipal() {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource(Util.VENTANA_PRINCIPAL));

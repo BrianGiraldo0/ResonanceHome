@@ -88,13 +88,54 @@ public class ControladorRegPropiedad3 {
 			control.setResonance(resonance);
 			control.setStageR(stage);
 			control.setHospedaje(hospedaje);
-//			control.inicializar();
+			control.inicializar();
 			stage.setResizable(false);
 			stage.getScene().setRoot(root);
 
 		}
 	}
 
+	public void abrirVentanaAnterior() {
+		FXMLLoader loader = new FXMLLoader(getClass().getResource(Util.PANEL_REGPROPIEDAD_2));
+		Parent root = null;
+		try {
+			root = loader.load();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		ControladorRegPropiedad2 control = loader.getController();
+		control.setResonance(resonance);
+		control.setStageR(stage);
+		control.setHospedaje(hospedaje);
+		control.inicializar();
+
+		stage.getScene().setRoot(root);
+
+	}
+
+	public void inicializar() {
+		if (hospedaje.getServicios() != null) {
+			llenarDatos();
+		}
+		btnAtras.setOnMouseClicked((e) -> {
+			abrirVentanaAnterior();
+		});
+	}
+
+	public void llenarDatos() {
+		if(hospedaje.getServicios().isAireAc())
+			checkAire.setSelected(true);
+		if(hospedaje.getServicios().isCocina())
+			checkCocina.setSelected(true);
+		if(hospedaje.getServicios().isKitBanio())
+			checkKitBanio.setSelected(true);
+		if(hospedaje.getServicios().isUtencilios())
+			checkUten.setSelected(true);
+		if(hospedaje.getServicios().isWifi())
+			checkWifi.setSelected(true);
+	}
 	public void setResonance(ResonanceHome resonance) {
 		this.resonance = resonance;
 	}

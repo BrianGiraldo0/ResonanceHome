@@ -31,6 +31,7 @@ public class Util {
 	public static final String ICON_STAR_LLENA = "/com/resonance/view/imagenes/EstrellaLlena.png";
 	public static final String ICON_STAR_MEDIO_LLENA = "/com/resonance/view/imagenes/EstrellaMedioLlena.png";
 	public static final String ICON_STAR_VACIA = "/com/resonance/view/imagenes/EstrellaVacia.png";
+	public static final String ICON_MENSAJES = "/com/resonance/view/imagenes/icon_mensajes.png";
 
 	/*
 	 * Direccion de las ventanas usadas en la UI

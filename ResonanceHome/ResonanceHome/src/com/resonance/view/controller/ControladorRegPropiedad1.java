@@ -181,6 +181,15 @@ public class ControladorRegPropiedad1 {
 		}
 	}
 
+	public void llenarDatos() {
+		comboTipo.setValue(hospedaje.getTipoHospedaje().toString());
+		comboCapacidad.setValue(hospedaje.getPrestaciones().getNumHuesped() + "");
+		tfUbicacion1.setText(hospedaje.getDireccion().getCiudad());
+		lblCantH.setText(hospedaje.getPrestaciones().getNumHabitaciones() + "");
+		lblCantC.setText(hospedaje.getPrestaciones().getNumCamas() + "");
+		lblCantB.setText(hospedaje.getPrestaciones().getNumBanios() + "");
+
+	}
 	private void atras() {
 		btnAtras.setOnMouseClicked((e) -> {
 			abrirVentanaAnterior();
@@ -230,7 +239,9 @@ public class ControladorRegPropiedad1 {
 		}
 	}
 	public void inicializar() {
-
+		if (hospedaje != null) {
+			llenarDatos();
+		}
 		comboTipo.setValue("Tipo");
 		comboTipo.getItems().addAll("Apartamento", "Habitacion");
 
@@ -244,6 +255,10 @@ public class ControladorRegPropiedad1 {
 
 	public void setResonance(ResonanceHome resonance) {
 		this.resonance = resonance;
+	}
+
+	public void setHospedaje(Hospedaje hospedaje) {
+		this.hospedaje = hospedaje;
 	}
 
 	public void setStage(StageR stage) {

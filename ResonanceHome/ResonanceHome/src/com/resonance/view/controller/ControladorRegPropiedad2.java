@@ -72,8 +72,6 @@ public class ControladorRegPropiedad2 {
 	void onClic(MouseEvent event) {
 		if (event.getSource() == btnSiguiente) {
 			
-			
-			
 			hospedaje.getDireccion().setPais(comboPaises.getSelectionModel().getSelectedItem());
 			hospedaje.getDireccion().setDireccion(txtDireccion.getText());
 			hospedaje.getDireccion().setEstado(txtDepartamento.getText());
@@ -92,7 +90,7 @@ public class ControladorRegPropiedad2 {
 			control.setResonance(resonance);
 			control.setStageR(stage);
 			control.setHospedaje(hospedaje);
-//			control.inicializar();
+			control.inicializar();
 			stage.setResizable(false);
 			stage.getScene().setRoot(root);
 
@@ -100,6 +98,13 @@ public class ControladorRegPropiedad2 {
 	}
 
 	public void inicializar() {
+		if (hospedaje.getDireccion().getDireccion() != null) {
+			llenarDatos();
+		}
+		btnAtras.setOnMouseClicked((e) -> {
+			abrirVentanaAnterior();
+		});
+
 		comboPaises.getItems().addAll("Afganistán", "Albania", "Alemania", "Andorra", "Angola", "Antigua y Barbuda",
 				"Arabia Saudita", "Argelia", "Argentina", "Armenia", "Australia", "Austria", "Azerbaiyán", "Bahamas",
 				"Bangladés", "Barbados", "Baréin", "Bélgica", "Belice", "Benín", "Bielorrusia", "Birmania", "Bolivia",
@@ -109,135 +114,33 @@ public class ControladorRegPropiedad2 {
 				"Costa Rica", "Croacia", "Cuba", "Dinamarca", "Dominica", "Ecuador", "Egipto", "El Salvador",
 				"Emiratos Árabes Unidos", "Eritrea", "Eslovaquia", "Eslovenia", "España", "Estados Unidos", "Estonia",
 				"Etiopía", "Filipinas", "Finlandia", "Fiyi", "Francia", "Gabón");
-//		Gambia: Banjul.
-//		Georgia: Tiflis.
-//		Ghana: Acra.
-//		Granada: Saint George.
-//		Grecia: Atenas.
-//		Guatemala: Ciudad de Guatemala.
-//		Guyana: Georgetown.
-//		Guinea: Conakri.
-//		Guinea-Bisáu: Bisáu.
-//		Guinea Ecuatorial: Malabo.
-//		Haití: Puerto Príncipe.
-//		Honduras: Tegucigalpa.
-//		Hungría: Budapest.
-//		India: Nueva Delhi.
-//		Indonesia: Yakarta.
-//		Irak: Bagdad.
-//		Irán: Teherán.
-//		Irlanda: Dublín.
-//		Islandia: Reikiavik.
-//		Islas Marshall: Majuro.
-//		Islas Salomón: Honiara.
-//		Israel: Jerusalén.
-//		Italia: Roma.
-//		Jamaica: Kingston.
-//		Japón: Tokio.
-//		Jordania: Amán.
-//		Kazajistán: Astaná.
-//		Kenia: Nairobi.
-//		Kirguistán: Biskek.
-//		Kiribati: Tarawa.
-//		Kuwait: Kuwait.
-//		Laos: Vientián.
-//		Lesoto: Maseru.
-//		Letonia: Riga.
-//		Líbano: Beirut.
-//		Liberia: Monrovia.
-//		Libia: Trípoli.
-//		Liechtenstein: Vaduz.
-//		Lituania: Vilna.
-//		Luxemburgo: Luxemburgo.
-//		Macedonia del Norte: Skopie.
-//		Madagascar: Antananarivo.
-//		Malasia: Kuala Lumpur.
-//		Malaui: Lilongüe.
-//		Maldivas: Malé.
-//		Malí: Bamako.
-//		Malta: La Valeta.
-//		Marruecos: Rabat.
-//		Mauricio: Port-Louis.
-//		Mauritania: Nuakchot.
-//		México: Ciudad de México. (*)
-//		Micronesia: Palikir.
-//		Moldavia: Chisináu.
-//		Mónaco: Mónaco.
-//		Mongolia: Ulán Bator.
-//		Montenegro: Podgorica.
-//		Mozambique: Maputo.
-//		Namibia: Windhoek.
-//		Nauru: Yaren.
-//		Nepal: Katmandú.
-//		Nicaragua: Managua.
-//		Níger: Niamey.
-//		Nigeria: Abuya.
-//		Noruega: Oslo.
-//		Nueva Zelanda: Wellington.
-//		Omán: Mascate.
-//		Países Bajos: Ámsterdam. (*)
-//		Pakistán: Islamabad.
-//		Palaos: Melekeok.
-//		Panamá: Panamá.
-//		Papúa Nueva Guinea: Port Moresby.
-//		Paraguay: Asunción.
-//		Perú: Lima.
-//		Polonia: Varsovia.
-//		Portugal: Lisboa.
-//		Reino Unido de Gran Bretaña e Irlanda del Norte: Londres. (*)
-//		República Centroafricana: Bangui.
-//		República Checa: Praga.
-//		República del Congo: Brazzaville.
-//		República Democrática del Congo: Kinsasa.
-//		República Dominicana: Santo Domingo.
-//		República Sudafricana: Bloemfontein, Ciudad Del Cabo y Pretoria. (*)
-//		Ruanda: Kigali.
-//		Rumanía: Bucarest.
-//		Rusia: Moscú.
-//		Samoa: Apia.
-//		San Cristóbal y Nieves: Basseterre.
-//		San Marino: San Marino.
-//		San Vicente y las Granadinas: Kingstown.
-//		Santa Lucía: Castries.
-//		Santo Tomé y Príncipe: Santo Tomé.
-//		Senegal: Dakar.
-//		Serbia: Belgrado.
-//		Seychelles: Victoria.
-//		Sierra Leona: Freetown.
-//		Singapur: Singapur.
-//		Siria: Damasco.
-//		Somalia: Mogadiscio.
-//		Sri Lanka: Sri Jayewardenepura (capital administrativa) y Colombo (capital comercial). (*)
-//		Suazilandia: Babane y Lobamba.
-//		Sudán: Jartum.
-//		Sudán del Sur: Yuba.
-//		Suecia: Estocolmo.
-//		Suiza: Berna.
-//		Surinam: Paramaribo.
-//		Tailandia: Bangkok.
-//		Tanzania: Dodoma.
-//		Tayikistán: Dusambé.
-//		Timor Oriental: Dili.
-//		Togo: Lomé.
-//		Tonga: Nukualofa.
-//		Trinidad y Tobago: Puerto España.
-//		Túnez: Túnez.
-//		Turkmenistán: Asjabad.
-//		Turquía: Ankara.
-//		Tuvalu: Fongafale.
-//		Ucrania: Kiev.
-//		Uganda: Kampala.
-//		Uruguay
-//		Uzbekistán
-//		Vanuatu
-//		Venezuela
-//		Vietnam
-//		Yemen
-//		Yibuti
-//		Zambia
-//		Zimbabue
 	}
 
+	public void llenarDatos() {
+		comboPaises.setValue(hospedaje.getDireccion().getPais());
+		txtDireccion.setText(hospedaje.getDireccion().getDireccion());
+		txtCiudad.setText(hospedaje.getDireccion().getCiudad());
+		txtDepartamento.setText(hospedaje.getDireccion().getEstado());
+	}
+	public void abrirVentanaAnterior() {
+		FXMLLoader loader = new FXMLLoader(getClass().getResource(Util.PANEL_REGPROPIEDAD_1));
+		Parent root = null;
+		try {
+			root = loader.load();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		ControladorRegPropiedad1 control = loader.getController();
+		control.setResonance(resonance);
+		control.setHospedaje(hospedaje);
+		control.setStage(stage);
+		control.inicializar();
+
+		stage.getScene().setRoot(root);
+
+	}
 	public void setResonance(ResonanceHome resonance) {
 		this.resonance = resonance;
 	}

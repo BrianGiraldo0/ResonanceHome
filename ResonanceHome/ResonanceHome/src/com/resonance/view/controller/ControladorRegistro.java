@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
 
+import com.resonance.model.excepciones.NoExistException;
 import com.resonance.model.principal.ResonanceHome;
 import com.resonance.model.util.Util;
 import com.resonance.view.interfaz.StageR;
@@ -156,11 +157,30 @@ public class ControladorRegistro {
 			String clave = textPasswordUsuario.getText();
 			String biografia = textBiografia.getText();
 			String urlFoto = "";
+			Date date = Date.from(fecha.atStartOfDay(ZoneId.systemDefault()).toInstant());
 			if (fileFoto != null)
 				urlFoto = fileFoto.getAbsolutePath();
-
-			Date date = Date.from(fecha.atStartOfDay(ZoneId.systemDefault()).toInstant());
-			resonance.agregarHuesped(nombre, email, urlFoto, direccion, date, clave, biografia, nametag);
+			if (comboTipoCuenta.getValue().equals("Anfitrion")) {
+				resonance.agregarAnfitrion(nombre, email, urlFoto, direccion, date, clave, biografia, nametag);
+				try {
+					stage.setAnfitrionLogin(resonance.obtenerAnfitrion(nametag));
+				} catch (NoExistException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			} else {
+				resonance.agregarHuesped(nombre, email, urlFoto, direccion, date, clave, biografia, nametag);
+				try {
+					stage.setHuespedLogeado(resonance.obtenerHuesped(nametag));
+				} catch (NoExistException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+			
+			String datos = nombre + "\n" + "Correo: " + email + "\n" + "Nametag: " + nametag + "\n" + "Contraseña: "
+					+ clave;
+			resonance.enviarCorreoBienvenida(datos, stage.getUsuarioLogeado().getEmail());
 			showConfirmation("Hospedaje creado", "Señor/a su cuenta ha sido creada con exito!");
 			abrirVentanaPrincipal();
 

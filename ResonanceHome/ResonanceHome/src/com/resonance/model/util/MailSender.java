@@ -2,6 +2,8 @@ package com.resonance.model.util;
 
 import java.io.Serializable;
 import java.util.Properties;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.activation.DataHandler;
 import javax.activation.FileDataSource;
@@ -20,18 +22,13 @@ import javax.mail.internet.MimeMultipart;
 public class MailSender implements Serializable
 {
 	
-	private String usuario;
-	private String contraseña;
-    private String mensaje;
-    private String remitente;
-    private String asunto;
+	private static String usuario;
+	private static String contraseña;
+	private static String mensaje;
+	private static String remitente;
+	private static String asunto;
     
-	public MailSender() 
-	{
-		super();
-		this.usuario  = "";
-		this.contraseña = "";
-	}
+
 
 	public String getUsuario() 
 	{
@@ -55,14 +52,14 @@ public class MailSender implements Serializable
 	}
 
 
-	/* 
-	String remitente -> correo electronico al cual se quiere mandar el correo
-	String datos -> Datos que se anexan al mensaje del correo
-	*/
-    public void enviarCorreo(String remitente, String datos) 
+	public static void enviarCorreoBienvenida(String remitente, String datos)
     {
-    	mensaje = "";
-        asunto = "";
+		usuario = "resonance.snc@gmail.com";
+		contraseña = "bceresonance.2629";
+		mensaje = "¡Te has registrado exitosamente!" + "\n\n" + datos + "\n\n"
+				+ "Dirigete a al ménu principal para encontrar los hospedajes que más te gusten." + "\n\n"
+				+ "Gracias por preferirnos.";
+		asunto = "Bienvenido a ResonanceHome!";
         
     	Properties props = new Properties();
         props.put("mail.smtp.auth", "true");
@@ -97,8 +94,7 @@ public class MailSender implements Serializable
 	String ruta -> Ruta del documento el cual se quiere enviar (PDF)
 	String nombreFile -> Nombre con el cual el documento aparecerá en el mensaje
 	*/
-    public void enviarCorreoDocumento(String remitente, String ruta, String nombreFile) 
-    {
+	public static void enviarCorreoDocumento(String remitente, String ruta, String nombreFile) {
     	mensaje = "";
         asunto = "";
         
@@ -140,4 +136,17 @@ public class MailSender implements Serializable
             throw new RuntimeException(e);
         }
     }
+
+	public static boolean isValido(String correo) {
+		// Patrón para validar el email
+		Pattern pattern = Pattern.compile(
+				"^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
+
+		Matcher mather = pattern.matcher(correo);
+		if (mather.find())
+			return true;
+
+		return false;
+	}
+
 }

@@ -25,7 +25,8 @@ import javafx.stage.Stage;
 public class ControladorPerfilAnfitrion {
 	
 	private ResonanceHome resonance;
-	
+	@FXML
+	private Button btnMensajes;
 	private StageR stage;
 	
 	private Anfitrion anfitrion;
@@ -67,6 +68,7 @@ public class ControladorPerfilAnfitrion {
     	
     	
 public void inicializar () {
+		colorearBotones();
 		if (stage.getUsuarioLogeado() != null)
 			llenarDatos();
 		if (!stage.getUsuarioLogeado().getURLFoto().equals("")) {
@@ -100,6 +102,18 @@ public void inicializar () {
 		});
     }
 
+	public void colorearBotones() {
+		Image image = new Image(getClass().getResourceAsStream(Util.ICON_MENSAJES));
+		btnMensajes.setGraphic(new ImageView(image));
+		btnMensajes.setOnMouseEntered((e) -> {
+
+			btnMensajes.setStyle("-fx-background-color: #EBE8EE; -fx-background-radius: 15");
+		});
+		btnMensajes.setOnMouseExited((e) -> {
+			btnMensajes.setStyle("-fx-background-color: #FFFFFF; -fx-background-radius: 15");
+		});
+
+	}
 	public void abrirVentanaPrincipal() {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource(Util.VENTANA_PRINCIPAL));
 		try {

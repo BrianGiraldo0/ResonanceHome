@@ -18,6 +18,7 @@ import com.resonance.model.hospedajes.TipoHospedaje;
 import com.resonance.model.usuarios.Anfitrion;
 import com.resonance.model.usuarios.Huesped;
 import com.resonance.model.util.Fecha;
+import com.resonance.model.util.MailSender;
 import com.resonance.model.util.Util;
 
 public class ResonanceHome {
@@ -400,6 +401,15 @@ public class ResonanceHome {
 
 	public Fecha getFecha() {
 		return fecha;
+	}
+
+	/**
+	 * Método que envia un correo de bienvenidad
+	 * @param datos
+	 * @param user
+	 */
+	public void enviarCorreoBienvenida(String datos, String destino) {
+		MailSender.enviarCorreoBienvenida(destino, datos);
 	}
 
 }
