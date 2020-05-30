@@ -2,8 +2,11 @@ package com.resonance.view.controller;
 
 import java.io.IOException;
 
+import com.resonance.model.hospedajes.Hospedaje;
+import com.resonance.model.hospedajes.Plus;
 import com.resonance.model.principal.ResonanceHome;
 import com.resonance.model.util.Util;
+import com.resonance.view.interfaz.StageR;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,11 +16,12 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
 
 public class ControladorRegPropiedad3 {
-	private Stage stage;
-
+	
+	private Hospedaje hospedaje;
+	private StageR stage;
+	
 	private ResonanceHome resonance;
 	@FXML
 	private AnchorPane idPaso1;
@@ -72,9 +76,18 @@ public class ControladorRegPropiedad3 {
 				a.printStackTrace();
 			}
 
+			
+			
+			
+			hospedaje.getPrestaciones().setCocina(checkCocina.isSelected());;
+			hospedaje.setServicios(new Plus(checkCocina.isSelected(),checkWifi.isSelected(),checkUten.isSelected(),checkAire.isSelected(),checkKitBanio.isSelected()));
+			
+			
+			
 			ControladorRegPropiedad4 control = loader.getController();
 			control.setResonance(resonance);
-			control.setStage(stage);
+			control.setStageR(stage);
+			control.setHospedaje(hospedaje);
 //			control.inicializar();
 			stage.setResizable(false);
 			stage.getScene().setRoot(root);
@@ -86,7 +99,13 @@ public class ControladorRegPropiedad3 {
 		this.resonance = resonance;
 	}
 
-	public void setStage(Stage stage) {
+	public void setStageR(StageR stage) {
 		this.stage = stage;
 	}
+
+	public void setHospedaje(Hospedaje hospedaje) {
+		this.hospedaje = hospedaje;
+	}
+	
+	
 }

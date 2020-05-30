@@ -136,9 +136,10 @@ public class FileManager {
 		}
 
 		for (int i = 0; i < urlsFotos.size(); i++) {
-			File fileDestino = new File(urlsFotos.get(i));
+			File fileOrigen = new File(urlsFotos.get(i));
 			try {
-				Files.copy(Paths.get(nuHosp.getAbsolutePath()), Paths.get(fileDestino.getAbsolutePath()),
+				String destino = nuHosp.getAbsolutePath() + "/imagen" + i + ".png";
+				Files.copy(Paths.get(fileOrigen.getAbsolutePath()), Paths.get(nuHosp.getAbsolutePath()),
 						StandardCopyOption.REPLACE_EXISTING);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block

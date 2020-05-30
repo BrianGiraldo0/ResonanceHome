@@ -44,6 +44,13 @@ public class Hospedaje {
 	}
 
 	/**
+	 * Contructor vacio
+	 */
+	public Hospedaje() {
+
+	}
+
+	/**
 	 * Metodo que verifica que un hospedaje esta disponible en unas fechas ingresadas
 	 * @param fecha
 	 * @return
@@ -58,7 +65,6 @@ public class Hospedaje {
 				}
 			}
 		}
-		
 		return true;
 	}
 
@@ -327,6 +333,27 @@ public class Hospedaje {
 	 */
 	public void setTipoHospedaje(TipoHospedaje tipoHospedaje) {
 		this.tipoHospedaje = tipoHospedaje;
+	}
+
+	/**
+	 * @return the calificaciones
+	 */
+	public ArrayList<Calificacion> getCalificaciones() {
+		return calificaciones;
+	}
+
+	/**
+	 * @param calificaciones the calificaciones to set
+	 */
+	public void setCalificaciones(ArrayList<Calificacion> calificaciones) {
+		this.calificaciones = calificaciones;
+	}
+
+	/**
+	 * @param nameTagPropietario the nameTagPropietario to set
+	 */
+	public void setNameTagPropietario(String nameTagPropietario) {
+		this.nameTagPropietario = nameTagPropietario;
 	}
 
 }

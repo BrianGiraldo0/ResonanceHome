@@ -2,10 +2,15 @@ package com.resonance.view.controller;
 
 import java.io.IOException;
 
+import com.resonance.model.hospedajes.Direccion;
+import com.resonance.model.hospedajes.Hospedaje;
+import com.resonance.model.hospedajes.Prestacion;
+import com.resonance.model.hospedajes.TipoHospedaje;
 import com.resonance.model.principal.ResonanceHome;
 import com.resonance.model.util.Util;
 import com.resonance.view.interfaz.StageR;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -23,6 +28,8 @@ public class ControladorRegPropiedad1 {
 	private StageR stage;
 
 	private ResonanceHome resonance;
+	
+	private Hospedaje hospedaje;
 	
     @FXML
     private Text btnAtras;
@@ -47,7 +54,14 @@ public class ControladorRegPropiedad1 {
 
 	@FXML
 	private AnchorPane lFecha;
-
+	
+	@FXML
+	
+	private Label lblCuantasHabitaciones;
+	
+	@FXML
+	private Label lblHabitaciones;
+	
 	@FXML
 	private AnchorPane lHuespedes;
 
@@ -119,6 +133,32 @@ public class ControladorRegPropiedad1 {
 			String aux = "" + (i - 1);
 			lblCantB.setText(aux);
 		} else if (event.getSource() == btnSiguiente) {
+			
+			
+			
+			hospedaje = new Hospedaje ();
+			
+				
+			String tipo = comboTipo.getSelectionModel().getSelectedItem();
+	
+			int can = comboCapacidad.getSelectionModel().getSelectedIndex() +1;
+			int banios = Integer.parseInt(lblCantB.getText());
+			int camas = Integer.parseInt(lblCantC.getText());
+			int hab = Integer.parseInt(lblCantH.getText());
+			
+			
+			if (tipo.equals("Habitacion")) {
+			
+			hospedaje.setTipoHospedaje(TipoHospedaje.HABITACION);
+			} else {
+				hospedaje.setTipoHospedaje(TipoHospedaje.APARTAMENTO);
+			}
+			
+			hospedaje.setDireccion(new Direccion(tfUbicacion1.getText(), "", "", ""));
+			
+			hospedaje.setPrestaciones(new Prestacion(can,banios,camas,hab,false));
+			
+			
 			FXMLLoader loader = new FXMLLoader(getClass().getResource(Util.PANEL_REGPROPIEDAD_2));
 			Parent root = null;
 			try {
@@ -130,7 +170,8 @@ public class ControladorRegPropiedad1 {
 
 			ControladorRegPropiedad2 control = loader.getController();
 			control.setResonance(resonance);
-			control.setStage(stage);
+			control.setStageR(stage);
+			control.setHospedaje(hospedaje);
 			control.inicializar();
 			stage.setResizable(false);
 			stage.getScene().setRoot(root);
@@ -146,6 +187,36 @@ public class ControladorRegPropiedad1 {
 
 		});
 	}
+	
+	
+	@FXML
+    void controlarTipo(ActionEvent event) {
+		
+		
+		if (!comboTipo.getSelectionModel().getSelectedItem().equals("Habitacion")) {
+			
+			lblCuantasHabitaciones.setVisible(false);
+			btnResH.setVisible(false);
+			lblCantH.setVisible(false);
+			lblHabitaciones.setVisible(false);
+			btnAddH.setVisible(false);
+			
+			
+			
+			
+			
+		} else {
+			
+			
+			lblCuantasHabitaciones.setVisible(true);
+			btnResH.setVisible(true);
+			lblCantH.setVisible(true);
+			lblHabitaciones.setVisible(true);
+			btnAddH.setVisible(true);		}
+		
+    }
+	
+	
 
 	public void abrirVentanaAnterior() {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource(stage.getVentanaAnterior()));

@@ -38,5 +38,33 @@ public class Direccion {
 		return ciudad + ", " + estado + ", " + pais;
 		
 	}
+
+	/**
+	 * @return the pais
+	 */
+	public String getPais() {
+		return pais;
+	}
+
+	/**
+	 * @param pais the pais to set
+	 */
+	public void setPais(String pais) {
+		this.pais = pais;
+	}
+
+	/**
+	 * @return the estado
+	 */
+	public String getEstado() {
+		return estado;
+	}
+
+	/**
+	 * @param estado the estado to set
+	 */
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
 	
 }
