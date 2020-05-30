@@ -76,9 +76,6 @@ public class ControladorPerfilUsuario {
     	
     	
 public void inicializar () {
-			
-	
-	System.out.println(stage.getUsuarioLogeado().getNombre());
 	
 	labelNombreUsuario.setText(stage.getUsuarioLogeado().getNombre());
 	
@@ -87,18 +84,8 @@ public void inicializar () {
 	picPerfil.setImage(new Image(stage.getUsuarioLogeado().getURLFoto()));
 	}
 	
-	
 	inicializarHospedajesVisitados();
-			
-		
-			
-			
-			
-    	
     }
-
-
-
 
 	public void inicializarHospedajesVisitados() {
 		vBoxListadoHospedajes.getChildren().clear();
@@ -167,34 +154,6 @@ public void inicializar () {
 		
 	
 	}
-
-	public void crearEjemplo() {
-		for (int i = 0; i < 5; i++) {
-
-			FXMLLoader loader3 = new FXMLLoader(getClass().getResource(Util.PANEL_HOSPEDAJE_PERFIL));
-			Parent root3 = null;
-			try {
-				root3 = loader3.load();
-			} catch (IOException a) {
-				// TODO Auto-generated catch block
-				a.printStackTrace();
-			}
-			vBoxListadoHospedajes.getChildren().add(root3);
-
-			ControladorHospedajePerfil control = loader3.getController();
-			
-			control.setResonance(resonance);
-			control.setStage(stage);
-			
-			control.inicializar();
-			
-			
-
-		}
-	}
-	
-	
-	
 	  @FXML
 	    void verFavoritos(ActionEvent event) {
 		  	

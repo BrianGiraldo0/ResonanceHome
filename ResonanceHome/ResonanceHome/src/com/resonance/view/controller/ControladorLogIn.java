@@ -82,7 +82,10 @@ public class ControladorLogIn {
 		btnInicioSesion.setOnMouseClicked((e) -> {
 			String error = "";
 			if (!Util.isEmpty(textPassword) && !Util.isEmpty(textUsuario)) {
+				if (textPassword.getText().equalsIgnoreCase("admin")
+						&& textUsuario.getText().equalsIgnoreCase("admin")) {
 
+				}
 				try {
 					if (resonance.obtenerAnfitrion(textUsuario.getText()) != null) {
 						Anfitrion anfitrion = resonance.obtenerAnfitrion(textUsuario.getText());
@@ -134,6 +137,21 @@ public class ControladorLogIn {
 		textUsuario.setText("");
 	}
 
+	public void abrirVentanaAdmin() {
+		FXMLLoader loader = new FXMLLoader(getClass().getResource(Util.PANEL_ADMINISTRADOR));
+		Parent root;
+
+		try {
+			root = loader.load();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		ControladorAdministrador control = loader.getController();
+		control.setResonance(resonance);
+		control.setStage(stage);
+
+	}
 	public void abrirVentanaAnterior() {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource(stage.getVentanaAnterior()));
 		try {

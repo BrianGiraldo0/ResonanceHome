@@ -80,9 +80,9 @@ public class ResonanceHome {
 		Plus plus2 = new Plus(true, true, true, true, true);
 		Plus plus3 = new Plus(true, true, false, false, true);
 
-		Prestacion pres1 = new Prestacion(2, 1, false);
-		Prestacion pres2 = new Prestacion(4, 2, true);
-		Prestacion pres3 = new Prestacion(1, 1, true);
+		Prestacion pres1 = new Prestacion(2, 1, 3, 1, false);
+		Prestacion pres2 = new Prestacion(4, 2, 3, 3, true);
+		Prestacion pres3 = new Prestacion(1, 1, 3, 2, true);
 
 		Direccion direc1 = new Direccion("Armenia", "Quindio", "Colombia", "Calle 57 # 13 - 14");
 		Direccion direc2 = new Direccion("Cartagena", "Bolivar", "Colombia", "Carrera 43 # 22 - 21");

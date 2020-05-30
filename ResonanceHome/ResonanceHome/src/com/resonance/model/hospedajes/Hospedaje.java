@@ -18,7 +18,6 @@ public class Hospedaje {
 	public String descripcion = "";
 	public Plus servicios;
 	private TipoHospedaje tipoHospedaje;
-
 	/**
 	 * Metodo constructor de la clase
 	 * 
@@ -31,6 +30,7 @@ public class Hospedaje {
 	public Hospedaje(String id, Direccion direccion, double precio, String nameTagPropietario, ArrayList<String> urlsFotos,
 			String descripcion, Plus servicios, TipoHospedaje tipoH, Prestacion prestaciones) {
 		super();
+
 		this.id = id;
 		this.direccion = direccion;
 		this.precio = precio;

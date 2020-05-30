@@ -4,6 +4,8 @@ public class Prestacion {
 
 	private int numHuesped;
 	private int numBanios;
+	private int numCamas;
+	private int numHabitaciones;
 	
 	private boolean cocina;
 
@@ -31,13 +33,22 @@ public class Prestacion {
 		this.cocina = cocina;
 	}
 
-	public Prestacion(int numHuesped, int numBanios, boolean cocina) {
+	/**
+	 * @param numHuesped
+	 * @param numBanios
+	 * @param numCamas
+	 * @param numHabitaciones
+	 * @param cocina
+	 */
+	public Prestacion(int numHuesped, int numBanios, int numCamas, int numHabitaciones, boolean cocina) {
 		super();
 		this.numHuesped = numHuesped;
 		this.numBanios = numBanios;
+		this.numCamas = numCamas;
+		this.numHabitaciones = numHabitaciones;
 		this.cocina = cocina;
 	}
-	
+
 	public String toString() {
 		String cocinaS = "con cocina";
 
