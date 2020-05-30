@@ -10,6 +10,7 @@ import com.resonance.model.util.Fecha;
 public class Huesped extends Usuario{
 	
 	private ArrayList <Reserva> reservas = new ArrayList<Reserva>();	
+	private ArrayList <Reserva> favoritos = new ArrayList<Reserva>();
 	private Tarjeta tarjeta;
 	
 
@@ -36,6 +37,18 @@ public class Huesped extends Usuario{
 		
 		reservas.add(reserva);
 	}
+	
+	
+	
+	/**
+	 * Agrega reserva a favoritos  de un hospedaje
+	 * @param reserva Reserva reserva en favoritos
+	 */
+	public void agregarReservaFavorito(Reserva reserva) {
+		
+		favoritos.add(reserva);
+	}
+	
 	
 	/**
 	 * 
@@ -75,9 +88,7 @@ public class Huesped extends Usuario{
 		}
 
 		return reservasPorDia;
-		
-		
-		
+
 	}
 
 	/* Inicio de Getters y Setters 
@@ -97,6 +108,14 @@ public class Huesped extends Usuario{
 		for (int i = 0; i < reservas.size(); i++) {
 			reservas.get(i).update(fecha);
 		}
+	}
+
+	public ArrayList<Reserva> getReservas() {
+		return reservas;
+	}
+	
+	public ArrayList<Reserva> getFavoritos() {
+		return favoritos;
 	}
 	
 	

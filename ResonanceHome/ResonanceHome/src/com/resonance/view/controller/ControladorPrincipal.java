@@ -64,10 +64,12 @@ public class ControladorPrincipal {
 	@FXML
 	private AnchorPane layout;
 
+	private DatePicker rangePicker;
+
 	public void inicializar() {
 		MultiDatePicker multiDatePicker = new MultiDatePicker().withRangeSelectionMode();
 
-		DatePicker rangePicker = multiDatePicker.getDatePicker();
+		rangePicker = multiDatePicker.getDatePicker();
 		rangePicker.setMinWidth(200);
 		layout.getChildren().add(rangePicker);
 		colorearBotones();
@@ -153,9 +155,7 @@ public class ControladorPrincipal {
 
 		} else if (event.getSource() == btnRegistro) {
 			
-			if (!btnRegistro.getText().equals("Ver perfil"))
-			
-			{
+			if (!btnRegistro.getText().equals("Ver perfil")) {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource(Util.PANEL_REGISTRO));
 			Parent root = null;
 			try {
@@ -186,21 +186,17 @@ public class ControladorPrincipal {
 				}
 
 				ControladorPerfilUsuario control = loader.getController();
-				control.inicializar();
 				control.setResonance(resonance);
 				control.setStage(stage);
-
+				control.inicializar();
 				stage.setResizable(false);
 				stage.getScene().setRoot(root);
 				
 				
 			}
 			
-			
-			
-
 		} else if (event.getSource() == btnCrearPropiedad) {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource(Util.PANEL_REGPROPIEDAD_1));
+			FXMLLoader loader = new FXMLLoader(getClass().getResource(Util.PANEL_INICIAR_SESION));
 			Parent root = null;
 			try {
 				root = loader.load();
@@ -209,10 +205,11 @@ public class ControladorPrincipal {
 				a.printStackTrace();
 			}
 
-			ControladorRegPropiedad1 control = loader.getController();
-			control.setResonance(resonance);
+			stage.setVentanaAnterior(Util.VENTANA_PRINCIPAL);
+			ControladorLogIn control = loader.getController();
 			control.setStage(stage);
-			control.inicializar();
+			control.setResonance(resonance);
+
 			stage.setResizable(false);
 			stage.getScene().setRoot(root);
 		}
@@ -253,19 +250,14 @@ public class ControladorPrincipal {
 		 */
 		
 		
-		
+		if (stage.getUsuarioLogeado() != null)
 		if (stage.getUsuarioLogeado() instanceof Huesped) {
-			
 			
 			btnCrearPropiedad.setVisible(false);
 			btnAyuda.setVisible(false);
 			btniniciarSesion.setVisible(false);
+
 			btnRegistro.setText("Ver perfil");
-			
-			
-			
-			
-			
 			
 		}
 		

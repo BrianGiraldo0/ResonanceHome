@@ -32,8 +32,7 @@ public class ControladorLogIn {
     @FXML
     private TextField textUsuario;
     
-    
-    private String url;
+
 	private StageR stage;
 	private ResonanceHome resonance;
     @FXML
@@ -149,12 +148,14 @@ public class ControladorLogIn {
 	}
 
 	public void abrirVentanaPrincipal() {
-		FXMLLoader loader = new FXMLLoader(getClass().getResource(stage.getVentanaAnterior()));
+		FXMLLoader loader = new FXMLLoader(getClass().getResource(Util.VENTANA_PRINCIPAL));
 		try {
 			Parent root = loader.load();
 			limpiarCampos();
 			ControladorPrincipal control = loader.getController();
 			control.setStage(stage);
+			control.setResonance(resonance);
+			control.inicializar();
 			control.update();
 			stage.getScene().setRoot(root);
 
@@ -187,7 +188,9 @@ public class ControladorLogIn {
 			limpiarCampos();
 			ControladorPerfilAnfitrion control = loader.getController();
 			control.setStage(stage);
+			control.setResonance(resonance);
 			control.setAnfitrion(anfitrion);
+			control.inicializar();
 			stage.getScene().setRoot(root);
 
 		} catch (IOException e1) {

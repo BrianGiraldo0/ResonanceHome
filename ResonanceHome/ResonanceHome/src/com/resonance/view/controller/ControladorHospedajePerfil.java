@@ -24,7 +24,9 @@ public class ControladorHospedajePerfil {
 	private Hospedaje hospedaje;
 
 	private ResonanceHome resonance;
+	
 
+	
 	@FXML
 	private Label lblPrecio;
 
@@ -57,6 +59,12 @@ public class ControladorHospedajePerfil {
 
 	public void inicializar() {
 		
+
+		lblTipoHospedaje.setText(Util.getTipoHospedaje(hospedaje.getTipoHospedaje()));
+		lblTitulo.setText(hospedaje.getTitulo());
+		lblDescripcion.setText(hospedaje.getPrestaciones().toString());
+		lblPlus.setText(hospedaje.getServicios().toString());
+		lblPrecio.setText(hospedaje.getPrecio() + " COP por noche");
 
 //		AnchorPane pane = new AnchorPane();
 		btnAnterior.setVisible(false);

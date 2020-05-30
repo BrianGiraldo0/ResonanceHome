@@ -23,7 +23,7 @@
             <Font size="33.0" />
          </font>
       </Label>
-      <Text fx:id="btnAtras" layoutX="75.0" layoutY="96.0" strokeType="OUTSIDE" strokeWidth="0.0" text="←" wrappingWidth="46.5908203125">
+      <Text fx:id="btnAtras" layoutX="75.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" text="←" wrappingWidth="46.5908203125">
          <font>
             <Font size="54.0" />
          </font>
@@ -38,14 +38,30 @@
          <children>
             <ImageView fx:id="picPerfil" fitHeight="132.0" fitWidth="133.0" layoutX="78.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true" />
             <Rectangle fx:id="rectanguloFoto" arcHeight="5.0" arcWidth="5.0" fill="#f8fcff" height="132.0" layoutX="76.0" layoutY="34.0" stroke="BLACK" strokeType="INSIDE" width="133.0" />
-            <Label fx:id="labelNombreUsuario" layoutX="78.0" layoutY="183.0" prefHeight="38.0" prefWidth="179.0" text="Nombre">
+            <Label fx:id="labelNombreUsuario" layoutX="48.0" layoutY="183.0" prefHeight="38.0" prefWidth="192.0" text="Nombre">
                <font>
-                  <Font size="26.0" />
+                  <Font size="18.0" />
                </font>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Label>
+            <Button fx:id="btnVerFavoritos" layoutX="78.0" layoutY="248.0" mnemonicParsing="false" onAction="#verFavoritos" prefHeight="39.0" prefWidth="133.0" style="-fx-background-color: white;" text="Ver favoritos" underline="true">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button fx:id="btnVerVisitados" layoutX="76.0" layoutY="334.0" mnemonicParsing="false" onAction="#verVisitados" prefHeight="39.0" prefWidth="133.0" style="-fx-background-color: white;" text="Ver visitados" underline="true">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
          </children>
       </Pane>
       <Label layoutX="476.0" layoutY="125.0" prefHeight="47.0" prefWidth="179.0" text="Descripcion">
@@ -82,12 +98,11 @@
             <Font size="21.0" />
          </font>
       </Button>
-      <Label layoutX="492.0" layoutY="492.0" prefHeight="36.0" prefWidth="294.0" text="Hospedajes visitados">
+      <Label fx:id="labelHospedajesTitulo" layoutX="492.0" layoutY="492.0" prefHeight="36.0" prefWidth="294.0" text="Hospedajes visitados">
          <font>
             <Font size="25.0" />
          </font>
       </Label>
-      <VBox fx:id="vBoxListadoHospedajes" layoutX="20.0" layoutY="20.0" prefHeight="222.0" prefWidth="582.0" />
       <ScrollPane fx:id="scrollHospedajes" layoutX="496.0" layoutY="544.0" prefHeight="223.0" prefWidth="590.0">
          <content>
             <VBox fx:id="vBoxListadoHospedajes" prefHeight="222.0" prefWidth="582.0" />

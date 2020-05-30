@@ -2,26 +2,18 @@ package com.resonance.view.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.SortedSet;
-import java.util.TreeSet;
 
 import com.resonance.model.hospedajes.Hospedaje;
 import com.resonance.model.principal.ResonanceHome;
+import com.resonance.model.usuarios.Huesped;
 import com.resonance.model.util.Util;
-import com.resonance.view.interfaz.AutoCompleteTextField;
 import com.resonance.view.interfaz.StageR;
 
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.TextField;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
@@ -35,32 +27,9 @@ public class ControladorListadoHospedajes {
 
 	@FXML
 	private Button btniniciarSesion;
-	
-    @FXML
-    private Text btnAtras;
-    
+
 	@FXML
 	private Button btnRegistro;
-
-	@FXML
-	private ImageView btnBuscar;
-
-	@FXML
-	private AnchorPane lUbicacion;
-
-	private AutoCompleteTextField<String> tfUbicacion;
-
-	@FXML
-	private AnchorPane lFecha;
-
-	@FXML
-	private AnchorPane layout;
-
-	@FXML
-	private AnchorPane lHuespedes;
-
-	@FXML
-	private TextField tfHuespedes;
 
 	@FXML
 	private Label lblNumEstadias;
@@ -69,49 +38,39 @@ public class ControladorListadoHospedajes {
 	private Label lblEstadias;
 
 	@FXML
+	private Text btnAtras;
+
+	@FXML
 	private VBox lBox;
 
 	private ArrayList<Hospedaje> hospedajes;
 
-	@FXML
-	void onClick(MouseEvent event) {
 
-	}
 
 	public void inicializar() {
-		SortedSet<String> entries = new TreeSet<>((String o1, String o2) -> o1.toString().compareTo(o2.toString()));
-
-		for (int i = 0; i < Util.listadoSugerencias.size(); i++) {
-			entries.add(Util.listadoSugerencias.get(i));
-		}
-
-		tfUbicacion = new AutoCompleteTextField<String>(entries);
-
-		tfUbicacion.getEntryMenu().setOnAction(e -> {
-			((MenuItem) e.getTarget()).addEventHandler(Event.ANY, event -> {
-				if (tfUbicacion.getLastSelectedObject() != null) {
-					tfUbicacion.setText(tfUbicacion.getLastSelectedObject().toString());
-				}
-			});
-		});
-		tfUbicacion.setPrefWidth(180);
-		tfUbicacion.setPrefHeight(25);
-		tfUbicacion.setPromptText("Ingrese la ciudad de referencia.");
-		lUbicacion.getChildren().add(tfUbicacion);
-		tfUbicacion.setLayoutX(16);
-		tfUbicacion.setLayoutY(22);
 
 		lBox.setStyle("-fx-background-color: #FFFFFF");
+		if (stage.getUsuarioLogeado() != null)
+			if (stage.getUsuarioLogeado() instanceof Huesped) {
+
+				btnAyuda.setVisible(false);
+				btniniciarSesion.setVisible(false);
+				btnRegistro.setText("Ver perfil");
+
+			}
 		colorearBotones();
 		crearHospedajes();
+		atras();
+		iniciarSesion();
+		registro();
+		atras();
 
 	}
 
 	public void crearHospedajes() {
 		lblNumEstadias.setText(hospedajes.size() + " estadias");
 		lblEstadias.setText("Estadias en " + estadia);
-
-		System.out.println(hospedajes.size());
+		lBox.getChildren().clear();
 		for (int i = 0; i < hospedajes.size(); i++) {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource(Util.PANEL_HOSPEDAJE));
 			Parent root = null;
@@ -166,6 +125,97 @@ public class ControladorListadoHospedajes {
 	 */
 	public ArrayList<Hospedaje> getHospedajes() {
 		return hospedajes;
+	}
+
+	public void iniciarSesion() {
+		btniniciarSesion.setOnMouseClicked((e) -> {
+			FXMLLoader loader = new FXMLLoader(getClass().getResource(Util.PANEL_INICIAR_SESION));
+			Parent root = null;
+			try {
+				root = loader.load();
+			} catch (IOException a) {
+				// TODO Auto-generated catch block
+				a.printStackTrace();
+			}
+
+			stage.setVentanaAnterior(Util.VENTANA_PRINCIPAL);
+			ControladorLogIn control = loader.getController();
+			control.setStage(stage);
+			control.setResonance(resonance);
+
+			stage.setResizable(false);
+			stage.getScene().setRoot(root);
+		});
+	}
+
+	public void ayuda() {
+		btnAyuda.setOnMouseClicked((e) -> {
+
+		});
+	}
+
+	public void registro() {
+		btnRegistro.setOnMouseClicked((e) -> {
+			if (!btnRegistro.getText().equals("Ver perfil"))
+
+			{
+				FXMLLoader loader = new FXMLLoader(getClass().getResource(Util.PANEL_REGISTRO));
+				Parent root = null;
+				try {
+					root = loader.load();
+				} catch (IOException a) {
+					// TODO Auto-generated catch block
+					a.printStackTrace();
+				}
+
+				ControladorRegistro control = loader.getController();
+				control.inicializar();
+				control.setResonance(resonance);
+				control.setStage(stage);
+
+				stage.setResizable(false);
+				stage.getScene().setRoot(root);
+
+			} else {
+
+				FXMLLoader loader = new FXMLLoader(getClass().getResource(Util.PANEL_PERFIL_USUARIO));
+				Parent root = null;
+				try {
+					root = loader.load();
+				} catch (IOException a) {
+					// TODO Auto-generated catch block
+					a.printStackTrace();
+				}
+
+				ControladorPerfilUsuario control = loader.getController();
+				control.inicializar();
+				control.setResonance(resonance);
+				control.setStage(stage);
+
+				stage.setResizable(false);
+				stage.getScene().setRoot(root);
+
+			}
+		});
+	}
+
+	public void atras() {
+		btnAtras.setOnMouseClicked((e) -> {
+			abrirVentanaAnterior();
+
+		});
+	}
+
+	public void abrirVentanaAnterior() {
+		FXMLLoader loader = new FXMLLoader(getClass().getResource(Util.VENTANA_PRINCIPAL));
+		try {
+			Parent root = loader.load();
+			stage.getScene().setRoot(root);
+			Util.updateController(loader, stage, resonance);
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 	}
 
 	/**

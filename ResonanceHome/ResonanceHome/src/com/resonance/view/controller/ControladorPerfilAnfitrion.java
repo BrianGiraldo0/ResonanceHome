@@ -1,6 +1,8 @@
 package com.resonance.view.controller;
 import java.io.IOException;
+import java.util.ArrayList;
 
+import com.resonance.model.excepciones.NoExistException;
 import com.resonance.model.principal.ResonanceHome;
 import com.resonance.model.usuarios.Anfitrion;
 import com.resonance.model.util.Util;
@@ -55,29 +57,50 @@ public class ControladorPerfilAnfitrion {
 
     @FXML
     private TextArea textDescripcion;
-   
+
+	@FXML
+	private Button btnCrearHospedaje;
     	
     	
 public void inicializar () {
-			
-		
-			
-			crearEjemplo();
+		if (stage.getUsuarioLogeado() != null)
+			llenarDatos();
 
+		btnCrearHospedaje.setOnMouseClicked((e) -> {
+			FXMLLoader loader = new FXMLLoader(getClass().getResource(Util.PANEL_REGPROPIEDAD_1));
+			Parent root = null;
+			try {
+				root = loader.load();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+
+			stage.setVentanaAnterior(Util.PANEL_PERFIL_ANFITRION);
+			ControladorRegPropiedad1 control = loader.getController();
+			control.setStage(stage);
+			control.setResonance(resonance);
+			control.inicializar();
+			stage.getScene().setRoot(root);
 		
-			
-			
-			
-    	
+		});
     }
 
 
 
+	public void llenarDatos() {
+		anfitrion = (Anfitrion) stage.getUsuarioLogeado();
+		labelAnfitrionNombre.setText(anfitrion.getNombre());
+		textDescripcion.setText(anfitrion.getBiografia());
+		crearHospedajes();
 
+	}
 
-	public void crearEjemplo () {
-		
-		for (int i = 0; i < 5; i++) {
+	public void crearHospedajes() {
+
+		ArrayList<String> hospedajes = anfitrion.getHospedajes();
+		vBoxListadoHospedajes.getChildren().clear();
+		for (int i = 0; i < hospedajes.size(); i++) {
 
 			FXMLLoader loader3 = new FXMLLoader(getClass().getResource(Util.PANEL_HOSPEDAJE_PERFIL));
 			Parent root3 = null;
@@ -93,7 +116,12 @@ public void inicializar () {
 			
 			control.setResonance(resonance);
 			control.setStage(stage);
-			
+			try {
+				control.setHospedaje(resonance.obtenerHospedaje(hospedajes.get(i)));
+			} catch (NoExistException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			control.inicializar();
 			
 			

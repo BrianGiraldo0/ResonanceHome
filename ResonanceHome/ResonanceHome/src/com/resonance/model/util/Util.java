@@ -76,6 +76,7 @@ public class Util {
 			control.setStage(stage);
 			control.setResonance(resonance);
 			control.inicializar();
+			control.update();
 		} else if (loader.getController() instanceof ControladorComentario) {
 			ControladorComentario control = loader.getController();
 //			control.setStage(stage);

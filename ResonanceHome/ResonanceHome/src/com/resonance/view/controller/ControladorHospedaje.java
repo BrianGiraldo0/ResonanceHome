@@ -21,6 +21,7 @@ public class ControladorHospedaje {
 	private StageR stage;
 
 	private boolean favorito = false;
+
 	private Hospedaje hospedaje;
 
 	private ResonanceHome resonance;

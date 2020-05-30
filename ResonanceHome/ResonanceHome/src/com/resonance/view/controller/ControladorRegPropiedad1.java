@@ -140,7 +140,26 @@ public class ControladorRegPropiedad1 {
 		}
 	}
 
+	private void atras() {
+		btnAtras.setOnMouseClicked((e) -> {
+			abrirVentanaAnterior();
+
+		});
+	}
+
+	public void abrirVentanaAnterior() {
+		FXMLLoader loader = new FXMLLoader(getClass().getResource(stage.getVentanaAnterior()));
+		try {
+			Parent root = loader.load();
+			stage.getScene().setRoot(root);
+			Util.updateController(loader, stage, resonance);
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+	}
 	public void inicializar() {
+
 		comboTipo.setValue("Tipo");
 		comboTipo.getItems().addAll("Apartamento", "Habitacion");
 
@@ -149,6 +168,7 @@ public class ControladorRegPropiedad1 {
 			comboCapacidad.getItems().add(i, (i + 1) + " Huespedes");
 		}
 
+		atras();
 	}
 
 	public void setResonance(ResonanceHome resonance) {
