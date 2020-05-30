@@ -3,6 +3,8 @@ package com.resonance.view.controller;
 import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
 
 import com.resonance.model.principal.ResonanceHome;
 import com.resonance.model.util.Util;
@@ -13,6 +15,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
@@ -25,6 +28,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
+import javafx.stage.StageStyle;
 
 public class ControladorRegistro {
 
@@ -151,8 +155,26 @@ public class ControladorRegistro {
 			String nametag = textNombreUsuario.getText();
 			String clave = textPasswordUsuario.getText();
 			String biografia = textBiografia.getText();
-			String urlFoto = fileFoto.getAbsolutePath();
+			String urlFoto = "";
+			if (fileFoto != null)
+				urlFoto = fileFoto.getAbsolutePath();
+
+			Date date = Date.from(fecha.atStartOfDay(ZoneId.systemDefault()).toInstant());
+			resonance.agregarHuesped(nombre, email, urlFoto, direccion, date, clave, biografia, nametag);
+			showConfirmation("Hospedaje creado", "Señor/a su cuenta ha sido creada con exito!");
+			abrirVentanaPrincipal();
+
 		});
+	}
+
+	public static void showConfirmation(String title, String message) {
+		Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+		alert.initStyle(StageStyle.UTILITY);
+		alert.setTitle("Warning");
+		alert.setHeaderText(title);
+		alert.setContentText(message);
+
+		alert.showAndWait();
 	}
 
 	private void atras() {
@@ -162,6 +184,22 @@ public class ControladorRegistro {
 		});
 	}
 
+	public void abrirVentanaPrincipal() {
+		FXMLLoader loader = new FXMLLoader(getClass().getResource(Util.VENTANA_PRINCIPAL));
+		try {
+			Parent root = loader.load();
+			limpiarCampos();
+			ControladorPrincipal control = loader.getController();
+			control.setStage(stage);
+			control.setResonance(resonance);
+			control.inicializar();
+			stage.getScene().setRoot(root);
+
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+	}
 	public void abrirVentanaAnterior() {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource(Util.VENTANA_PRINCIPAL));
 		try {

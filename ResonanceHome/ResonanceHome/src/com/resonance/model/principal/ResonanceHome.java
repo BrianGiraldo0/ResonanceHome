@@ -247,8 +247,9 @@ public class ResonanceHome {
 		} else {
 			anfitrion = new Anfitrion(nombre, email, uRLFoto, direccion, fechaNacimiento, contrasenia, biografia,
 					nametag);
+			anfitrion.setURLFoto(FileManager.urlMain + "/Usuarios/Anfitriones/" + nametag + "/imagenPerfil.png");
 		}
-		FileManager.crearCarpetaAnfitrion(nametag);
+		FileManager.crearCarpetaAnfitrion(nametag, uRLFoto);
 		anfitriones.put(nametag, anfitrion);
 
 	}
@@ -272,8 +273,9 @@ public class ResonanceHome {
 			huesped = new Huesped(nombre, email, direccion, fechaNacimiento, contrasenia, biografia, nametag);
 		} else {
 			huesped = new Huesped(nombre, email, uRLFoto, direccion, fechaNacimiento, contrasenia, biografia, nametag);
+			huesped.setURLFoto(FileManager.urlMain + "/Usuarios/Huespedes/" + nametag + "/imagenPerfil.png");
 		}
-		FileManager.crearCarpetaHuesped(nametag);
+		FileManager.crearCarpetaHuesped(nametag, uRLFoto);
 		huespedes.put(nametag, huesped);
 
 	}

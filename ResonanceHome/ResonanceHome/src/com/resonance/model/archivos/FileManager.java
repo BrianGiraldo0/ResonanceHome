@@ -8,7 +8,7 @@ import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 
 public class FileManager {
-	public static String urlMain = disco() + "/ResonanceHome";
+	public static String urlMain = disco() + "ResonanceHome";
 	private static String urlHospedajes = urlMain + "/Hospedajes";
 
 	/**
@@ -57,11 +57,24 @@ public class FileManager {
 	 * 
 	 * @param name
 	 */
-	public static void crearCarpetaHuesped(String name) {
+	public static void crearCarpetaHuesped(String name, String imgPerfil) {
 		File file = new File(urlMain + "/Usuarios/Huespedes/" + name);
 		if (!file.exists()) {
 			file.mkdirs();
 		}
+		if (!imgPerfil.equals("")) {
+			File fileOrigen = new File(imgPerfil);
+			try {
+				String destino = file.getAbsolutePath() + "/imagenPerfil.png";
+				Files.copy(Paths.get(fileOrigen.getAbsolutePath()), Paths.get(destino),
+						StandardCopyOption.REPLACE_EXISTING);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
+
 	}
 
 	/**
@@ -69,11 +82,24 @@ public class FileManager {
 	 * 
 	 * @param name
 	 */
-	public static void crearCarpetaAnfitrion(String name) {
+	public static void crearCarpetaAnfitrion(String name, String imgPerfil) {
 		File file = new File(urlMain + "/Usuarios/Anfitriones/" + name);
 		if (!file.exists()) {
 			file.mkdirs();
 		}
+
+		if (!imgPerfil.equals("")) {
+			File fileOrigen = new File(imgPerfil);
+			try {
+				String destino = file.getAbsolutePath() + "/imagenPerfil.png";
+				Files.copy(Paths.get(fileOrigen.getAbsolutePath()), Paths.get(destino),
+						StandardCopyOption.REPLACE_EXISTING);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
 	}
 
 	/**
@@ -139,7 +165,7 @@ public class FileManager {
 			File fileOrigen = new File(urlsFotos.get(i));
 			try {
 				String destino = nuHosp.getAbsolutePath() + "/imagen" + i + ".png";
-				Files.copy(Paths.get(fileOrigen.getAbsolutePath()), Paths.get(nuHosp.getAbsolutePath()),
+				Files.copy(Paths.get(fileOrigen.getAbsolutePath()), Paths.get(destino),
 						StandardCopyOption.REPLACE_EXISTING);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
@@ -193,6 +219,45 @@ public class FileManager {
 //			cnfe.printStackTrace();
 //		}
 //		return grafo;
+//	}
+
+//	public static void serializarGrafo(Empresa empresa) {
+//		try {
+//			String direccion =""; //Dirección donde se encuentra el archivo de serializacion
+//			//Ejemplo documentos/datos.dat
+//			FileOutputStream fos = new FileOutputStream(direccion);
+//			ObjectOutputStream oos = new ObjectOutputStream(fos);
+//			oos.writeObject(empresa);
+//			oos.close();
+//			fos.close();
+//		}
+//
+//		catch (IOException ioe) {
+//			ioe.printStackTrace();
+//		}
+//
+//	}
+//	public static Empresa deserializar() {
+//
+//		Empresa empresa = null;
+//		String direccion = ""; // Direccion donde se va a guardar el archivo
+//		//Ejemplo documentos/datos.dat
+//		try {
+//			FileInputStream fis = new FileInputStream(direccion);
+//			ObjectInputStream ois = new ObjectInputStream(fis);
+//			empresa = (RedDeUsuarios) ois.readObject();
+//			ois.close();
+//			fis.close();
+//		}
+//
+//		catch (IOException ioe) {
+//			ioe.printStackTrace();
+//		}
+//
+//		catch (ClassNotFoundException cnfe) {
+//			cnfe.printStackTrace();
+//		}
+//		return empresa;
 //	}
 
 	/**

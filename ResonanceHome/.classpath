@@ -8,5 +8,6 @@
 	<classpathentry kind="src" path="ResonanceHome/src"/>
 	<classpathentry kind="src" path="test"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/RStatistics"/>
+	<classpathentry kind="lib" path="mail.jar"/>
 	<classpathentry kind="output" path="ResonanceHome/bin"/>
 </classpath>

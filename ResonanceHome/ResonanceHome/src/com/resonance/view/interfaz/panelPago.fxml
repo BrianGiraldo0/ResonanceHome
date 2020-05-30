@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.resonance.view.controller.ControladorPago">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="502.0" layoutX="821.0" layoutY="115.0" stroke="#948b8b" strokeType="INSIDE" width="365.0" />
+      <VBox layoutX="827.0" layoutY="121.0" prefHeight="495.0" prefWidth="349.0">
+         <children>
+            <AnchorPane prefHeight="73.0" prefWidth="265.0" style="-fx-background-color: white;">
+               <children>
+                  <Label fx:id="labelPrecioDia" layoutX="33.0" layoutY="25.0" prefHeight="27.0" prefWidth="101.0" text="\$ 0,000,000">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="128.0" layoutY="25.0" prefHeight="27.0" prefWidth="149.0" text="/ Noche">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Separator layoutX="33.0" layoutY="56.0" prefHeight="5.0" prefWidth="295.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="312.0" prefWidth="349.0">
+               <children>
+                  <Label layoutX="35.0" layoutY="14.0" text="Fechas">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="35.0" layoutY="75.0" text="Huespedes">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="37.0" layoutY="153.0" text="Alojamiento">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="labelPrecioAlojamiento" alignment="CENTER_RIGHT" layoutX="261.0" layoutY="153.0" text="\$ 0,000,000 ">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Label>
+                  <Separator layoutX="37.0" layoutY="179.0" prefHeight="5.0" prefWidth="295.0" />
+                  <Label layoutX="37.0" layoutY="193.0" text="Tarifa de limpieza">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="labelPrecioLimpieza" alignment="CENTER_RIGHT" layoutX="261.0" layoutY="193.0" prefHeight="19.0" prefWidth="69.0" text="\$ 0000 ">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Label>
+                  <Separator layoutX="37.0" layoutY="219.0" prefHeight="5.0" prefWidth="295.0" />
+                  <Label layoutX="37.0" layoutY="232.0" text="Comision por servicio">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="labelComision" alignment="CENTER_RIGHT" layoutX="261.0" layoutY="232.0" prefHeight="19.0" prefWidth="69.0" text="\$ 000 ">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Label>
+                  <Separator layoutX="37.0" layoutY="259.0" prefHeight="5.0" prefWidth="295.0" />
+                  <Label layoutX="42.0" layoutY="275.0" text="Total">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="labelTotal" alignment="CENTER_RIGHT" layoutX="261.0" layoutY="275.0" text="\$ 0,000,000 ">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblNumeroHuespedes" layoutX="80.0" layoutY="106.0" prefHeight="30.0" prefWidth="149.0" text="0">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="38.0" fitWidth="32.0" layoutX="35.0" layoutY="105.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../imagenes/Huesped.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="lblFechas" layoutX="37.0" layoutY="40.0" prefHeight="27.0" prefWidth="295.0" text="DD/MM/AAAA hasta DD/MM/AAAA">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="108.0" prefWidth="349.0" style="-fx-background-color: white;">
+               <children>
+                  <Text layoutX="39.0" layoutY="13.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Esperamos que disfrutes de tu experencia con Resonance Home, recuerda que la sociedad retumba en ti" textAlignment="JUSTIFY" wrappingWidth="295.0000047683716" />
+                  <ImageView fitHeight="52.0" fitWidth="58.0" layoutX="161.0" layoutY="48.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../imagenes/logo_resonance.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+         </children>
+      </VBox>
+      <Text fx:id="btnAtras" layoutX="75.0" layoutY="96.0" strokeType="OUTSIDE" strokeWidth="0.0" text="←" wrappingWidth="46.5908203125">
+         <font>
+            <Font size="54.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Text>
+      <Button fx:id="btnReservar" layoutX="236.0" layoutY="645.0" mnemonicParsing="false" onMouseClicked="#reservar" prefHeight="52.0" prefWidth="295.0" style="-fx-background-color: #2AF72A; -fx-background-radius: 20;" text="PAGAR RESERVA" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Label layoutX="78.0" layoutY="121.0" text="Saluda a tu anfitrion">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="78.0" layoutY="166.0" text="Cuéntale a &quot;Nombre del anfitrión&quot; un poco sobre ti y sobre el motivo de tu viaje.">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <TextArea fx:id="txtMensaje" layoutX="78.0" layoutY="196.0" prefHeight="100.0" prefWidth="611.0" promptText="Hola &quot;Nombre del anfitrion&quot;, No veo la hora de pasar mis dias de viaje en tu hospedaje. ">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </TextArea>
+      <Label layoutX="78.0" layoutY="328.0" text="Numero de Tarjeta">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtNumeroTarjeta" layoutX="78.0" layoutY="357.0" prefHeight="25.0" prefWidth="286.0" />
+      <Label layoutX="78.0" layoutY="395.0" text="Nombre y Apellido">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtNombreApellido" layoutX="78.0" layoutY="424.0" prefHeight="25.0" prefWidth="286.0" />
+      <Label layoutX="78.0" layoutY="463.0" text="Fecha de Expiración">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtFechaExpedicion" layoutX="78.0" layoutY="492.0" prefHeight="25.0" prefWidth="131.0" promptText="MM/AAAA" />
+      <Label layoutX="224.0" layoutY="463.0" text="Codigo de Seguridad">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtCodigoSeguridad" layoutX="224.0" layoutY="492.0" prefHeight="25.0" prefWidth="139.0" promptText="###" />
+      <Label layoutX="78.0" layoutY="535.0" text="Cedula">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtCedula" layoutX="141.0" layoutY="533.0" prefHeight="25.0" prefWidth="221.0" />
+      <AnchorPane layoutX="436.0" layoutY="390.0" prefHeight="146.0" prefWidth="253.0" style="-fx-background-color: E7E6E6; -fx-background-radius: 20;">
+         <children>
+            <AnchorPane layoutX="16.0" layoutY="14.0" prefHeight="30.0" prefWidth="45.0" style="-fx-background-color: D1D1D1; -fx-background-radius: 5;" />
+            <Label fx:id="lblNumeroTarjeta" layoutX="16.0" layoutY="76.0" prefHeight="17.0" prefWidth="221.0" text="&quot;####&quot;____&quot;####&quot;____&quot;####&quot;____&quot;####&quot;" />
+            <Label fx:id="lblNombreApellido" layoutX="16.0" layoutY="108.0" text="NOMBRE APELLIDO" />
+            <Label fx:id="lblFechaExpiración" layoutX="179.0" layoutY="108.0" text="MM/AAAA" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

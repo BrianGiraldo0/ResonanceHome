@@ -10,15 +10,10 @@ import com.resonance.view.interfaz.StageR;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
-import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
@@ -129,17 +124,11 @@ public class ControladorHospedajeCompleto {
 			e.printStackTrace();
 		}
 		
-		ControladorRealizarReserva con = loader.getController();
+		ControladorPago con = loader.getController();
 		con.setStage(stage);
 		con.setResonance(resonance);
-		Scene scene = new Scene(root);
-
-		stage.setResizable(false);
-		stage.setTitle("Resonance Home");
-		stage.getIcons().add(new Image(Util.LOGO_RESONANCE));
-		stage.setScene(scene);
-		stage.show();
-		con.inicializar();
+		stage.getScene().setRoot(root);
+//		con.inicializar();
 		
 		
 	}

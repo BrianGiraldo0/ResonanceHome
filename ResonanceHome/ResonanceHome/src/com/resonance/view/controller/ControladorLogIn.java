@@ -116,7 +116,7 @@ public class ControladorLogIn {
 						}
 						}
 				} catch (NoExistException e1) {
-					error = "Usuario";
+						error = "Usuario o contraseña incorrectos";
 					getWidth(error.length());
 					lblError.setText(error);
 				}
@@ -176,7 +176,6 @@ public class ControladorLogIn {
 			control.setStage(stage);
 			control.setResonance(resonance);
 			control.inicializar();
-			control.update();
 			stage.getScene().setRoot(root);
 
 		} catch (IOException e1) {

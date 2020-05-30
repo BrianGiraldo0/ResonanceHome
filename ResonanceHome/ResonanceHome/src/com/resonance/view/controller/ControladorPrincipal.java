@@ -1,6 +1,8 @@
 package com.resonance.view.controller;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.SortedSet;
@@ -14,6 +16,7 @@ import com.resonance.view.interfaz.AutoCompleteTextField;
 import com.resonance.view.interfaz.MultiDatePicker;
 import com.resonance.view.interfaz.StageR;
 
+import javafx.collections.ObservableSet;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -68,7 +71,10 @@ public class ControladorPrincipal {
 
 	public void inicializar() {
 		MultiDatePicker multiDatePicker = new MultiDatePicker().withRangeSelectionMode();
-
+		
+		if (stage.getUsuarioLogeado() != null) {
+			update();
+		}
 		rangePicker = multiDatePicker.getDatePicker();
 		rangePicker.setMinWidth(200);
 		layout.getChildren().add(rangePicker);
@@ -76,7 +82,7 @@ public class ControladorPrincipal {
 		btnBuscar.setOnMouseClicked((e) -> {
 			String ubicacion = tfUbicacion.getText();
 			String huespedes = tfHuespedes.getText();
-			ArrayList<Date> date = new ArrayList<Date>();
+			ArrayList<Date> date = toArrayDate(multiDatePicker.getSelectedDates());
 			ArrayList<Hospedaje> ltsHospedajes = resonance.buscarHospedajes(ubicacion, date, huespedes);
 
  			FXMLLoader loader = new FXMLLoader(getClass().getResource(Util.PANEL_LISTADO_HOSPEDAJES));
@@ -274,4 +280,15 @@ public class ControladorPrincipal {
 	public void setStage(StageR stage) {
 		this.stage = stage;
 	}
+
+	public ArrayList<Date> toArrayDate(ObservableSet<LocalDate> date) {
+		ArrayList<Date> nuevoDate = new ArrayList<Date>();
+		ZoneId defaultZoneId = ZoneId.systemDefault();
+		for (LocalDate localDate : date) {
+			Date da = Date.from(localDate.atStartOfDay(defaultZoneId).toInstant());
+			nuevoDate.add(da);
+		}
+		return nuevoDate;
+	}
+
 }

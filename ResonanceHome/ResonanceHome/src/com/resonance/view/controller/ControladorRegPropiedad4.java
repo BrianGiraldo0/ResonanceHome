@@ -1,13 +1,18 @@
 package com.resonance.view.controller;
 
 import java.io.File;
+import java.io.IOException;
 
 import com.resonance.model.excepciones.NoExistException;
 import com.resonance.model.hospedajes.Hospedaje;
 import com.resonance.model.principal.ResonanceHome;
+import com.resonance.model.usuarios.Anfitrion;
+import com.resonance.model.util.Util;
 import com.resonance.view.interfaz.StageR;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -99,6 +104,11 @@ public class ControladorRegPropiedad4 {
 			try {
 				hospedaje.setNameTagPropietario(stage.getUsuarioLogeado().getNametag());
 				resonance.agregarHospedaje(hospedaje);
+				showConfirmation("Hospedaje creado", "Señor/a " + hospedaje.getNameTagPropietario()
+						+ " su hospedaje: + \n" + hospedaje.getTitulo() + " ha sido creado!");
+				Anfitrion anfitrion = (Anfitrion) stage.getUsuarioLogeado();
+				abrirVentanaAnfitrion(anfitrion);
+
 			} catch (NoExistException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -253,5 +263,22 @@ public class ControladorRegPropiedad4 {
 		alert.setContentText(message);
 
 		alert.showAndWait();
+	}
+
+	private void abrirVentanaAnfitrion(Anfitrion anfitrion) {
+		FXMLLoader loader = new FXMLLoader(getClass().getResource(Util.PANEL_PERFIL_ANFITRION));
+		try {
+			Parent root = loader.load();
+			ControladorPerfilAnfitrion control = loader.getController();
+			control.setStage(stage);
+			control.setResonance(resonance);
+			control.setAnfitrion(anfitrion);
+			control.inicializar();
+			stage.getScene().setRoot(root);
+
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 	}
 }

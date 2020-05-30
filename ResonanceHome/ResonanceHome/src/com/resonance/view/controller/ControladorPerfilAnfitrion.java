@@ -15,6 +15,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Rectangle;
@@ -30,6 +31,9 @@ public class ControladorPerfilAnfitrion {
 	private Anfitrion anfitrion;
 	@FXML
     private Text btnAtras;
+
+	@FXML
+	private Button btnLogout;
 
     @FXML
     private Button btnGuardar;
@@ -65,7 +69,11 @@ public class ControladorPerfilAnfitrion {
 public void inicializar () {
 		if (stage.getUsuarioLogeado() != null)
 			llenarDatos();
+		if (!stage.getUsuarioLogeado().getURLFoto().equals("")) {
 
+			System.out.println(stage.getUsuarioLogeado().getURLFoto());
+			picPerfil.setImage(new Image("file:///" + stage.getUsuarioLogeado().getURLFoto()));
+		}
 		btnCrearHospedaje.setOnMouseClicked((e) -> {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource(Util.PANEL_REGPROPIEDAD_1));
 			Parent root = null;
@@ -84,8 +92,29 @@ public void inicializar () {
 			stage.getScene().setRoot(root);
 		
 		});
+
+		btnLogout.setOnMouseClicked((e) -> {
+			stage.setAnfitrionLogin(null);
+			stage.setHuespedLogeado(null);
+			abrirVentanaPrincipal();
+		});
     }
 
+	public void abrirVentanaPrincipal() {
+		FXMLLoader loader = new FXMLLoader(getClass().getResource(Util.VENTANA_PRINCIPAL));
+		try {
+			Parent root = loader.load();
+			ControladorPrincipal control = loader.getController();
+			control.setStage(stage);
+			control.setResonance(resonance);
+			control.inicializar();
+			stage.getScene().setRoot(root);
+
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+	}
 
 
 	public void llenarDatos() {
