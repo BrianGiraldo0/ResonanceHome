@@ -16,7 +16,7 @@ public class Usuario {
 	private String biografia = "";
 	private String nametag = "";
 	private String id = "";
-	private ArrayList<Chat> chats;
+	private ArrayList<Chat> chats = new ArrayList<Chat>();
 
 	/**
 	 * Método constructor de la clase en caso de que se seleccione alguna foto
@@ -263,7 +263,7 @@ public class Usuario {
 
 	public Chat buscarChat(String nombre) {
 
-		if (!nombre.equals(nombre)) {
+		if (!this.nombre.equals(nombre)) {
 
 			for (int i = 0; i < chats.size(); i++) {
 

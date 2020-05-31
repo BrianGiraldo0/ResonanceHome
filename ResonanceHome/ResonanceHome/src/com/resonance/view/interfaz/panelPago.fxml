@@ -86,7 +86,7 @@
                   </Label>
                   <Label fx:id="labelTotal" alignment="CENTER_RIGHT" layoutX="261.0" layoutY="275.0" text="\$ 0,000,000 ">
                      <font>
-                        <Font size="13.0" />
+                        <Font name="System Bold" size="13.0" />
                      </font>
                   </Label>
                   <Label fx:id="lblNumeroHuespedes" layoutX="80.0" layoutY="106.0" prefHeight="30.0" prefWidth="149.0" text="0">
@@ -139,7 +139,7 @@
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <Label layoutX="78.0" layoutY="166.0" text="Cuéntale a &quot;Nombre del anfitrión&quot; un poco sobre ti y sobre el motivo de tu viaje.">
+      <Label fx:id="lblInfoMensaje" layoutX="78.0" layoutY="166.0" text="Cuéntale a &quot;Nombre del anfitrión&quot; un poco sobre ti y sobre el motivo de tu viaje.">
          <font>
             <Font size="14.0" />
          </font>
@@ -182,9 +182,18 @@
       <AnchorPane layoutX="436.0" layoutY="390.0" prefHeight="146.0" prefWidth="253.0" style="-fx-background-color: E7E6E6; -fx-background-radius: 20;">
          <children>
             <AnchorPane layoutX="16.0" layoutY="14.0" prefHeight="30.0" prefWidth="45.0" style="-fx-background-color: D1D1D1; -fx-background-radius: 5;" />
-            <Label fx:id="lblNumeroTarjeta" layoutX="16.0" layoutY="76.0" prefHeight="17.0" prefWidth="221.0" text="&quot;####&quot;____&quot;####&quot;____&quot;####&quot;____&quot;####&quot;" />
-            <Label fx:id="lblNombreApellido" layoutX="16.0" layoutY="108.0" text="NOMBRE APELLIDO" />
-            <Label fx:id="lblFechaExpiración" layoutX="179.0" layoutY="108.0" text="MM/AAAA" />
+            <Label fx:id="lblNumeroTarjeta" layoutX="16.0" layoutY="76.0" prefHeight="17.0" prefWidth="221.0" text="&quot;####&quot;____&quot;####&quot;____&quot;####&quot;____&quot;####&quot;">
+               <font>
+                  <Font size="16.0" />
+               </font></Label>
+            <Label fx:id="lblNombreApellido" layoutX="16.0" layoutY="111.0" text="NOMBRE APELLIDO">
+               <font>
+                  <Font size="14.0" />
+               </font></Label>
+            <Label fx:id="lblFechaExpiración" layoutX="170.0" layoutY="111.0" text="MM/AAAA">
+               <font>
+                  <Font size="14.0" />
+               </font></Label>
          </children>
       </AnchorPane>
    </children>

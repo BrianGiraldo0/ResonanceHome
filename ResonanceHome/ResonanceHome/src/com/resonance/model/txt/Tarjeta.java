@@ -3,8 +3,10 @@ package com.resonance.model.txt;
 public class Tarjeta {
 
 	private int numeroT;
-	private double saldo;
 	private String duenio;
+	private String codigoSeguridad;
+	private String fechaExpiracion;
+	private String cedulaDuenio;
 	
 	/**
 	 * Metodo constructor
@@ -12,11 +14,13 @@ public class Tarjeta {
 	 * @param saldo
 	 * @param duenio
 	 */
-	public Tarjeta(int numeroT, double saldo, String duenio) {
+	public Tarjeta(int numeroT, String duenio, String codigoSeguridad, String fechaExpiracion, String cedulaDuenio) {
 		super();
 		this.numeroT = numeroT;
-		this.saldo = saldo;
 		this.duenio = duenio;
+		this.cedulaDuenio = cedulaDuenio;
+		this.codigoSeguridad = codigoSeguridad;
+		this.fechaExpiracion = fechaExpiracion;
 	}
 	
 	/*
@@ -29,17 +33,36 @@ public class Tarjeta {
 	public void setNumeroT(int numeroT) {
 		this.numeroT = numeroT;
 	}
-	public double getSaldo() {
-		return saldo;
-	}
-	public void setSaldo(double saldo) {
-		this.saldo = saldo;
-	}
+	
 	public String getDuenio() {
 		return duenio;
 	}
 	public void setDuenio(String duenio) {
 		this.duenio = duenio;
+	}
+
+	public String getCodigoSeguridad() {
+		return codigoSeguridad;
+	}
+
+	public void setCodigoSeguridad(String codigoSeguridad) {
+		this.codigoSeguridad = codigoSeguridad;
+	}
+
+	public String getFechaExpiracion() {
+		return fechaExpiracion;
+	}
+
+	public void setFechaExpiracion(String fechaExpiracion) {
+		this.fechaExpiracion = fechaExpiracion;
+	}
+
+	public String getCedulaDuenio() {
+		return cedulaDuenio;
+	}
+
+	public void setCedulaDuenio(String cedulaDuenio) {
+		this.cedulaDuenio = cedulaDuenio;
 	}
 	
 	/*

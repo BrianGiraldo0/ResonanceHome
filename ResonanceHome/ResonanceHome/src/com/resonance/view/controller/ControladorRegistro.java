@@ -6,7 +6,6 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
 
-import com.resonance.model.excepciones.NoExistException;
 import com.resonance.model.principal.ResonanceHome;
 import com.resonance.model.util.Util;
 import com.resonance.view.interfaz.StageR;
@@ -134,8 +133,6 @@ public class ControladorRegistro {
 		items.add("Anfitrion");
 		
     	comboTipoCuenta.getItems().addAll(items);
-    	
-		
 	}
 	
 
@@ -162,20 +159,13 @@ public class ControladorRegistro {
 				urlFoto = fileFoto.getAbsolutePath();
 			if (comboTipoCuenta.getValue().equals("Anfitrion")) {
 				resonance.agregarAnfitrion(nombre, email, urlFoto, direccion, date, clave, biografia, nametag);
-				try {
+
 					stage.setAnfitrionLogin(resonance.obtenerAnfitrion(nametag));
-				} catch (NoExistException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+
 			} else {
 				resonance.agregarHuesped(nombre, email, urlFoto, direccion, date, clave, biografia, nametag);
-				try {
 					stage.setHuespedLogeado(resonance.obtenerHuesped(nametag));
-				} catch (NoExistException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+
 			}
 			
 			String datos = nombre + "\n" + "Correo: " + email + "\n" + "Nametag: " + nametag + "\n" + "Contraseña: "
@@ -224,13 +214,13 @@ public class ControladorRegistro {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource(Util.VENTANA_PRINCIPAL));
 		try {
 			Parent root = loader.load();
-			limpiarCampos();
-			stage.getScene().setRoot(root);
 			Util.updateController(loader, stage, resonance);
+			stage.getScene().setRoot(root);
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
+
 	}
 
 	public void limpiarCampos() {

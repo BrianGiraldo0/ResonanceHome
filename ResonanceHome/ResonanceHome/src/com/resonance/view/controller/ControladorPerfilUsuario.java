@@ -80,6 +80,9 @@ public class ControladorPerfilUsuario {
     	
 public void inicializar () {
 		colorearBotones();
+		btnMensajes.setOnMouseClicked((e) -> {
+			abrirVentanaMensajes();
+		});
 	labelNombreUsuario.setText(stage.getUsuarioLogeado().getNombre());
 	
 	if (!stage.getUsuarioLogeado().getURLFoto().equals("")) {
@@ -96,6 +99,22 @@ public void inicializar () {
 		});
     }
 
+	public void abrirVentanaMensajes() {
+		FXMLLoader loader = new FXMLLoader(getClass().getResource(Util.PANEL_MENSAJES));
+		try {
+			Parent root = loader.load();
+			ControladorMensajes control = loader.getController();
+			stage.setVentanaAnterior(Util.PANEL_PERFIL_USUARIO);
+			control.setStage(stage);
+			control.setResonance(resonance);
+			control.inicializar();
+			stage.getScene().setRoot(root);
+
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+	}
 	public void colorearBotones() {
 		Image image = new Image(getClass().getResourceAsStream(Util.ICON_MENSAJES));
 		btnMensajes.setGraphic(new ImageView(image));
@@ -167,8 +186,7 @@ public void inicializar () {
 		for (int i=0; i<huesped.getFavoritos().size();i++) {
 			
 			
-		Hospedaje hospedaje = 	resonance.getHospedajes().get(huesped.getFavoritos().get(i).getIdentificacion());
-		
+			Hospedaje hospedaje = huesped.getFavoritos().get(i);
 		FXMLLoader loader3 = new FXMLLoader(getClass().getResource(Util.PANEL_HOSPEDAJE_PERFIL));
 		Parent root3 = null;
 		try {

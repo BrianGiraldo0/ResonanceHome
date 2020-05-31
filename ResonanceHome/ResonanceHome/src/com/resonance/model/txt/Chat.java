@@ -7,9 +7,9 @@ import com.resonance.model.excepciones.NoExistException;
 
 public class Chat {
 
-	private String huesped;
-	private String anfitrion;
-	private ArrayList<Mensaje> mensajes;
+	private String emisor;
+	private String receptor;
+	private ArrayList<Mensaje> mensajes = new ArrayList<Mensaje>();
 	
 	/**
 	 * Metodo constructor de la clase
@@ -17,11 +17,10 @@ public class Chat {
 	 * @param receptor
 	 * @param mensaje
 	 */
-	public Chat(String emisor, String receptor, ArrayList<Mensaje> mensaje) {
+	public Chat(String emisor, String receptor) {
 		super();
-		this.huesped = emisor;
-		this.anfitrion = receptor;
-		this.mensajes = mensaje;
+		this.emisor = emisor;
+		this.receptor = receptor;
 	}
 
 	/**
@@ -43,19 +42,19 @@ public class Chat {
 	 */
 	
 	public String getEmisor() {
-		return huesped;
+		return emisor;
 	}
 
 	public void setEmisor(String emisor) {
-		this.huesped = emisor;
+		this.emisor = emisor;
 	}
 
 	public String getReceptor() {
-		return anfitrion;
+		return receptor;
 	}
 
 	public void setReceptor(String receptor) {
-		this.anfitrion = receptor;
+		this.receptor = receptor;
 	}
 
 	public ArrayList<Mensaje> getMensaje() {
@@ -72,10 +71,10 @@ public class Chat {
 	
 	public boolean esta(String name)
 	{
-		if(name.equals(anfitrion))
+		if(name.equals(receptor))
 		{
 			return true;
-		}else if(name.equals(huesped))
+		}else if(name.equals(emisor))
 		{
 			return true;
 		}

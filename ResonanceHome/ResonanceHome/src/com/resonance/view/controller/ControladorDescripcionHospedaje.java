@@ -2,7 +2,6 @@ package com.resonance.view.controller;
 
 import java.io.IOException;
 
-import com.resonance.model.excepciones.NoExistException;
 import com.resonance.model.hospedajes.Hospedaje;
 import com.resonance.model.principal.ResonanceHome;
 import com.resonance.model.util.Util;
@@ -144,16 +143,12 @@ public class ControladorDescripcionHospedaje {
 	    		lblServ4.setText("Utencilios: No Incluido");
 	    	}
 	    	
-	    	try {
 				labelNombreAnfitrion.setText(resonance.obtenerAnfitrion(hospedaje.getNameTagPropietario()).getNombre());
 				textDescripcionAnfitrion.setText(resonance.obtenerAnfitrion(hospedaje.getNameTagPropietario()).getBiografia());
 
 //				Image perfil = new Image(resonance.obtenerAnfitrion(hospedaje.getNameTagPropietario()).getURLFoto());
 //				imafenAnfitrion.setImage(perfil);
-			} catch (NoExistException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+
 	    	
 	    	rellenarCalificacion();
 	    }

@@ -1,6 +1,15 @@
 package com.resonance.view.controller;
 
+import java.awt.Robot;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Optional;
+import java.util.logging.SimpleFormatter;
+
+import javax.swing.JOptionPane;
 
 import com.resonance.model.hospedajes.Hospedaje;
 import com.resonance.model.principal.ResonanceHome;
@@ -10,27 +19,42 @@ import com.resonance.view.interfaz.StageR;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.stage.StageStyle;
 
 public class ControladorHospedajeCompleto {
 
 	private ResonanceHome resonance;
-	
+
 	private StageR stage;
-	  
+
 	private Hospedaje hospedaje;
+
+	private int numeroHuspedes;
+	
+	private ArrayList<Date> date;
+	
+	public static final String CANCEL = "Cancel";
+
+    @FXML
+    private Label lblFechas;
 	
 	@FXML
 	private Label labelTotal;
 
 	@FXML
 	private TextField textCantidadHuespedes;
-
 
 	@FXML
 	private Label labelPrecioAlojamiento;
@@ -58,7 +82,6 @@ public class ControladorHospedajeCompleto {
 
 	@FXML
 	private Text btnAtras;
-	
 
 	public void inicializar() {
 
@@ -108,31 +131,141 @@ public class ControladorHospedajeCompleto {
 
 		}
 
-	}
-	
-	
-	public void reservar() {
+		textCantidadHuespedes.setText(numeroHuspedes + "");
+		int cantidadHuspedes = Integer.parseInt(textCantidadHuespedes.getText());
+		double precio = hospedaje.getPrecio();
+		double precioCompleto = precio * date.size();
+		double precioLimpieza = (hospedaje.getPrecio() * 0.05) * cantidadHuspedes;
+		double comision = hospedaje.getPrecio() * 0.15;
+		double total = comision + precioLimpieza + precioCompleto;
+
+		labelPrecioDia.setText("$ " + precio);
+		labelPrecioAlojamiento.setText("$ " + precioCompleto);
+		labelPrecioLimpieza.setText("$ " + precioLimpieza);
+		labelComision.setText("$ " + comision);
+		labelTotal.setText("$ " + total);
 		
-	
-		FXMLLoader loader = new FXMLLoader(getClass().getResource(Util.PANEL_PAGO));
-		Parent root = null;
-		
-		try {
-			root = loader.load();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		ControladorPago con = loader.getController();
-		con.setStage(stage);
-		con.setResonance(resonance);
-		stage.getScene().setRoot(root);
-//		con.inicializar();
-		
-		
+		SimpleDateFormat formato = new SimpleDateFormat("dd/MM/YYYY");
+		lblFechas.setText(formato.format(date.get(0)) + " hasta " + formato.format(date.get(date.size()-1)));
+
 	}
 
+	public void reservar() {
+
+		if (stage.getUsuarioLogeado() != null) {
+
+			FXMLLoader loader = new FXMLLoader(getClass().getResource(Util.PANEL_PAGO));
+			Parent root = null;
+
+			try {
+				root = loader.load();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+			ControladorPago con = loader.getController();
+			con.setStage(stage);
+			con.setDate(date);
+			con.setHospedaje(hospedaje);
+			con.setNumeroHuspedes(Integer.parseInt(textCantidadHuespedes.getText()));
+			con.setResonance(resonance);
+			Scene scene = new Scene(root);
+
+			stage.setResizable(false);
+			stage.setTitle("Resonance Home");
+			stage.getIcons().add(new Image(Util.LOGO_RESONANCE));
+			stage.setScene(scene);
+			stage.show();
+			con.inicializar();
+		} else {
+
+			String[] opciones = { "Iniciar sesion", "Registrarse", "Cancelar" };
+			String respuesta = showConfirm("Opciones", "Por favor escoja una opcion", opciones);
+
+			if (respuesta.equals("Registrarse")) {
+				FXMLLoader loader = new FXMLLoader(getClass().getResource(Util.PANEL_REGISTRO));
+				Parent root = null;
+				try {
+					root = loader.load();
+				} catch (IOException a) {
+					// TODO Auto-generated catch block
+					a.printStackTrace();
+				}
+
+				ControladorRegistro control = loader.getController();
+				control.inicializar();
+				control.setResonance(resonance);
+				control.setStage(stage);
+
+				stage.setResizable(false);
+				stage.getScene().setRoot(root);
+
+			}
+
+			if (respuesta.equals("Iniciar sesion")) {
+				FXMLLoader loader = new FXMLLoader(getClass().getResource(Util.PANEL_INICIAR_SESION));
+				Parent root = null;
+				try {
+					root = loader.load();
+				} catch (IOException a) {
+					// TODO Auto-generated catch block
+					a.printStackTrace();
+				}
+
+				stage.setVentanaAnterior(Util.VENTANA_PRINCIPAL);
+				ControladorLogIn control = loader.getController();
+				control.setStage(stage);
+				control.setResonance(resonance);
+
+				stage.setResizable(false);
+				stage.getScene().setRoot(root);
+			}
+
+		}
+
+	}
+
+	public static String showConfirm(String title, String message, String[] options) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.initStyle(StageStyle.UTILITY);
+        alert.setTitle("Por favor escoja una opcion");
+        alert.setHeaderText(title);
+        alert.setContentText(message);
+
+        //To make enter key press the actual focused button, not the first one. Just like pressing "space".
+        alert.getDialogPane().addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+            if (event.getCode().equals(KeyCode.ENTER)) {
+                event.consume();
+                try {
+                    Robot r = new Robot();
+                    r.keyPress(java.awt.event.KeyEvent.VK_SPACE);
+                    r.keyRelease(java.awt.event.KeyEvent.VK_SPACE);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        if (options == null || options.length == 0) {
+            options = new String[]{CANCEL};
+        } 
+
+        List<ButtonType> buttons = new ArrayList<>();
+        for (String option : options) {
+            buttons.add(new ButtonType(option));
+        }
+
+        alert.getButtonTypes().setAll(buttons);
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (!result.isPresent()) {
+            return CANCEL;
+        } else {
+            return result.get().getText();
+        }
+    }
+	
 	public Hospedaje getHospedaje() {
 		return hospedaje;
 	}
@@ -149,4 +282,20 @@ public class ControladorHospedajeCompleto {
 		this.stage = stage;
 	}
 
+	public int getNumeroHuspedes() {
+		return numeroHuspedes;
+	}
+
+	public void setNumeroHuspedes(int numeroHuspedes) {
+		this.numeroHuspedes = numeroHuspedes;
+	}
+
+	public ArrayList<Date> getDate() {
+		return date;
+	}
+
+	public void setDate(ArrayList<Date> date) {
+		this.date = date;
+	}
+	
 }

@@ -3,6 +3,7 @@ package com.resonance.model.usuarios;
 import java.util.ArrayList;
 import java.util.Date;
 
+import com.resonance.model.hospedajes.Hospedaje;
 import com.resonance.model.hospedajes.Reserva;
 import com.resonance.model.txt.Tarjeta;
 import com.resonance.model.util.Fecha;
@@ -10,16 +11,14 @@ import com.resonance.model.util.Fecha;
 public class Huesped extends Usuario{
 	
 	private ArrayList <Reserva> reservas = new ArrayList<Reserva>();	
-	private ArrayList <Reserva> favoritos = new ArrayList<Reserva>();
+	private ArrayList <Hospedaje> favoritos = new ArrayList<>();
 	private Tarjeta tarjeta;
 	
 
 	public Huesped(String nombre, String email, String uRLFoto, String direccion, Date fechaNacimiento,
 			String contrasenia, String biografia, String nametag) {
 		super(nombre, email, uRLFoto, direccion, fechaNacimiento, contrasenia, biografia, nametag);
-		
-		
-		
+
 	}
 	
 	public Huesped(String nombre, String email, String direccion, Date fechaNacimiento,
@@ -44,9 +43,28 @@ public class Huesped extends Usuario{
 	 * Agrega reserva a favoritos  de un hospedaje
 	 * @param reserva Reserva reserva en favoritos
 	 */
-	public void agregarReservaFavorito(Reserva reserva) {
+	public void agregarHospedajeFavorito(Hospedaje hospedaje) {
 		
-		favoritos.add(reserva);
+		boolean cen = false;
+		
+		for (int i=0; i<favoritos.size() && cen ==false;i++ ) {
+			
+			if (hospedaje.getId().equals(hospedaje.getId())) {
+					
+				cen = true;
+				
+			}
+			
+			
+		}
+		if (cen==false) {
+			favoritos.add(hospedaje);
+		}
+		
+		
+		
+		
+		
 	}
 	
 	
@@ -114,7 +132,7 @@ public class Huesped extends Usuario{
 		return reservas;
 	}
 	
-	public ArrayList<Reserva> getFavoritos() {
+	public ArrayList<Hospedaje> getFavoritos() {
 		return favoritos;
 	}
 	

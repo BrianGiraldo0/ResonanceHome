@@ -2,6 +2,7 @@ package com.resonance.view.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 
 import com.resonance.model.hospedajes.Hospedaje;
 import com.resonance.model.principal.ResonanceHome;
@@ -21,7 +22,13 @@ public class ControladorListadoHospedajes {
 	private StageR stage;
 
 	private ResonanceHome resonance;
+	
 	private String estadia;
+	
+	private int numeroHuspedes;
+	
+	private ArrayList<Date> date;
+	
 	@FXML
 	private Button btnAyuda;
 
@@ -84,6 +91,8 @@ public class ControladorListadoHospedajes {
 
 			ControladorHospedaje control = loader.getController();
 			control.setResonance(resonance);
+			control.setNumeroHuspedes(numeroHuspedes);
+			control.setDate(date);
 			control.setStage(stage);
 			control.setHospedaje(hospedajes.get(i));
 			control.inicializar();
@@ -233,4 +242,19 @@ public class ControladorListadoHospedajes {
 		this.estadia = estadia;
 	}
 
+	public int getNumeroHuspedes() {
+		return numeroHuspedes;
+	}
+
+	public void setNumeroHuspedes(int numeroHuspedes) {
+		this.numeroHuspedes = numeroHuspedes;
+	}
+
+	public ArrayList<Date> getDate() {
+		return date;
+	}
+
+	public void setDate(ArrayList<Date> date) {
+		this.date = date;
+	}
 }

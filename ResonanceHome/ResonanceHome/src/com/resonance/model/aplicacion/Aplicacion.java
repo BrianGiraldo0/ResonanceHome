@@ -15,7 +15,7 @@ import javafx.stage.Stage;
 
 public class Aplicacion extends Application {
 	private ResonanceHome resonance;
-	private Stage stage;
+	private StageR stage;
 
 	public static void main(String[] args) {
 
@@ -26,16 +26,19 @@ public class Aplicacion extends Application {
 	public void start(Stage primaryStage) throws Exception {
 		StageR stage = new StageR();
 		this.stage = stage;
+
 		inicializarResonance();
 		FXMLLoader loader = new FXMLLoader(getClass().getResource(Util.VENTANA_PRINCIPAL));
+//		FXMLLoader loader = new FXMLLoader(getClass().getResource(Util.PANEL_PERFIL_USUARIO));
 		Parent root = loader.load();
 		ControladorPrincipal control = loader.getController();
+//		ControladorPerfilUsuario control = loader.getController();
 		
 		control.setResonance(resonance);
 
 		control.setStage(stage);
 		Scene scene = new Scene(root);
-
+		stage.setWidth(1280);
 		stage.setResizable(false);
 		stage.setTitle("Resonance Home");
 		stage.getIcons().add(new Image(Util.LOGO_RESONANCE));

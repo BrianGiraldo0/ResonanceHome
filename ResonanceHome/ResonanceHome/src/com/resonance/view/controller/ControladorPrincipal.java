@@ -1,6 +1,7 @@
 package com.resonance.view.controller;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
@@ -97,6 +98,8 @@ public class ControladorPrincipal {
 			ControladorListadoHospedajes control = loader.getController();
 			control.setHospedajes(ltsHospedajes);
 			control.setEstadia(tfUbicacion.getText());
+			control.setNumeroHuspedes(Integer.parseInt(tfHuespedes.getText()));
+			control.setDate(date);
 			control.setResonance(resonance);
 			control.setStage(stage);
 			control.inicializar();

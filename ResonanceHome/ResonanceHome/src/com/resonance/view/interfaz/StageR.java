@@ -10,7 +10,6 @@ public class StageR extends Stage {
 	private String ventanaAnterior;
 	private Huesped usuarioLogeado;
 	private Anfitrion anfitrionLogin;
-
 	/**
 	 * @param usuarioLogeado
 	 */
@@ -56,5 +55,6 @@ public class StageR extends Stage {
 	public void setVentanaAnterior(String ventanaAnterior) {
 		this.ventanaAnterior = ventanaAnterior;
 	}
+
 
 }

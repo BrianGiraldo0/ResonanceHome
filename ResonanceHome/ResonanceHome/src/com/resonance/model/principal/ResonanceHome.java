@@ -15,6 +15,8 @@ import com.resonance.model.hospedajes.Plus;
 import com.resonance.model.hospedajes.Prestacion;
 import com.resonance.model.hospedajes.Reserva;
 import com.resonance.model.hospedajes.TipoHospedaje;
+import com.resonance.model.txt.Chat;
+import com.resonance.model.txt.Mensaje;
 import com.resonance.model.usuarios.Anfitrion;
 import com.resonance.model.usuarios.Huesped;
 import com.resonance.model.util.Fecha;
@@ -50,8 +52,9 @@ public class ResonanceHome {
 	public void llenarPruebas() throws NoExistException {
 		
 		//las contraseñas de los usuarios son el primer nombre. Ejemplo: "Oscar Gomez" contraseña = "oscar".
-		fillHuespedes();
 		fillAnfitriones();
+		fillHuespedes();
+
 		fillHospedajes();
 		}
 
@@ -69,6 +72,18 @@ public class ResonanceHome {
 				"Soy estudiante de literatura, me gusta disfrutar de un buen lugar", "sepultonio");
 		agregarHuesped("Estela Aguilar", "ester.aguila@gmail.com", "", "Carre 16N # 13 - 42", fecha3, "estela",
 				"Me gusta viajar por el mundo, disfrutar de la vida, soy buena inquilina", "esterguila");
+		
+
+			crearChat("cemarquez", "gustavomene");
+		try {
+			enviarMensajeChat("cemarquez", "gustavomene", "Hola bo");
+
+			enviarMensajeChat("gustavomene", "cemarquez", "bien o que bo");
+		} catch (NoExistException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 
 	}
 
@@ -139,13 +154,46 @@ public class ResonanceHome {
 	 * @return
 	 * @throws NoExistException
 	 */
-	public Huesped obtenerHuesped(String nametag) throws NoExistException {
-		if (huespedes.get(nametag) == null) {
-			throw new NoExistException();
-		} else {
+	public Huesped obtenerHuesped(String nametag) {
+		if (huespedes.get(nametag) != null) {
 			return huespedes.get(nametag);
 		}
 
+		return null;
+
+	}
+
+	public void crearChat(String emisor, String receptor) {
+		if (obtenerAnfitrion(emisor) != null) {
+			Anfitrion e = obtenerAnfitrion(emisor);
+			Huesped r = obtenerHuesped(receptor);
+			Chat chatE = new Chat(emisor, receptor);
+			Chat chatR = new Chat(receptor, emisor);
+			e.crearChat(chatE);
+			r.crearChat(chatR);
+		} else {
+			Anfitrion r = obtenerAnfitrion(receptor);
+			Huesped e = obtenerHuesped(emisor);
+			Chat chatE = new Chat(e.getNametag(), r.getNametag());
+			Chat chatR = new Chat(r.getNametag(), e.getNametag());
+			e.crearChat(chatE);
+			r.crearChat(chatR);
+		}
+
+	}
+
+	public void enviarMensajeChat(String emisor, String receptor, String mensaje) throws NoExistException {
+		if (obtenerAnfitrion(emisor) != null) {
+			Anfitrion e = obtenerAnfitrion(emisor);
+			Huesped r = obtenerHuesped(receptor);
+			e.buscarChat(receptor).agregarMensaje(new Mensaje(mensaje, null, emisor));
+			r.buscarChat(emisor).agregarMensaje(new Mensaje(mensaje, null, emisor));
+		} else {
+			Huesped e = obtenerHuesped(emisor);
+			Anfitrion r = obtenerAnfitrion(receptor);
+			e.buscarChat(receptor).agregarMensaje(new Mensaje(mensaje, null, emisor));
+			r.buscarChat(emisor).agregarMensaje(new Mensaje(mensaje, null, emisor));
+		}
 	}
 
 	/**
@@ -155,12 +203,12 @@ public class ResonanceHome {
 	 * @return
 	 * @throws NoExistException
 	 */
-	public Anfitrion obtenerAnfitrion(String nametag) throws NoExistException {
-		if (anfitriones.get(nametag) == null) {
-			throw new NoExistException();
-		} else {
+	public Anfitrion obtenerAnfitrion(String nametag) {
+		if (anfitriones.get(nametag) != null) {
 			return anfitriones.get(nametag);
 		}
+
+		return null;
 
 	}
 

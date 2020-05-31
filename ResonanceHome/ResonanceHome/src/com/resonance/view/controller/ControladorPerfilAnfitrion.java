@@ -69,6 +69,9 @@ public class ControladorPerfilAnfitrion {
     	
 public void inicializar () {
 		colorearBotones();
+		btnMensajes.setOnMouseClicked((e) -> {
+			abrirVentanaMensajes();
+		});
 		if (stage.getUsuarioLogeado() != null)
 			llenarDatos();
 		if (!stage.getUsuarioLogeado().getURLFoto().equals("")) {
@@ -101,6 +104,23 @@ public void inicializar () {
 			abrirVentanaPrincipal();
 		});
     }
+
+	public void abrirVentanaMensajes() {
+		FXMLLoader loader = new FXMLLoader(getClass().getResource(Util.PANEL_MENSAJES));
+		try {
+			Parent root = loader.load();
+			ControladorMensajes control = loader.getController();
+			stage.setVentanaAnterior(Util.PANEL_PERFIL_ANFITRION);
+			control.setStage(stage);
+			control.setResonance(resonance);
+			control.inicializar();
+			stage.getScene().setRoot(root);
+
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+	}
 
 	public void colorearBotones() {
 		Image image = new Image(getClass().getResourceAsStream(Util.ICON_MENSAJES));

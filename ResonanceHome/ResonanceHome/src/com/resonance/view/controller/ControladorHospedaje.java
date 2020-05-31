@@ -1,31 +1,40 @@
 package com.resonance.view.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Date;
 
 import com.resonance.model.hospedajes.Hospedaje;
 import com.resonance.model.principal.ResonanceHome;
+import com.resonance.model.usuarios.Huesped;
 import com.resonance.model.util.Util;
 import com.resonance.view.interfaz.StageR;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.StageStyle;
 
 public class ControladorHospedaje {
 
 	private StageR stage;
 
 	private boolean favorito = false;
-	
+
 	private Hospedaje hospedaje;
 
 	private ResonanceHome resonance;
 
+	private int numeroHuspedes;
+
+	private ArrayList<Date> date;
+	
 	@FXML
 	private Label lblPrecio;
 
@@ -95,20 +104,63 @@ public class ControladorHospedaje {
 		}
 
 		btnFavorito.setOnMouseClicked((e) -> {
+
 			if (isFavorito()) {
-				Image image = new Image(getClass().getResourceAsStream(Util.ICON_CORAZON_BLANCO));
-				btnFavorito.setGraphic(new ImageView(image));
-				favorito = false;
-				// Se pone no favorito
+
+				if (stage.getUsuarioLogeado() != null) {
+
+					if (stage.getUsuarioLogeado() instanceof Huesped) {
+
+						Huesped huesped = (Huesped) stage.getUsuarioLogeado();
+
+						huesped.getFavoritos().remove(hospedaje);
+
+						// Se pone no favorito
+						Image image = new Image(getClass().getResourceAsStream(Util.ICON_CORAZON_BLANCO));
+						btnFavorito.setGraphic(new ImageView(image));
+						favorito = false;
+
+					} else {
+						showWarning("ATENCION", "Necesita iniciar sesion para realizar esta accion");
+					}
+
+				}
 			} else {
-				Image image = new Image(getClass().getResourceAsStream(Util.ICON_CORAZON_ROJO));
-				btnFavorito.setGraphic(new ImageView(image));
-				favorito = true;
-				// Se pone favorito
+
+				if (stage.getUsuarioLogeado() != null) {
+
+					if (stage.getUsuarioLogeado() instanceof Huesped) {
+
+						Huesped huesped = (Huesped) stage.getUsuarioLogeado();
+
+						huesped.agregarHospedajeFavorito(hospedaje);
+						// Se pone favorito
+						Image image = new Image(getClass().getResourceAsStream(Util.ICON_CORAZON_ROJO));
+						btnFavorito.setGraphic(new ImageView(image));
+						favorito = true;
+
+					}
+
+					else {
+
+						showWarning("ATENCION", "Necesita iniciar sesion para realizar esta accion");
+
+					}
+				}
 			}
 		});
 
 	}
+	
+	public static void showWarning(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.initStyle(StageStyle.UTILITY);
+        alert.setTitle("Warning");
+        alert.setHeaderText(title);
+        alert.setContentText(message);
+
+        alert.showAndWait();
+    }
 
 	public void tocarHospedaje() {
 
@@ -124,12 +176,22 @@ public class ControladorHospedaje {
 		ControladorHospedajeCompleto control = loader.getController();
 		control.setResonance(resonance);
 		control.setStage(stage);
+		control.setNumeroHuspedes(numeroHuspedes);
+		control.setDate(date);
 		control.setHospedaje(hospedaje);
 		control.inicializar();
 
 		stage.setResizable(false);
 		stage.getScene().setRoot(root);
 
+	}
+	
+	public int getNumeroHuspedes() {
+		return numeroHuspedes;
+	}
+
+	public void setNumeroHuspedes(int numeroHuspedes) {
+		this.numeroHuspedes = numeroHuspedes;
 	}
 
 	public StageR getStage() {
@@ -171,4 +233,12 @@ public class ControladorHospedaje {
 		this.favorito = favorito;
 	}
 
+	public ArrayList<Date> getDate() {
+		return date;
+	}
+
+	public void setDate(ArrayList<Date> date) {
+		this.date = date;
+	}
+	
 }

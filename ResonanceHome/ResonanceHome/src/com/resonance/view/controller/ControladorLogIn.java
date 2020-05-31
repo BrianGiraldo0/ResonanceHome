@@ -2,7 +2,6 @@ package com.resonance.view.controller;
 
 import java.io.IOException;
 
-import com.resonance.model.excepciones.NoExistException;
 import com.resonance.model.principal.ResonanceHome;
 import com.resonance.model.usuarios.Anfitrion;
 import com.resonance.model.usuarios.Huesped;
@@ -86,7 +85,6 @@ public class ControladorLogIn {
 						&& textUsuario.getText().equalsIgnoreCase("admin")) {
 					abrirVentanaAdmin();
 				} else {
-				try {
 					if (resonance.obtenerAnfitrion(textUsuario.getText()) != null) {
 						Anfitrion anfitrion = resonance.obtenerAnfitrion(textUsuario.getText());
 						if (anfitrion.getContrasenia().equals(textPassword.getText())) {
@@ -98,12 +96,6 @@ public class ControladorLogIn {
 							lblError.setText(error);
 						}
 					}
-				} catch (NoExistException e1) {
-					error = "Usuario";
-					getWidth(error.length());
-					lblError.setText(error);
-				}
-				try {
 					if (resonance.obtenerHuesped(textUsuario.getText()) != null) {
 						Huesped huesped = resonance.obtenerHuesped(textUsuario.getText());
 						if (huesped.getContrasenia().equals(textPassword.getText())) {
@@ -115,11 +107,7 @@ public class ControladorLogIn {
 							lblError.setText(error);
 						}
 						}
-				} catch (NoExistException e1) {
-						error = "Usuario o contraseña incorrectos";
-					getWidth(error.length());
-					lblError.setText(error);
-				}
+
 
 				}
 			} else {
