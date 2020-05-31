@@ -178,10 +178,10 @@ public class ControladorListadoHospedajes {
 				}
 
 				ControladorRegistro control = loader.getController();
-				control.inicializar();
+
 				control.setResonance(resonance);
 				control.setStage(stage);
-
+				control.inicializar();
 				stage.setResizable(false);
 				stage.getScene().setRoot(root);
 
@@ -197,10 +197,10 @@ public class ControladorListadoHospedajes {
 				}
 
 				ControladorPerfilUsuario control = loader.getController();
-				control.inicializar();
+
 				control.setResonance(resonance);
 				control.setStage(stage);
-
+				control.inicializar();
 				stage.setResizable(false);
 				stage.getScene().setRoot(root);
 

@@ -2,6 +2,7 @@ package com.resonance.view.controller;
 
 import java.io.IOException;
 
+import com.resonance.model.excepciones.NoExistException;
 import com.resonance.model.principal.ResonanceHome;
 import com.resonance.model.usuarios.Anfitrion;
 import com.resonance.model.usuarios.Huesped;
@@ -138,7 +139,12 @@ public class ControladorLogIn {
 		ControladorAdministrador control = loader.getController();
 		control.setResonance(resonance);
 		control.setStage(stage);
-		control.inicializar();
+		try {
+			control.inicializar();
+		} catch (NoExistException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		stage.getScene().setRoot(root);
 
 	}

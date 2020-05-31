@@ -59,6 +59,21 @@ public boolean isMayor(Date date)
 	return false;
 }
 
+	public static Date convertirFecha(Fecha fecha) {
+		String oldDate = fecha.toString();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		Calendar c = Calendar.getInstance();
+
+		// Setting the date to the given date
+		try {
+			c.setTime(sdf.parse(oldDate));
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return c.getTime();
+	}
 
 @Override
 public String toString()
@@ -71,5 +86,33 @@ public String toString()
 	
 	return anio +"-" + mesAux + "-" + diaAux;
 }
+
+	/**
+	 * @return the dia
+	 */
+	public int getDia() {
+		return dia;
+	}
+
+	/**
+	 * @param dia the dia to set
+	 */
+	public void setDia(int dia) {
+		this.dia = dia;
+	}
+
+	/**
+	 * @param mes the mes to set
+	 */
+	public void setMes(int mes) {
+		this.mes = mes;
+	}
+
+	/**
+	 * @param anio the anio to set
+	 */
+	public void setAnio(int anio) {
+		this.anio = anio;
+	}
 
 }

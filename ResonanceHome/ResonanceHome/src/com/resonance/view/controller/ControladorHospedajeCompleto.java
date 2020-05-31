@@ -7,9 +7,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
-import java.util.logging.SimpleFormatter;
-
-import javax.swing.JOptionPane;
 
 import com.resonance.model.hospedajes.Hospedaje;
 import com.resonance.model.principal.ResonanceHome;
@@ -84,7 +81,12 @@ public class ControladorHospedajeCompleto {
 	private Text btnAtras;
 
 	public void inicializar() {
-
+		if (stage.getHospedaje() != null) {
+			llenarDatos();
+		}
+		btnAtras.setOnMouseClicked((e) -> {
+			abrirVentanaPrincipal();
+		});
 		FXMLLoader loader = new FXMLLoader(getClass().getResource(Util.PANEL_FOTOS_HOSPEDAJE));
 		Parent root = null;
 		try {
@@ -148,6 +150,40 @@ public class ControladorHospedajeCompleto {
 		SimpleDateFormat formato = new SimpleDateFormat("dd/MM/YYYY");
 		lblFechas.setText(formato.format(date.get(0)) + " hasta " + formato.format(date.get(date.size()-1)));
 
+	}
+
+	public void abrirVentanaPrincipal() {
+		FXMLLoader loader = new FXMLLoader(getClass().getResource(Util.VENTANA_PRINCIPAL));
+		try {
+			Parent root = loader.load();
+			ControladorPrincipal control = loader.getController();
+			control.setStage(stage);
+			control.setResonance(resonance);
+			control.inicializar();
+			stage.getScene().setRoot(root);
+
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+	}
+	public void llenarDatos() {
+		textCantidadHuespedes.setText(numeroHuspedes + "");
+		int cantidadHuspedes = Integer.parseInt(textCantidadHuespedes.getText());
+		double precio = hospedaje.getPrecio();
+		double precioCompleto = precio * date.size();
+		double precioLimpieza = (hospedaje.getPrecio() * 0.05) * cantidadHuspedes;
+		double comision = hospedaje.getPrecio() * 0.15;
+		double total = comision + precioLimpieza + precioCompleto;
+
+		labelPrecioDia.setText("$ " + precio);
+		labelPrecioAlojamiento.setText("$ " + precioCompleto);
+		labelPrecioLimpieza.setText("$ " + precioLimpieza);
+		labelComision.setText("$ " + comision);
+		labelTotal.setText("$ " + total);
+
+		SimpleDateFormat formato = new SimpleDateFormat("dd/MM/YYYY");
+		lblFechas.setText(formato.format(date.get(0)) + " hasta " + formato.format(date.get(date.size() - 1)));
 	}
 
 	public void reservar() {

@@ -83,6 +83,7 @@ public void inicializar () {
 		btnMensajes.setOnMouseClicked((e) -> {
 			abrirVentanaMensajes();
 		});
+
 	labelNombreUsuario.setText(stage.getUsuarioLogeado().getNombre());
 	
 	if (!stage.getUsuarioLogeado().getURLFoto().equals("")) {
@@ -152,7 +153,7 @@ public void inicializar () {
 		for (int i=0; i<huesped.getReservas().size();i++) {
 			
 			
-		Hospedaje hospedaje = 	resonance.getHospedajes().get(huesped.getReservas().get(i).getIdentificacion());
+			Hospedaje hospedaje = huesped.getReservas().get(i).getHospedaje();
 		
 		FXMLLoader loader3 = new FXMLLoader(getClass().getResource(Util.PANEL_HOSPEDAJE_PERFIL));
 		Parent root3 = null;

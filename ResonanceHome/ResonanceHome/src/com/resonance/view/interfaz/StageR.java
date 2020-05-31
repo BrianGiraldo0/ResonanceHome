@@ -1,5 +1,6 @@
 package com.resonance.view.interfaz;
 
+import com.resonance.model.hospedajes.Hospedaje;
 import com.resonance.model.usuarios.Anfitrion;
 import com.resonance.model.usuarios.Huesped;
 import com.resonance.model.usuarios.Usuario;
@@ -10,6 +11,7 @@ public class StageR extends Stage {
 	private String ventanaAnterior;
 	private Huesped usuarioLogeado;
 	private Anfitrion anfitrionLogin;
+	private Hospedaje hospedaje;
 	/**
 	 * @param usuarioLogeado
 	 */
@@ -56,5 +58,18 @@ public class StageR extends Stage {
 		this.ventanaAnterior = ventanaAnterior;
 	}
 
+	/**
+	 * @return the hospedaje
+	 */
+	public Hospedaje getHospedaje() {
+		return hospedaje;
+	}
+
+	/**
+	 * @param hospedaje the hospedaje to set
+	 */
+	public void setHospedaje(Hospedaje hospedaje) {
+		this.hospedaje = hospedaje;
+	}
 
 }

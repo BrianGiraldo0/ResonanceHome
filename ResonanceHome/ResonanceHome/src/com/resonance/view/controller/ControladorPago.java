@@ -97,13 +97,34 @@ public class ControladorPago {
 
 	}
 
+	public void abrirVentanaAnterior() {
+		FXMLLoader loader = new FXMLLoader(getClass().getResource(Util.PANEL_HOSPEDAJE_COMPLETO));
+		try {
+			Parent root = loader.load();
+
+			ControladorHospedajeCompleto control = loader.getController();
+			control.setResonance(resonance);
+			control.setHospedaje(hospedaje);
+			control.setNumeroHuspedes(numeroHuspedes);
+			control.setStage(stage);
+			control.setDate(date);
+			control.inicializar();
+			stage.getScene().setRoot(root);
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+	}
 	public void inicializar() {
 		double precio = hospedaje.getPrecio();
 		double precioCompleto = precio * date.size();
 		double precioLimpieza = (hospedaje.getPrecio() * 0.05) * numeroHuspedes;
 		double comision = hospedaje.getPrecio() * 0.15;
 		double total = comision + precioLimpieza + precioCompleto;
-
+		btnAtras.setOnMouseClicked((e) -> {
+			abrirVentanaAnterior();
+		});
 		lblNumeroHuespedes.setText(numeroHuspedes + "");
 		labelPrecioDia.setText("$ " + precio);
 		labelPrecioAlojamiento.setText("$ " + precioCompleto);

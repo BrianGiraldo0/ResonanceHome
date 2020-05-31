@@ -1,6 +1,7 @@
 package com.resonance.view.controller;
 import java.io.IOException;
 
+import com.resonance.model.excepciones.NoExistException;
 import com.resonance.model.principal.ResonanceHome;
 import com.resonance.model.util.Util;
 
@@ -36,7 +37,7 @@ public class ControladorGestionReservas {
  
     	
     	
-public void inicializar () {
+public void inicializar () throws NoExistException {
 			
 			crearEjemplo();
 			colorearBotones();
@@ -51,7 +52,7 @@ public void inicializar () {
     	
     }
 
-	public void crearEjemplo() {
+	public void crearEjemplo() throws NoExistException {
 		
 		for (int i=0; i<5;i++) {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/resonance/view/interfaz/panelDescripcionReserva.fxml"));
@@ -70,7 +71,7 @@ public void inicializar () {
 		}
 	}
 	
-public void crearEjemploProximas() {
+public void crearEjemploProximas() throws NoExistException {
 		
 		for (int i=0; i<5;i++) {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/resonance/view/interfaz/panelDescripcionReserva.fxml"));
@@ -91,7 +92,7 @@ public void crearEjemploProximas() {
 		}
 	}
 	
-	public void cargarAnteriores() {
+	public void cargarAnteriores() throws NoExistException {
 		
 		vBoxReservas.getChildren().clear();
 		crearEjemplo();
@@ -99,7 +100,7 @@ public void crearEjemploProximas() {
 		
 	}
 	
-	public void cargarProximas() {
+	public void cargarProximas() throws NoExistException {
 		
 		vBoxReservas.getChildren().clear();
 		crearEjemploProximas();

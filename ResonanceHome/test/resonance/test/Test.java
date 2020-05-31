@@ -6,13 +6,11 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.security.GeneralSecurityException;
-import java.util.TreeSet;
 
 import com.resonance.model.archivos.FileManager;
+import com.resonance.model.util.Fecha;
 
 import javafx.application.Application;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableSet;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -21,15 +19,8 @@ public class Test extends Application {
 
 	public static void main(String[] args) throws IOException, GeneralSecurityException {
 
-		ObservableSet<String> obserble = FXCollections.observableSet(new TreeSet<>());
-		obserble.add("hola");
-		obserble.add("add");
-
-		for (String a : obserble) {
-			System.out.println(a);
-		}
-
-//		launch(args);
+		Fecha fecha = new Fecha(12, 3, 22);
+		System.out.println(fecha.convertirFecha(fecha));
 
 	}
 	

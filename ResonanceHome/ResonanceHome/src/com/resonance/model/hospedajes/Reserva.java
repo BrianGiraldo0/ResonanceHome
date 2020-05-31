@@ -10,7 +10,7 @@ public class Reserva {
 
 	private Hospedaje hospedaje;
 	private String nameTagHuesped = "";
-	private ArrayList<Date> fechaReservada;
+	private ArrayList<Date> fechaReservada = new ArrayList<Date>();
 	private boolean vencido = false;
 	private String identificacion;
 	private String nombre;
@@ -43,6 +43,7 @@ public class Reserva {
 		this.direccion = direccion;
 		this.correo = correo;
 		this.tarjeta = tarjeta;
+		this.fechaReservada = fechaReservada;
 		this.valor = valor;
 		this.numeroHuespedes = numeroHuespedes;
 		

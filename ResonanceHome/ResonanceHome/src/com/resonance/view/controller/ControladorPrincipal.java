@@ -1,7 +1,6 @@
 package com.resonance.view.controller;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
@@ -175,10 +174,10 @@ public class ControladorPrincipal {
 			}
 
 			ControladorRegistro control = loader.getController();
-			control.inicializar();
+
 			control.setResonance(resonance);
 			control.setStage(stage);
-
+				control.inicializar();
 			stage.setResizable(false);
 			stage.getScene().setRoot(root);
 			

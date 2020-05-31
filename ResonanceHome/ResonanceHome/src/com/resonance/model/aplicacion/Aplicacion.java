@@ -28,11 +28,10 @@ public class Aplicacion extends Application {
 		this.stage = stage;
 
 		inicializarResonance();
+		stage.setHuespedLogeado(resonance.obtenerHuesped("cemarquez"));
 		FXMLLoader loader = new FXMLLoader(getClass().getResource(Util.VENTANA_PRINCIPAL));
-//		FXMLLoader loader = new FXMLLoader(getClass().getResource(Util.PANEL_PERFIL_USUARIO));
 		Parent root = loader.load();
 		ControladorPrincipal control = loader.getController();
-//		ControladorPerfilUsuario control = loader.getController();
 		
 		control.setResonance(resonance);
 
