@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="lHospedaje" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#tocarHospedaje" prefHeight="200.0" prefWidth="1152.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.resonance.view.controller.ControladorHospedaje">
+<AnchorPane fx:id="lHospedaje" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="1152.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.resonance.view.controller.ControladorHospedaje">
    <children>
       <ImageView fx:id="imageFotos" fitHeight="173.0" fitWidth="215.0" layoutX="35.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="btnAnterior" fitHeight="25.0" fitWidth="31.0" layoutX="52.0" layoutY="88.0" pickOnBounds="true" preserveRatio="true">
@@ -34,6 +34,7 @@
          <font>
             <Font name="System Bold" size="13.0" />
          </font></Label>
+      <AnchorPane fx:id="lTocar" layoutX="249.0" prefHeight="200.0" prefWidth="905.0" />
    </children>
    <cursor>
       <Cursor fx:constant="HAND" />

@@ -7,6 +7,7 @@ public class Mensaje {
 	private String mensaje;
 	private Date fecha;
 	private String emisor;
+	private String idHospedaje;
 	
 	/**
 	 * Metodo constructor de la clase
@@ -21,7 +22,13 @@ public class Mensaje {
 		this.emisor = emisor;
 	}
 
-	
+	public Mensaje(String mensaje, Date fecha, String emisor, String idHospedaje) {
+
+		this.mensaje = mensaje;
+		this.fecha = fecha;
+		this.emisor = emisor;
+		this.setIdHospedaje(idHospedaje);
+	}
 	
 	/*
 	 * Inicio de setters y getters
@@ -52,6 +59,14 @@ public class Mensaje {
 
 	public void setEmisor(String emisor) {
 		this.emisor = emisor;
+	}
+
+	public String getIdHospedaje() {
+		return idHospedaje;
+	}
+
+	public void setIdHospedaje(String idHospedaje) {
+		this.idHospedaje = idHospedaje;
 	}
 
 	/*

@@ -61,20 +61,50 @@ public class ControladorHospedaje {
 
 	@FXML
 	private Button btnFavorito;
-
+	@FXML
+	private AnchorPane lTocar;
 	@FXML
 	private Label lblDescripcion;
+	
+	private int numeroFoto;
+	
+	
 
 	public void inicializar() {
+		
+		ArrayList<String> urls = hospedaje.getUrlsFotos();
 		lblTipoHospedaje.setText(Util.getTipoHospedaje(hospedaje.getTipoHospedaje()));
 		lblTitulo.setText(hospedaje.getTitulo());
 		lblDescripcion.setText(hospedaje.getPrestaciones().toString());
 		lblPlus.setText(hospedaje.getServicios().toString());
 		lblPrecio.setText(hospedaje.getPrecio() + " COP por noche");
+		
+		if (urls.size()>0) {
+			imageFotos.setImage(new Image("file:///" + urls.get(numeroFoto)));
+		}
+		
+		
+		lTocar.setOnMouseClicked((e) -> {
+			tocarHospedaje();
+		});
 
-//		AnchorPane pane = new AnchorPane();
 		btnAnterior.setVisible(false);
 		btnSiguiente.setVisible(false);
+		btnAnterior.setOnMouseClicked((e) -> {
+			if (numeroFoto - 1 < 0)
+				numeroFoto = 0;
+			else
+				numeroFoto--;
+			imageFotos.setImage(new Image("file:///" + urls.get(numeroFoto)));
+		});
+		btnSiguiente.setOnMouseClicked((e) -> {
+			if (numeroFoto + 1 == urls.size())
+				numeroFoto = urls.size() - 1;
+			else
+				numeroFoto++;
+			imageFotos.setImage(new Image("file:///" + urls.get(numeroFoto)));
+		});
+
 		lHospedaje.setStyle("-fx-background-color: #FFFFFF");
 
 		// Botón Favorito
@@ -120,10 +150,11 @@ public class ControladorHospedaje {
 						btnFavorito.setGraphic(new ImageView(image));
 						favorito = false;
 
-					} else {
-						showWarning("ATENCION", "Necesita iniciar sesion para realizar esta accion");
-					}
+					} 
 
+				}
+				else {
+					showWarning("ATENCION", "Necesita iniciar sesion para realizar esta accion");
 				}
 			} else {
 
@@ -141,16 +172,23 @@ public class ControladorHospedaje {
 
 					}
 
-					else {
+					
+				}
+				else {
 
-						showWarning("ATENCION", "Necesita iniciar sesion para realizar esta accion");
+					showWarning("ATENCION", "Necesita iniciar sesion para realizar esta accion");
 
-					}
 				}
 			}
 		});
 
 	}
+	
+	
+	
+	  
+
+	  
 	
 	public static void showWarning(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.WARNING);

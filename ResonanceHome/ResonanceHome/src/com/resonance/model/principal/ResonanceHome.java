@@ -19,7 +19,10 @@ import com.resonance.model.hospedajes.TipoHospedaje;
 import com.resonance.model.txt.Chat;
 import com.resonance.model.txt.Mensaje;
 import com.resonance.model.usuarios.Anfitrion;
+import com.resonance.model.usuarios.Estrato;
 import com.resonance.model.usuarios.Huesped;
+import com.resonance.model.usuarios.NivelEstudio;
+import com.resonance.model.util.ClienteEstadistica;
 import com.resonance.model.util.Fecha;
 import com.resonance.model.util.MailSender;
 import com.resonance.model.util.Util;
@@ -69,11 +72,13 @@ public class ResonanceHome {
 
 		agregarHuesped("Cesar Marquez", "cemarquezz29@gmail.com", "", "Calle 12 # 4", fecha1, "cesar",
 				"Hola, soy cesar",
-				"cemarquez");
+				"cemarquez", Estrato.ESTRATO_1, NivelEstudio.BACHILLER);
 		agregarHuesped("Antonio Sepulveda", "antoniel9704@gmail.com", "", "Calle 51B # 12 - 04", fecha2, "antonio",
-				"Soy estudiante de literatura, me gusta disfrutar de un buen lugar", "sepultonio");
+				"Soy estudiante de literatura, me gusta disfrutar de un buen lugar", "sepultonio", Estrato.ESTRATO_2,
+				NivelEstudio.BACHILLER);
 		agregarHuesped("Estela Aguilar", "ester.aguila@gmail.com", "", "Carre 16N # 13 - 42", fecha3, "estela",
-				"Me gusta viajar por el mundo, disfrutar de la vida, soy buena inquilina", "esterguila");
+				"Me gusta viajar por el mundo, disfrutar de la vida, soy buena inquilina", "esterguila",
+				Estrato.ESTRATO_3, NivelEstudio.BACHILLER);
 		
 
 			crearChat("cemarquez", "gustavomene");
@@ -108,17 +113,17 @@ public class ResonanceHome {
 		Direccion direc3 = new Direccion("Medellin", "Antioquia", "Colombia", "Calle 13 # 07 - 22");
 
 		ArrayList<String> fotos1 = new ArrayList<String>();
-//		fotos1.add("/com/resonance/view/imagenes/hospedajes/hospedaje01/1b.jpg");
-//		fotos1.add("src/view/imagenes/hospedajes/hospedaje01/2b.jpg");
+		fotos1.add(FileManager.urlMain + "/Test/hospedaje01/1b.jpg");
+		fotos1.add(FileManager.urlMain + "/Test/hospedaje01/2b.jpg");
 		
 		ArrayList<String> fotos2 = new ArrayList<String>();
-//		fotos2.add("src/view/imagenes/hospedajes/hospedaje02/1a.jpg");
-//		fotos2.add("src/view/imagenes/hospedajes/hospedaje02/2a.jpg");
-//		fotos2.add("src/view/imagenes/hospedajes/hospedaje02/3a.jpg");
+		fotos2.add(FileManager.urlMain + "/Test/hospedaje02/1a.jpg");
+		fotos2.add(FileManager.urlMain + "/Test/hospedaje02/2a.jpg");
+		fotos2.add(FileManager.urlMain + "/Test/hospedaje02/3a.jpg");
 		
 		ArrayList<String> fotos3 = new ArrayList<String>();
-//		fotos3.add("src/view/imagenes/hospedajes/hospedaje03/1c.jpg");
-//		fotos3.add("src/view/imagenes/hospedajes/hospedaje03/2c.jpg");
+		fotos3.add(FileManager.urlMain + "/Test/hospedaje03/1c.jpg");
+		fotos3.add(FileManager.urlMain + "/Test/hospedaje03/2c.jpg");
 
 		agregarHospedaje(direc1, 87000.0, "gustavomene", fotos1,
 				"Habitacion con gran espacio perfecto para parejas, buena iluminación natural y buena convivencia",
@@ -189,13 +194,23 @@ public class ResonanceHome {
 		if (obtenerAnfitrion(emisor) != null) {
 			Anfitrion e = obtenerAnfitrion(emisor);
 			Huesped r = obtenerHuesped(receptor);
-			e.buscarChat(receptor).agregarMensaje(new Mensaje(mensaje, null, emisor));
-			r.buscarChat(emisor).agregarMensaje(new Mensaje(mensaje, null, emisor));
+			if (e.buscarChat(receptor) != null) {
+				e.buscarChat(receptor).agregarMensaje(new Mensaje(mensaje, null, emisor));
+				r.buscarChat(emisor).agregarMensaje(new Mensaje(mensaje, null, emisor));
+			} else {
+				crearChat(emisor, receptor);
+			}
+
 		} else {
 			Huesped e = obtenerHuesped(emisor);
 			Anfitrion r = obtenerAnfitrion(receptor);
-			e.buscarChat(receptor).agregarMensaje(new Mensaje(mensaje, null, emisor));
-			r.buscarChat(emisor).agregarMensaje(new Mensaje(mensaje, null, emisor));
+			if (e.buscarChat(receptor) != null) {
+				e.buscarChat(receptor).agregarMensaje(new Mensaje(mensaje, null, emisor));
+				r.buscarChat(emisor).agregarMensaje(new Mensaje(mensaje, null, emisor));
+			} else {
+				crearChat(emisor, receptor);
+			}
+
 		}
 	}
 
@@ -320,12 +335,14 @@ public class ResonanceHome {
 	 * @param nametag
 	 */
 	public void agregarHuesped(String nombre, String email, String uRLFoto, String direccion, Date fechaNacimiento,
-			String contrasenia, String biografia, String nametag) {
+			String contrasenia, String biografia, String nametag, Estrato estrato, NivelEstudio nivel) {
 		Huesped huesped;
 		if (uRLFoto == null || uRLFoto.equals("")) {
-			huesped = new Huesped(nombre, email, direccion, fechaNacimiento, contrasenia, biografia, nametag);
+			huesped = new Huesped(nombre, email, direccion, fechaNacimiento, contrasenia, biografia, nametag, estrato,
+					nivel);
 		} else {
-			huesped = new Huesped(nombre, email, uRLFoto, direccion, fechaNacimiento, contrasenia, biografia, nametag);
+			huesped = new Huesped(nombre, email, uRLFoto, direccion, fechaNacimiento, contrasenia, biografia, nametag,
+					estrato, nivel);
 			huesped.setURLFoto(FileManager.urlMain + "/Usuarios/Huespedes/" + nametag + "/imagenPerfil.png");
 		}
 		FileManager.crearCarpetaHuesped(nametag, uRLFoto);
@@ -516,6 +533,84 @@ public class ResonanceHome {
 	 */
 	public void enviarCorreoBienvenida(String datos, String destino) {
 		MailSender.enviarCorreoBienvenida(destino, datos);
+	}
+
+	public ClienteEstadistica clienteMayorCantidadReservas() {
+		ClienteEstadistica c = null;
+		int mayor = 0;
+		Iterator<String> keys = huespedes.keySet().iterator();
+		while (keys.hasNext()) {
+			String key = keys.next();
+			Huesped h = huespedes.get(key);
+			if (h.getReservas().size() >= mayor) {
+				c = new ClienteEstadistica(h, new ArrayList<String>());
+				mayor = h.getReservas().size();
+			}
+
+		}
+
+		for (int i = 0; i < c.getHuesped().getReservas().size(); i++) {
+			String ciudad = c.getHuesped().getReservas().get(i).getHospedaje().getDireccion().getCiudad();
+			if (!c.getCiudades().contains(ciudad)) {
+				c.agregarCiudad(ciudad);
+			}
+		}
+
+		return c;
+	}
+
+	/**
+	 * Método que obtiene estrato y nivel estudio de clientes que reservaron en
+	 * ciudad
+	 */
+
+	public ArrayList<String> obtenerEstratoEstudioPorCiudad(String ciudad) {
+
+		ArrayList<String> lista = new ArrayList<String>();
+
+		ArrayList<Reserva> reservas = obtenerReservas();
+
+		for (int i = 0; i < reservas.size(); i++) {
+
+			if (reservas.get(i).getHospedaje().getDireccion().getCiudad().equals(ciudad)) {
+
+				if (verificarEstratoCiudadRepetido(lista.get(i), lista) == false) {
+
+					Huesped huesped = obtenerHuesped(reservas.get(i).getNameTagHuesped());
+
+					String persona = reservas.get(i).getNombre() + " Estrato: " + huesped.getEstrato().toString()
+							+ " Nivel estudios: " + huesped.getNivelEstudio().toString();
+
+					lista.add(persona);
+				}
+			}
+		}
+
+		return lista;
+	}
+
+	/**
+	 * Verifica que no se repita persona en el listado de reservas con estrato y
+	 * nivel de estudios por ciudada
+	 * 
+	 * @param persona
+	 * @param lista
+	 * @return
+	 */
+	public boolean verificarEstratoCiudadRepetido(String persona, ArrayList<String> lista) {
+
+		for (int i = 0; i < lista.size(); i++) {
+
+			if (persona.equals(lista.get(i))) {
+
+				return true;
+
+			}
+
+		}
+
+		return false;
+
 	}
 
 }

@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+import com.resonance.model.excepciones.NoExistException;
 import com.resonance.model.hospedajes.Hospedaje;
 import com.resonance.model.hospedajes.Reserva;
 import com.resonance.model.principal.ResonanceHome;
@@ -198,6 +199,18 @@ public class ControladorPago {
 				factura.setPrecioComision(comision);
 				factura.crearPDF();
 				MailSender.enviarCorreoCompra(huesped.getEmail(), factura.getRuta(), "Factura" + resonance.getFecha());
+				String mensaje = txtMensaje.getText();
+				if (mensaje.equals("")) {
+					mensaje = "Hola " + hospedaje.getNameTagPropietario()
+							+ ", No veo la hora de pasar mis dias de viaje en tu hospedaje. ";
+				}
+				try {
+					resonance.enviarMensajeChat(stage.getUsuarioLogeado().getNametag(),
+							hospedaje.getNameTagPropietario(), mensaje);
+				} catch (NoExistException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				abrirVentanaPrincipal();
 			}
 		});

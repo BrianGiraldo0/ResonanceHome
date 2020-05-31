@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.text.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.shape.*?>
-<?import javafx.scene.image.*?>
-<?import java.lang.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="199.0" prefWidth="1180.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.resonance.view.controller.ControladorDescripcionReserva">
+<AnchorPane prefHeight="199.0" prefWidth="1180.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.resonance.view.controller.ControladorDescripcionReserva">
    <children>
       <ImageView fx:id="imgViewHospedajeReserva" fitHeight="123.0" fitWidth="169.0" layoutX="13.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true" />
       <Label fx:id="lblNombreHospedaje" layoutX="221.0" layoutY="10.0" text="Nombre del hospedaje">
@@ -27,12 +26,12 @@
             <Font size="15.0" />
          </font>
       </Label>
-      <Label fx:id="lblTipoHospedajeReserva" layoutX="506.0" layoutY="46.0" text="Tipo de alojamiento  ">
+      <Label fx:id="lblTipoHospedajeReserva" layoutX="506.0" layoutY="18.0" text="Tipo de alojamiento  ">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <Label fx:id="lblNumeroHuespedesReserva" layoutX="891.0" layoutY="46.0" text="numero huespedes">
+      <Label fx:id="lblNumeroHuespedesReserva" layoutX="891.0" layoutY="18.0" text="numero huespedes">
          <font>
             <Font size="15.0" />
          </font>
@@ -57,7 +56,7 @@
             <Font size="15.0" />
          </font>
       </Label>
-      <Button fx:id="btnEstado" layoutX="977.0" layoutY="74.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="169.0" style="-fx-background-color: black;" text="Estado" textFill="WHITE">
+      <Button fx:id="btnEstado" layoutX="977.0" layoutY="61.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="169.0" style="-fx-background-color: black;" text="Estado" textFill="WHITE">
          <font>
             <Font name="System Bold" size="22.0" />
          </font>
@@ -78,10 +77,15 @@
             <Font size="15.0" />
          </font>
       </Label>
-      <Label layoutX="654.0" layoutY="46.0" text="Numero de huespedes de reserva:">
+      <Label layoutX="654.0" layoutY="18.0" text="Numero de huespedes de reserva:">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
+      <Button fx:id="btnInformacion" layoutX="977.0" layoutY="116.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="169.0" style="-fx-background-color: black;" text="Informacion del Huesped" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

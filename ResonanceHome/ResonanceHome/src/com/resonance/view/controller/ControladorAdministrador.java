@@ -10,6 +10,7 @@ import com.resonance.model.excepciones.NoExistException;
 import com.resonance.model.hospedajes.Hospedaje;
 import com.resonance.model.hospedajes.Reserva;
 import com.resonance.model.principal.ResonanceHome;
+import com.resonance.model.util.ClienteEstadistica;
 import com.resonance.model.util.Fecha;
 import com.resonance.model.util.Util;
 import com.resonance.view.interfaz.StageR;
@@ -18,6 +19,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -27,13 +29,15 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.StageStyle;
 
 public class ControladorAdministrador {
 
 	private StageR stage;
 
 	private ResonanceHome resonance;
-	
+	@FXML
+	private Button btnInforme;
 	
     @FXML
     private TextField txtPrecioInferior;
@@ -79,8 +83,16 @@ public class ControladorAdministrador {
 
     @FXML
     private Label lblSuperior;
-
     
+    @FXML
+    private Label lblNombre;
+
+    @FXML
+    private AnchorPane lBoton1;
+
+    @FXML
+    private Button btnVerCiudades;
+
     public void inicializar() throws NoExistException {
 
 		comboFiltrado.getItems().addAll("Precio (Mayor a menor)", "Calificación (Mayor a menor)", "Sin filtro",
@@ -95,10 +107,41 @@ public class ControladorAdministrador {
 			lblDiaActual.setText(resonance.getFecha().toString());
 		});
 		
+		ClienteEstadistica c = resonance.clienteMayorCantidadReservas();
+		lblNombre.setText(c.getHuesped().getNombre());
+
+		btnInforme.setOnMouseClicked((e) -> {
+			ArrayList<String> res = resonance.obtenerEstratoEstudioPorCiudad(txtCiudad.getText());
+			String a = "";
+			for (int i = 0; i < res.size(); i++) {
+				a += res.get(i);
+			}
+
+			showConfirmation("Listado de clientes por estrato y nivel de estudio:",
+					"Listado de clientes por estrato y nivel de estudio: " + a);
+		});
+		
+		btnVerCiudades.setOnMouseClicked((e)->{
+			String ciudades = "";
+			for (int i = 0; i < c.getCiudades().size(); i++) {
+				ciudades += c.getCiudades().get(i) + "\n";
+			}
+			showConfirmation("Listado de ciudades", "Listado de ciudades: " + ciudades);
+		});
+		
 		cargarReservas(null);
 	
 	}
 
+	public static void showConfirmation(String title, String message) {
+		Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+		alert.initStyle(StageStyle.UTILITY);
+		alert.setTitle("Warning");
+		alert.setHeaderText(title);
+		alert.setContentText(message);
+
+		alert.showAndWait();
+	}
 	@FXML
 	void onClick(MouseEvent event) {
 		if (event.getSource() == btnCerrar) {

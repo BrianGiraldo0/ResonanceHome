@@ -3,6 +3,7 @@ package com.resonance.model.hospedajes;
 import java.util.ArrayList;
 import java.util.Date;
 
+import com.resonance.model.txt.Mensaje;
 import com.resonance.model.util.Fecha;
 import com.resonance.model.util.Util;
 
@@ -20,6 +21,7 @@ public class Hospedaje {
 	public Plus servicios;
 	private TipoHospedaje tipoHospedaje;
 	private ArrayList<Calificacion> calificaciones = new ArrayList<Calificacion>();
+	private ArrayList<Mensaje> comentarios = new ArrayList<Mensaje>();
 
 	/**
 	 * Metodo constructor de la clase
@@ -363,6 +365,14 @@ public class Hospedaje {
 	 */
 	public void setNameTagPropietario(String nameTagPropietario) {
 		this.nameTagPropietario = nameTagPropietario;
+	}
+
+	public ArrayList<Mensaje> getComentarios() {
+		return comentarios;
+	}
+
+	public void setComentarios(ArrayList<Mensaje> comentarios) {
+		this.comentarios = comentarios;
 	}
 
 }

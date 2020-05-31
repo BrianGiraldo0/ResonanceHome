@@ -1,35 +1,80 @@
 package com.resonance.view.controller;
 
-import javafx.scene.control.Label;
+import java.util.ArrayList;
+
+import com.resonance.model.hospedajes.Hospedaje;
+import com.resonance.model.principal.ResonanceHome;
+import com.resonance.view.interfaz.StageR;
+
+import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.fxml.FXML;
-import javafx.scene.layout.GridPane;
 public class ControladorFotosHospedaje {
+	
+	
+	private ResonanceHome resonance;
+	
+	private StageR stage;
+	
+	private Hospedaje hospedaje;
 
-	private ImageView pic;
+	@FXML
+	private ImageView vImage;
 
     @FXML
-    private GridPane gridFotos;
+	private ImageView vAtras;
+	private int numeroFoto = 0;
     @FXML
-    private GridPane gridFotos2;
+	private ImageView vSiguiente;
+    
 	
 	public void inicializar() {
 		
-		Image image = new Image ("com/resonance/view/imagenes/boton_buscar.png");
+		ArrayList<String> urls = hospedaje.getUrlsFotos();
 		
-		pic = new ImageView();
+		if (urls.size() > 0) {
+			vImage.setImage(new Image("file:///" + urls.get(numeroFoto)));
+		}
 		
-		pic.setImage(image);
+		vAtras.setOnMouseClicked((e) -> {
+			if (numeroFoto - 1 < 0)
+				numeroFoto = urls.size() - 1;
+			else
+				numeroFoto--;
+			vImage.setImage(new Image("file:///" + urls.get(numeroFoto)));
+		});
+		vSiguiente.setOnMouseClicked((e) -> {
+			if (numeroFoto + 1 == urls.size())
+				numeroFoto = 0;
+			else
+				numeroFoto++;
+			vImage.setImage(new Image("file:///" + urls.get(numeroFoto)));
+		});
 		
-		
-		gridFotos.getChildren().add(new Label("Foto1"));
-		
-		
-		gridFotos2.add(pic, 0, 0);
-		gridFotos2.add(new Label("Otra foto"), 0, 1);
-		
-		
+	}
+
+	public ResonanceHome getResonance() {
+		return resonance;
+	}
+
+	public void setResonance(ResonanceHome resonance) {
+		this.resonance = resonance;
+	}
+
+	public StageR getStage() {
+		return stage;
+	}
+
+	public void setStage(StageR stage) {
+		this.stage = stage;
+	}
+
+	public Hospedaje getHospedaje() {
+		return hospedaje;
+	}
+
+	public void setHospedaje(Hospedaje hospedaje) {
+		this.hospedaje = hospedaje;
 	}
 	
 	

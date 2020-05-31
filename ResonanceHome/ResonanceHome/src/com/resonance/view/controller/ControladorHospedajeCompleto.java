@@ -96,6 +96,9 @@ public class ControladorHospedajeCompleto {
 		layoutScroll.getChildren().add(root);
 
 		ControladorFotosHospedaje control = loader.getController();
+		control.setResonance(resonance);
+		control.setStage(stage);
+		control.setHospedaje(hospedaje);
 		control.inicializar();
 
 		FXMLLoader loader2 = new FXMLLoader(getClass().getResource(Util.PANEL_DESCRIPCION_HOSPEDAJE));

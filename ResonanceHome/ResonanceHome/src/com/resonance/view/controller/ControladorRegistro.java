@@ -7,6 +7,8 @@ import java.time.ZoneId;
 import java.util.Date;
 
 import com.resonance.model.principal.ResonanceHome;
+import com.resonance.model.usuarios.Estrato;
+import com.resonance.model.usuarios.NivelEstudio;
 import com.resonance.model.util.Util;
 import com.resonance.view.interfaz.StageR;
 
@@ -37,7 +39,11 @@ public class ControladorRegistro {
 	private File fileFoto;
 	@FXML
 	private Text btnAtras;
-	
+	@FXML
+	private ComboBox<String> cbNivelEstudio;
+
+	@FXML
+	private ComboBox<String> cbEstatro;
 	
 	@FXML
 	private ComboBox<String> comboTipoCuenta;
@@ -87,6 +93,21 @@ public class ControladorRegistro {
 	private TextField textNombreCompleto;
 
 	public void inicializar() {
+		cbEstatro.getItems().addAll("Estrato 1", "Estrato 2", "Estrato 3", "Estrato 4", "Estrato 5", "Estrato 6");
+		cbNivelEstudio.getItems().addAll("Ninguno", "Bachiller", "Tecnico", "Tecnologo", "Pregrado", "Maestria",
+				"Doctorado");
+		comboTipoCuenta.valueProperty().addListener((obs, oldItem, newItem) -> {
+			if (newItem != null) {
+				if (newItem.equalsIgnoreCase("huesped")) {
+					cbEstatro.setVisible(true);
+					cbNivelEstudio.setVisible(true);
+				} else {
+					cbEstatro.setVisible(false);
+					cbNivelEstudio.setVisible(false);
+				}
+			}
+		});
+
 		inicializarCombo();
 		continuar();
 		atras();
@@ -154,6 +175,8 @@ public class ControladorRegistro {
 			String clave = textPasswordUsuario.getText();
 			String biografia = textBiografia.getText();
 			String urlFoto = "";
+			String estrato = cbEstatro.getValue();
+			String nivelE = cbNivelEstudio.getValue();
 			Date date = Date.from(fecha.atStartOfDay(ZoneId.systemDefault()).toInstant());
 			if (fileFoto != null)
 				urlFoto = fileFoto.getAbsolutePath();
@@ -163,7 +186,8 @@ public class ControladorRegistro {
 					stage.setAnfitrionLogin(resonance.obtenerAnfitrion(nametag));
 
 			} else {
-				resonance.agregarHuesped(nombre, email, urlFoto, direccion, date, clave, biografia, nametag);
+				resonance.agregarHuesped(nombre, email, urlFoto, direccion, date, clave, biografia, nametag,
+						Estrato.getValue(estrato), NivelEstudio.getValue(nivelE));
 					stage.setHuespedLogeado(resonance.obtenerHuesped(nametag));
 
 			}

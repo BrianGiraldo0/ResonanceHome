@@ -14,11 +14,13 @@ import com.resonance.view.interfaz.StageR;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 
 
@@ -59,8 +61,12 @@ public class ControladorDescripcionReserva {
 
 	    @FXML
 	    private Label lblTipoHospedajeReserva;
+
+	    @FXML
+	    private Button btnInformacion;
 	    
 	    private ResonanceHome resonance;
+	    
 	    private StageR stage;
 	    
 	    
@@ -86,9 +92,25 @@ public class ControladorDescripcionReserva {
 	    	imgViewHospedajeReserva.setImage(new Image (reserva.getHospedaje().getUrlsFotos().get(0)));
 	    	
 	    	}
+	    	
+	    	btnInformacion.setOnMouseClicked((e)->{
+			String persona = reserva.getNombre() + " Estrato: "
+					+ resonance.obtenerHuesped(reserva.getNameTagHuesped()).getEstrato().toString()
+					+ " Nivel estudios: "
+					+ resonance.obtenerHuesped(reserva.getNameTagHuesped()).getNivelEstudio().toString();
+			showConfirmation("Información del huesped", persona);
+	    	});
 	    }
 	    
-	    
+	public static void showConfirmation(String title, String message) {
+		Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+		alert.initStyle(StageStyle.UTILITY);
+		alert.setTitle("Warning");
+		alert.setHeaderText(title);
+		alert.setContentText(message);
+
+		alert.showAndWait();
+	}
 	    
 		public void tocarHospedaje() {
 
