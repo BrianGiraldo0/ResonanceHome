@@ -1,4 +1,5 @@
 package com.resonance.view.controller;
+
 import java.io.IOException;
 
 import com.resonance.model.hospedajes.Hospedaje;
@@ -25,91 +26,87 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class ControladorPerfilUsuario {
-	
+
 	private Huesped huesped;
-    private ResonanceHome resonance;
-    private StageR stage;
+	private ResonanceHome resonance;
+	private StageR stage;
 
-    
-    @FXML
-    private ComboBox<String> comboTipo;
+	@FXML
+	private ComboBox<String> comboTipo;
 
-    
 	@FXML
 	private Button btnMensajes;
 
-    @FXML
-    private Text btnAtras;
-    
+	@FXML
+	private Text btnAtras;
+
 	@FXML
 	private Button btnLogout;
 
 	@FXML
 	private Label labelNombreUsuario;
-    	
+
 	@FXML
-	
+
 	private Label labelHospedajesTitulo;
-	
-    @FXML
-    private Button btnVerVisitados;
-    
-    @FXML
-    private Button btnVerFavoritos;
-    
-    @FXML
-    private Button btnGuardar;
 
-    @FXML
-    private Label labelEditar;
+	@FXML
+	private Button btnVerVisitados;
 
-    @FXML
-    private Rectangle rectanguloFoto;
+	@FXML
+	private Button btnVerFavoritos;
 
-    @FXML
-    private Button btnCancelar;
+	@FXML
+	private Button btnGuardar;
 
-    @FXML
-    private ScrollPane scrollHospedajes;
+	@FXML
+	private Label labelEditar;
 
-    @FXML
-    private ImageView picPerfil;
+	@FXML
+	private Rectangle rectanguloFoto;
 
-    @FXML
-    private VBox vBoxListadoHospedajes;
+	@FXML
+	private Button btnCancelar;
 
-    @FXML
-    private TextArea textDescripcion;
+	@FXML
+	private ScrollPane scrollHospedajes;
 
-    @FXML
-    private Label labelAnfitrionNombre;
-    	
-    	
-public void inicializar () {
-	
+	@FXML
+	private ImageView picPerfil;
+
+	@FXML
+	private VBox vBoxListadoHospedajes;
+
+	@FXML
+	private TextArea textDescripcion;
+
+	@FXML
+	private Label labelAnfitrionNombre;
+
+	public void inicializar() {
+
 		comboTipo.getItems().addAll("Habitacion", "Apartamento");
-		
-	
+
 		colorearBotones();
 		btnMensajes.setOnMouseClicked((e) -> {
 			abrirVentanaMensajes();
 		});
 
-	labelNombreUsuario.setText(stage.getUsuarioLogeado().getNombre());
-	
-	if (!stage.getUsuarioLogeado().getURLFoto().equals("")) {
-	
+		labelNombreUsuario.setText(stage.getUsuarioLogeado().getNombre());
+
+		if (!stage.getUsuarioLogeado().getURLFoto().equals("")) {
+
 			System.out.println(stage.getUsuarioLogeado().getURLFoto());
 			picPerfil.setImage(new Image("file:///" + stage.getUsuarioLogeado().getURLFoto()));
-	}
-	
-	inicializarHospedajesVisitados();
+		}
+
+		inicializarHospedajesVisitados();
 		btnLogout.setOnMouseClicked((e) -> {
 			stage.setAnfitrionLogin(null);
 			stage.setHuespedLogeado(null);
 			abrirVentanaPrincipal();
 		});
-    }
+	}
 
 	public void abrirVentanaMensajes() {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource(Util.PANEL_MENSAJES));
@@ -127,6 +124,7 @@ public void inicializar () {
 			e1.printStackTrace();
 		}
 	}
+
 	public void colorearBotones() {
 		Image image = new Image(getClass().getResourceAsStream(Util.ICON_MENSAJES));
 		btnMensajes.setGraphic(new ImageView(image));
@@ -158,158 +156,144 @@ public void inicializar () {
 
 	public void inicializarHospedajesVisitados() {
 		vBoxListadoHospedajes.getChildren().clear();
-		Huesped huesped =  (Huesped) stage.getUsuarioLogeado();
-		
-		
+		Huesped huesped = (Huesped) stage.getUsuarioLogeado();
+
 		String tipo = comboTipo.getSelectionModel().getSelectedItem();
-		
+
 		if (tipo != null) {
-		
-		for (int i=0; i<huesped.getReservas().size();i++) {
-			
-			
-			Hospedaje hospedaje = huesped.getReservas().get(i).getHospedaje();
-			
-			
-			
-			
-			if (tipo.equals("Habitacion") && huesped.getReservas().get(i).getHospedaje().getTipoHospedaje() == TipoHospedaje.HABITACION)
-			
-					{		
-					
-			if (huesped.getReservas().get(i).isVencido()==false) {
-			
-				FXMLLoader loader3 = new FXMLLoader(getClass().getResource(Util.PANEL_HOSPEDAJE_PERFIL));
-				Parent root3 = null;
-				try {
-					root3 = loader3.load();
-				} catch (IOException a) {
-					// TODO Auto-generated catch block
-					a.printStackTrace();
-				}
-				vBoxListadoHospedajes.getChildren().add(root3);
 
-				ControladorHospedajePerfil control = loader3.getController();
+			for (int i = 0; i < huesped.getReservas().size(); i++) {
 
-				control.setResonance(resonance);
-				control.setStage(stage);
-				control.setHospedaje(hospedaje);
-				control.inicializar();
-			}
-			
-					}else if (tipo.equals("Apartamento") && huesped.getReservas().get(i).getHospedaje().getTipoHospedaje() == TipoHospedaje.APARTAMENTO){
-						if (huesped.getReservas().get(i).isVencido()==false) {
-							
-							FXMLLoader loader3 = new FXMLLoader(getClass().getResource(Util.PANEL_HOSPEDAJE_PERFIL));
-							Parent root3 = null;
-							try {
-								root3 = loader3.load();
-							} catch (IOException a) {
-								// TODO Auto-generated catch block
-								a.printStackTrace();
-							}
-							vBoxListadoHospedajes.getChildren().add(root3);
+				Hospedaje hospedaje = huesped.getReservas().get(i).getHospedaje();
 
-							ControladorHospedajePerfil control = loader3.getController();
+				if (tipo.equals("Habitacion")
+						&& huesped.getReservas().get(i).getHospedaje().getTipoHospedaje() == TipoHospedaje.HABITACION)
 
-							control.setResonance(resonance);
-							control.setStage(stage);
-							control.setHospedaje(hospedaje);
-							control.inicializar();
+				{
+
+					if (huesped.getReservas().get(i).isVencido() == false) {
+
+						FXMLLoader loader3 = new FXMLLoader(getClass().getResource(Util.PANEL_HOSPEDAJE_PERFIL));
+						Parent root3 = null;
+						try {
+							root3 = loader3.load();
+						} catch (IOException a) {
+							// TODO Auto-generated catch block
+							a.printStackTrace();
+						}
+						vBoxListadoHospedajes.getChildren().add(root3);
+
+						ControladorHospedajePerfil control = loader3.getController();
+
+						control.setResonance(resonance);
+						control.setStage(stage);
+						control.setHospedaje(hospedaje);
+						control.inicializar();
 					}
-			
-		}}
+
+				} else if (tipo.equals("Apartamento") && huesped.getReservas().get(i).getHospedaje()
+						.getTipoHospedaje() == TipoHospedaje.APARTAMENTO) {
+					if (huesped.getReservas().get(i).isVencido() == false) {
+
+						FXMLLoader loader3 = new FXMLLoader(getClass().getResource(Util.PANEL_HOSPEDAJE_PERFIL));
+						Parent root3 = null;
+						try {
+							root3 = loader3.load();
+						} catch (IOException a) {
+							// TODO Auto-generated catch block
+							a.printStackTrace();
+						}
+						vBoxListadoHospedajes.getChildren().add(root3);
+
+						ControladorHospedajePerfil control = loader3.getController();
+
+						control.setResonance(resonance);
+						control.setStage(stage);
+						control.setHospedaje(hospedaje);
+						control.inicializar();
+					}
+
+				}
+			}
 		}
-		
+
 	}
-	
-	
+
 	public void inicializarHospedajesFavoritos() {
-		
-		vBoxListadoHospedajes.getChildren().clear();
-		Huesped huesped =  (Huesped) stage.getUsuarioLogeado();
-		
-		
-		for (int i=0; i<huesped.getFavoritos().size();i++) {
-			
-			
-			Hospedaje hospedaje = huesped.getFavoritos().get(i);
-		FXMLLoader loader3 = new FXMLLoader(getClass().getResource(Util.PANEL_HOSPEDAJE_PERFIL));
-		Parent root3 = null;
-		try {
-			root3 = loader3.load();
-		} catch (IOException a) {
-			// TODO Auto-generated catch block
-			a.printStackTrace();
-		}
-		vBoxListadoHospedajes.getChildren().add(root3);
 
-		ControladorHospedajePerfil control = loader3.getController();
-		
-		control.setResonance(resonance);
-		control.setStage(stage);
-		control.setHospedaje(hospedaje);
-		control.inicializar();
-			
+		vBoxListadoHospedajes.getChildren().clear();
+		Huesped huesped = (Huesped) stage.getUsuarioLogeado();
+
+		for (int i = 0; i < huesped.getFavoritos().size(); i++) {
+
+			Hospedaje hospedaje = huesped.getFavoritos().get(i);
+			FXMLLoader loader3 = new FXMLLoader(getClass().getResource(Util.PANEL_HOSPEDAJE_PERFIL));
+			Parent root3 = null;
+			try {
+				root3 = loader3.load();
+			} catch (IOException a) {
+				// TODO Auto-generated catch block
+				a.printStackTrace();
+			}
+			vBoxListadoHospedajes.getChildren().add(root3);
+
+			ControladorHospedajePerfil control = loader3.getController();
+
+			control.setResonance(resonance);
+			control.setStage(stage);
+			control.setHospedaje(hospedaje);
+			control.inicializar();
+
 		}
-	
+
 	}
-	
-	
+
 	public void inicializarComentarios() {
-		
+
 		vBoxListadoHospedajes.getChildren().clear();
-		Huesped huesped =  (Huesped) stage.getUsuarioLogeado();
-		
-		
-		for (int i=0; i<huesped.getFavoritos().size();i++) {
-			
-			
-			Hospedaje hospedaje = huesped.getFavoritos().get(i);
-		FXMLLoader loader3 = new FXMLLoader(getClass().getResource(Util.PANEL_COMENTARIO));
-		Parent root3 = null;
-		try {
-			root3 = loader3.load();
-		} catch (IOException a) {
-			// TODO Auto-generated catch block
-			a.printStackTrace();
-		}
-		vBoxListadoHospedajes.getChildren().add(root3);
+		Huesped huesped = (Huesped) stage.getUsuarioLogeado();
 
-		ControladorHospedajePerfil control = loader3.getController();
-		
-		control.setResonance(resonance);
-		control.setStage(stage);
-		control.setHospedaje(hospedaje);
-		control.inicializar();
-			
+		for (int i = 0; i < huesped.getComentarios().size(); i++) {
+
+			FXMLLoader loader3 = new FXMLLoader(getClass().getResource(Util.PANEL_COMENTARIO));
+			Parent root3 = null;
+			try {
+				root3 = loader3.load();
+			} catch (IOException a) {
+				// TODO Auto-generated catch block
+				a.printStackTrace();
+			}
+			vBoxListadoHospedajes.getChildren().add(root3);
+
+			ControladorComentario control = loader3.getController();
+
+			control.setResonance(resonance);
+			control.setStage(stage);
+			control.setMensaje(huesped.getComentarios().get(i));
+			control.inicializar();
+
 		}
-		
-		
-		
 	}
-	
-	
-	  @FXML
-	    void verFavoritos(ActionEvent event) {
-		  	
-		  labelHospedajesTitulo.setText("Hospedajes favoritos");
-		  inicializarHospedajesFavoritos();
-	    }
 
-	    @FXML
-	    void verVisitados(ActionEvent event) {
-	    	labelHospedajesTitulo.setText("Hospedajes visitados");
-	    		inicializarHospedajesVisitados();
-	    }
-	    
-	    
-	    @FXML
-	    void verComentarios(ActionEvent event) {
-	    	  labelHospedajesTitulo.setText("Comentarios");
-	    	  
-	    }
-	
+	@FXML
+	void verFavoritos(ActionEvent event) {
+
+		labelHospedajesTitulo.setText("Hospedajes favoritos");
+		inicializarHospedajesFavoritos();
+	}
+
+	@FXML
+	void verVisitados(ActionEvent event) {
+		labelHospedajesTitulo.setText("Hospedajes visitados");
+		inicializarHospedajesVisitados();
+	}
+
+	@FXML
+	void verComentarios(ActionEvent event) {
+		labelHospedajesTitulo.setText("Comentarios");
+		inicializarComentarios();
+
+	}
 
 	public ResonanceHome getResonance() {
 		return resonance;
@@ -340,8 +324,5 @@ public void inicializar () {
 	public void setHuesped(Huesped huesped) {
 		this.huesped = huesped;
 	}
-	
-	
-	
-	
+
 }

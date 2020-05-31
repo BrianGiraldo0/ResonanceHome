@@ -89,13 +89,16 @@ public class ResonanceHome {
 		Hospedaje hosp = new Hospedaje("01", direc3, 95000.0, "patyherrera", fotos3,
 				"Habitacion pequeña pero bien amoblada, fresca y se realiza aseo semanal; el resto de la casa en la mayor parte del dia esta disponible para el huesped",
 				plus3, TipoHospedaje.HABITACION, pres3);
+		Util.agregarSugerencia(direc3.toString());
 		hosp.setTitulo("Apartamento bonito");
 		hospedajes.put(hosp.getId(), hosp);
 		Huesped h = obtenerHuesped("cemarquez");
+		h.getComentarios().add(new Mensaje("Muy bonito todo", Fecha.convertirFecha(getFecha()), "cemarquez"));
 		ArrayList<Date> fechaReservada = new ArrayList<Date>();
 		Reserva reserva = new Reserva(hosp, hosp.getNameTagPropietario(), null, h.getNombre(),
 				hosp.getDireccion().toString(), h.getEmail(), h.getTarjeta(), fechaReservada, 10000, 2, fecha);
 		h.agregarReserva(reserva);
+		hosp.getComentarios().add(new Mensaje("Muy bonito todo", Fecha.convertirFecha(getFecha()), "cemarquez"));
 			crearChat("cemarquez", "gustavomene");
 		try {
 			enviarMensajeChat("cemarquez", "gustavomene", "Hola bo");

@@ -55,6 +55,15 @@ public class Huesped extends Usuario{
 		return can;
 	}
 	
+	public boolean yaEstuvo(String id) {
+		for (int i = 0; i < reservas.size(); i++) {
+			if (reservas.get(i).getHospedaje().getId().equals(id)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
 	/**
 	 * Agrega reserva a favoritos  de un hospedaje
 	 * @param reserva Reserva reserva en favoritos

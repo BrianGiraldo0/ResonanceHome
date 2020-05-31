@@ -119,7 +119,7 @@ public class ControladorHospedajeCompleto {
 		con.setHospedaje(hospedaje);
 		con.inicializar();
 
-		for (int i = 0; i < 5; i++) {
+		for (int i = 0; i < hospedaje.getComentarios().size(); i++) {
 
 			FXMLLoader loader3 = new FXMLLoader(getClass().getResource(Util.PANEL_COMENTARIO));
 			Parent root3 = null;
@@ -132,6 +132,9 @@ public class ControladorHospedajeCompleto {
 			layoutScroll.getChildren().add(root3);
 
 			ControladorComentario con3 = loader3.getController();
+			con3.setResonance(resonance);
+			con3.setStage(stage);
+			con3.setMensaje(hospedaje.getComentarios().get(i));
 			con3.inicializar();
 
 		}
