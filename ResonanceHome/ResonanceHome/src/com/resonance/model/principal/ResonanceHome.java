@@ -80,7 +80,22 @@ public class ResonanceHome {
 				"Me gusta viajar por el mundo, disfrutar de la vida, soy buena inquilina", "esterguila",
 				Estrato.ESTRATO_3, NivelEstudio.BACHILLER);
 		
-
+		Plus plus3 = new Plus(true, true, false, false, true);
+		Prestacion pres3 = new Prestacion(1, 1, 3, 2, true);
+		ArrayList<String> fotos3 = new ArrayList<String>();
+		fotos3.add(FileManager.urlMain + "/Test/hospedaje03/1c.jpg");
+		fotos3.add(FileManager.urlMain + "/Test/hospedaje03/2c.jpg");
+		Direccion direc3 = new Direccion("Medellin", "Antioquia", "Colombia", "Calle 13 # 07 - 22");
+		Hospedaje hosp = new Hospedaje("01", direc3, 95000.0, "patyherrera", fotos3,
+				"Habitacion pequeña pero bien amoblada, fresca y se realiza aseo semanal; el resto de la casa en la mayor parte del dia esta disponible para el huesped",
+				plus3, TipoHospedaje.HABITACION, pres3);
+		hosp.setTitulo("Apartamento bonito");
+		hospedajes.put(hosp.getId(), hosp);
+		Huesped h = obtenerHuesped("cemarquez");
+		ArrayList<Date> fechaReservada = new ArrayList<Date>();
+		Reserva reserva = new Reserva(hosp, hosp.getNameTagPropietario(), null, h.getNombre(),
+				hosp.getDireccion().toString(), h.getEmail(), h.getTarjeta(), fechaReservada, 10000, 2, fecha);
+		h.agregarReserva(reserva);
 			crearChat("cemarquez", "gustavomene");
 		try {
 			enviarMensajeChat("cemarquez", "gustavomene", "Hola bo");
@@ -102,15 +117,15 @@ public class ResonanceHome {
 	public void fillHospedajes() throws NoExistException {
 		Plus plus1 = new Plus(false, true, false, true, true);
 		Plus plus2 = new Plus(true, true, true, true, true);
-		Plus plus3 = new Plus(true, true, false, false, true);
+
 
 		Prestacion pres1 = new Prestacion(2, 1, 3, 1, false);
 		Prestacion pres2 = new Prestacion(4, 2, 3, 3, true);
-		Prestacion pres3 = new Prestacion(1, 1, 3, 2, true);
+
 
 		Direccion direc1 = new Direccion("Armenia", "Quindio", "Colombia", "Calle 57 # 13 - 14");
 		Direccion direc2 = new Direccion("Cartagena", "Bolivar", "Colombia", "Carrera 43 # 22 - 21");
-		Direccion direc3 = new Direccion("Medellin", "Antioquia", "Colombia", "Calle 13 # 07 - 22");
+
 
 		ArrayList<String> fotos1 = new ArrayList<String>();
 		fotos1.add(FileManager.urlMain + "/Test/hospedaje01/1b.jpg");
@@ -121,9 +136,7 @@ public class ResonanceHome {
 		fotos2.add(FileManager.urlMain + "/Test/hospedaje02/2a.jpg");
 		fotos2.add(FileManager.urlMain + "/Test/hospedaje02/3a.jpg");
 		
-		ArrayList<String> fotos3 = new ArrayList<String>();
-		fotos3.add(FileManager.urlMain + "/Test/hospedaje03/1c.jpg");
-		fotos3.add(FileManager.urlMain + "/Test/hospedaje03/2c.jpg");
+
 
 		agregarHospedaje(direc1, 87000.0, "gustavomene", fotos1,
 				"Habitacion con gran espacio perfecto para parejas, buena iluminación natural y buena convivencia",
@@ -131,9 +144,7 @@ public class ResonanceHome {
 		agregarHospedaje(direc2, 320000.0, "oscarlop", fotos2,
 				"Apartamento comodo, amplio y agradables vistas para pasar una estadia agradable en familia, amigos o pareja",
 				plus2, TipoHospedaje.APARTAMENTO, pres2, "Apartamento con vista al mar");
-		agregarHospedaje(direc3, 95000.0, "patyherrera", fotos3,
-				"Habitacion pequeña pero bien amoblada, fresca y se realiza aseo semanal; el resto de la casa en la mayor parte del dia esta disponible para el huesped",
-				plus3, TipoHospedaje.HABITACION, pres3, "Apartamento bonito");
+
 
 	}
 
