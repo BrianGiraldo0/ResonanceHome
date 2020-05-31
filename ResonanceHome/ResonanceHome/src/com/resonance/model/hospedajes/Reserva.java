@@ -5,12 +5,14 @@ import java.util.Date;
 
 import com.resonance.model.txt.Tarjeta;
 import com.resonance.model.util.Fecha;
+import com.resonance.model.util.MailSender;
 
 public class Reserva {
 
 	private Hospedaje hospedaje;
 	private String nameTagHuesped = "";
-	private ArrayList<Date> fechaReservada = new ArrayList<Date>();
+	private Fecha fecha;
+	private ArrayList<Date> fechaReservada;
 	private boolean vencido = false;
 	private String identificacion;
 	private String nombre;
@@ -19,6 +21,7 @@ public class Reserva {
 	private int numeroHuespedes;
 	private double valor;
 	private Tarjeta tarjeta;
+	private String emailCliente;
 
 	/**
 	 * Metodo Constructor
@@ -34,7 +37,7 @@ public class Reserva {
 	 * @param numeroHuespedes
 	 */
 	public Reserva(Hospedaje hospedaje, String nameTagHuesped, String identificacion, String nombre, String direccion,
-			String correo, Tarjeta tarjeta,ArrayList<Date> fechaReservada, double valor, int numeroHuespedes) {
+			String correo, Tarjeta tarjeta,ArrayList<Date> fechaReservada, double valor, int numeroHuespedes, Fecha fecha) {
 		super();
 		this.hospedaje = hospedaje;
 		this.nameTagHuesped = nameTagHuesped;
@@ -43,9 +46,10 @@ public class Reserva {
 		this.direccion = direccion;
 		this.correo = correo;
 		this.tarjeta = tarjeta;
-		this.fechaReservada = fechaReservada;
 		this.valor = valor;
 		this.numeroHuespedes = numeroHuespedes;
+		this.fecha = fecha;
+		this.fechaReservada = fechaReservada;
 		
 	}
 
@@ -74,11 +78,15 @@ public class Reserva {
 		if (fecha.isMayor(getFechaFinal())) {
 			hospedaje.update(fecha);
 			vencido = true;
-			// Invocar aquí para enviar el correo
+			String datos = "ID del hospedaje: " + hospedaje.getId() + "\n Anfitrion: "
+					+ hospedaje.getNameTagPropietario();
+			MailSender.enviarEncuestaSatisfacion(emailCliente, datos);
 
 		}
 
 	}
+
+
 
 	public boolean verificarDiaReserva(Date fecha) {
 
@@ -206,6 +214,28 @@ public class Reserva {
 
 	public void setNumeroHuespedes(int numeroHuespedes) {
 		this.numeroHuespedes = numeroHuespedes;
+	}
+
+	public Fecha getFecha() {
+		return fecha;
+	}
+
+	public void setFecha(Fecha fecha) {
+		this.fecha = fecha;
+	}
+
+	/**
+	 * @return the emailCliente
+	 */
+	public String getEmailCliente() {
+		return emailCliente;
+	}
+
+	/**
+	 * @param emailCliente the emailCliente to set
+	 */
+	public void setEmailCliente(String emailCliente) {
+		this.emailCliente = emailCliente;
 	}
 
 	/*

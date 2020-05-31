@@ -7,12 +7,14 @@ import java.util.Comparator;
 import java.util.Date;
 
 import com.resonance.model.excepciones.NoExistException;
+import com.resonance.model.hospedajes.Hospedaje;
 import com.resonance.model.hospedajes.Reserva;
 import com.resonance.model.principal.ResonanceHome;
 import com.resonance.model.util.Fecha;
 import com.resonance.model.util.Util;
 import com.resonance.view.interfaz.StageR;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -32,6 +34,13 @@ public class ControladorAdministrador {
 
 	private ResonanceHome resonance;
 	
+	
+    @FXML
+    private TextField txtPrecioInferior;
+	
+    @FXML
+    private TextField txtPrecioSuperior;
+    
     @FXML
     private AnchorPane lFecha;
 
@@ -74,13 +83,14 @@ public class ControladorAdministrador {
     
     public void inicializar() throws NoExistException {
 
-		comboFiltrado.getItems().addAll("Precio (Mayor a menor)", "Calificación (Mayor a menor)", "Sin filtro");
+		comboFiltrado.getItems().addAll("Precio (Mayor a menor)", "Calificación (Mayor a menor)", "Sin filtro",
+				"Reservas (Mayor a menor)");
 		lblDiaActual.setText(resonance.getFecha().toString());
-		//Tener en cuenta que cada que el usuario cambie el slider se debe actualizar estas etiquetas (labels)
-		lblInferior.setText(sliderInferior.getValue() + "");
-		lblSuperior.setText(sliderSuperior.getValue() + "");
+		
+		
 
 		btnSiguienteDia.setOnMouseClicked((e) -> {
+			Util.loadCalificaciones();
 			resonance.anadirDia();
 			lblDiaActual.setText(resonance.getFecha().toString());
 		});
@@ -121,6 +131,28 @@ public class ControladorAdministrador {
 		
 	}
 	
+	public void cargarHospedajes(ArrayList<Hospedaje> res) {
+		vBoxReservas.getChildren().clear();
+		for (int i = 0; i < res.size(); i++) {
+			FXMLLoader loader = new FXMLLoader(getClass().getResource(Util.PANEL_HOSPEDAJE));
+			Parent root = null;
+			try {
+				root = loader.load();
+			} catch (IOException a) {
+				// TODO Auto-generated catch block
+				a.printStackTrace();
+			}
+
+			vBoxReservas.getChildren().add(root);
+
+			ControladorHospedaje control = loader.getController();
+			control.setStage(stage);
+			control.setResonance(resonance);
+			control.setHospedaje(res.get(i));
+			control.inicializar();
+
+		}
+	}
 	
 	public void cargarReservas(ArrayList<Reserva> res) throws NoExistException {
 		
@@ -162,17 +194,22 @@ public class ControladorAdministrador {
 		
 	}
 	
-	
-	public void cargarPorFiltros () throws NoExistException {
+	@FXML
+	public void cargarPorFiltros (ActionEvent event) throws NoExistException {
 		
-		double precioInferior = sliderInferior.getValue();
-		double precioSuperior = sliderSuperior.getValue();
+		double precioInferior =  Double.parseDouble(txtPrecioInferior.getText());
+		double precioSuperior =  Double.parseDouble(txtPrecioSuperior.getText());
 		String ciudad = txtCiudad.getText();
 		Date fecha = Fecha.convertirFecha(resonance.getFecha());
 		
 		
 		
 		ArrayList<Reserva> res = new ArrayList<>();
+	
+		
+	if (comboFiltrado.getSelectionModel().getSelectedItem() !=null)	
+	{
+		
 		
 		if (comboFiltrado.getSelectionModel().getSelectedItem().equals("Sin filtro")) {
 			
@@ -182,7 +219,9 @@ public class ControladorAdministrador {
 				
 				Reserva r = resonance.obtenerReservas().get(i);
 				
-				if (r.getHospedaje().getDireccion().getCiudad().equals(ciudad) && r.verificarDiaReserva(fecha)) {
+		
+				
+				if (r.getHospedaje().getDireccion().getCiudad().equals(ciudad) ) {
 					
 					
 					res.add(r);
@@ -224,10 +263,18 @@ public class ControladorAdministrador {
 					});
 				 
 				 cargarReservas(copia);
+				} else if (comboFiltrado.getSelectionModel().getSelectedItem().equals("Reservas (Mayor a menor)")) {
+					ArrayList<Hospedaje> copia = resonance.getReservasPorCiudadDeMayorAMenor(ciudad);
+					cargarHospedajes(copia);
+				} else {
+				 cargarReservas(resonance.obtenerReservas());
 			 }
 	
 		}  
-		
+	} else 
+	{
+		 cargarReservas(resonance.obtenerReservas());
+	}
 		
 	}
 	

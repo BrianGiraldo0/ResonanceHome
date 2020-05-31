@@ -6,10 +6,12 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.security.GeneralSecurityException;
+import java.util.ArrayList;
 
 import com.resonance.model.archivos.FileManager;
-import com.resonance.model.util.Fecha;
+import com.resonance.model.hospedajes.Calificacion;
 
+import RStatistics.RStatistics;
 import javafx.application.Application;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -19,8 +21,25 @@ public class Test extends Application {
 
 	public static void main(String[] args) throws IOException, GeneralSecurityException {
 
-		Fecha fecha = new Fecha(12, 3, 22);
-		System.out.println(fecha.convertirFecha(fecha));
+		String[][] cali = RStatistics.obtenerRespuestas();
+		ArrayList<Calificacion> sta = new ArrayList<Calificacion>();
+
+		int limpieza = 0;
+		int profesionalismo = 0;
+		int atencion = 0;
+		int ubicacion = 0;
+		for (int i = 0; i < cali.length; i++) {
+			limpieza = Integer.parseInt(cali[i][4]);
+			profesionalismo = Integer.parseInt(cali[i][5]);
+			atencion = Integer.parseInt(cali[i][6]);
+			ubicacion = Integer.parseInt(cali[i][7]);
+			Calificacion c = new Calificacion(limpieza, profesionalismo, atencion, ubicacion);
+			sta.add(c);
+		}
+
+		for (int i = 0; i < sta.size(); i++) {
+			System.out.println(sta.get(i));
+		}
 
 	}
 	

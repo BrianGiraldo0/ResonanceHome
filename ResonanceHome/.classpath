@@ -9,5 +9,6 @@
 	<classpathentry kind="src" path="test"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/RStatistics"/>
 	<classpathentry kind="lib" path="mail.jar"/>
+	<classpathentry kind="lib" path="iText-5.0.5.jar"/>
 	<classpathentry kind="output" path="ResonanceHome/bin"/>
 </classpath>

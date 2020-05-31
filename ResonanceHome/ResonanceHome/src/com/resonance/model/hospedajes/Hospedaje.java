@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import com.resonance.model.util.Fecha;
+import com.resonance.model.util.Util;
 
 public class Hospedaje {
 
@@ -66,6 +67,10 @@ public class Hospedaje {
 			}
 		}
 		return true;
+	}
+
+	public void actualizarCalificaciones() {
+		setCalificaciones(Util.obtenerCalificaciones(getId()));
 	}
 
 	/**
@@ -152,6 +157,10 @@ public class Hospedaje {
 				+ obtenerPromedioProfesionalismo();
 
 		return promedio / 4;
+	}
+
+	public void agregarCalificacion(Calificacion c) {
+		calificaciones.add(c);
 	}
 	/**
 	 * Metodo que obtiene el id

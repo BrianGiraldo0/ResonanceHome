@@ -9,6 +9,7 @@ import java.util.Iterator;
 
 import com.resonance.model.archivos.FileManager;
 import com.resonance.model.excepciones.NoExistException;
+import com.resonance.model.hospedajes.Calificacion;
 import com.resonance.model.hospedajes.Direccion;
 import com.resonance.model.hospedajes.Hospedaje;
 import com.resonance.model.hospedajes.Plus;
@@ -66,7 +67,8 @@ public class ResonanceHome {
 		Date fecha2 = new Date(1997, 4, 9);
 		Date fecha3 = new Date(1990, 10, 27);
 
-		agregarHuesped("Cesar Marquez", "cesar@gmail.com", "", "Calle 12 # 4", fecha1, "cesar", "Hola, soy cesar",
+		agregarHuesped("Cesar Marquez", "cemarquezz29@gmail.com", "", "Calle 12 # 4", fecha1, "cesar",
+				"Hola, soy cesar",
 				"cemarquez");
 		agregarHuesped("Antonio Sepulveda", "antoniel9704@gmail.com", "", "Calle 51B # 12 - 04", fecha2, "antonio",
 				"Soy estudiante de literatura, me gusta disfrutar de un buen lugar", "sepultonio");
@@ -127,6 +129,7 @@ public class ResonanceHome {
 		agregarHospedaje(direc3, 95000.0, "patyherrera", fotos3,
 				"Habitacion pequeña pero bien amoblada, fresca y se realiza aseo semanal; el resto de la casa en la mayor parte del dia esta disponible para el huesped",
 				plus3, TipoHospedaje.HABITACION, pres3, "Apartamento bonito");
+
 	}
 
 	/**
@@ -247,6 +250,7 @@ public class ResonanceHome {
 			String id = Util.generarIDHospedaje();
 			Hospedaje hosp = new Hospedaje(id, direccion, precio, nameTagPropietario, urlsFotos, descripcion, servicios,
 					tipoH, prestaciones);
+			hosp.agregarCalificacion(new Calificacion(2, 3, 2, 5));
 			hosp.setTitulo(titulo);
 			anfitriones.get(nameTagPropietario).agregarHospedaje(id);
 			Util.agregarSugerencia(direccion.toString());
@@ -424,6 +428,13 @@ public class ResonanceHome {
 			String key = keys.next();
 			huespedes.get(key).update(fecha);
 		}
+
+		Iterator<String> keysH = hospedajes.keySet().iterator();
+		while (keysH.hasNext()) {
+			String key = keysH.next();
+			hospedajes.get(key).actualizarCalificaciones();
+		}
+
 	}
 
 	/**
@@ -449,6 +460,53 @@ public class ResonanceHome {
 
 	public Fecha getFecha() {
 		return fecha;
+	}
+
+	public int getCantidadReservas(String ciudad, String id) throws NoExistException {
+		int can = 0;
+		if (obtenerHospedaje(id).getDireccion().getCiudad().equalsIgnoreCase(ciudad)) {
+			Iterator<String> keys = huespedes.keySet().iterator();
+			while (keys.hasNext()) {
+				String key = keys.next();
+				can += huespedes.get(key).getCantidadHospedajeReservado(id);
+			}
+		}
+
+		return can;
+	}
+
+	public ArrayList<Hospedaje> getReservasPorCiudadDeMayorAMenor(String ciudad) throws NoExistException {
+		ArrayList<Hospedaje> reservasEncontradas = new ArrayList<Hospedaje>();
+		Iterator<String> keys = hospedajes.keySet().iterator();
+		while (keys.hasNext()) {
+			String key = keys.next();
+			int can = getCantidadReservas(ciudad, key);
+			if (can > 0)
+				reservasEncontradas.add(hospedajes.get(key));
+
+		}
+
+		return ordenarArraylistMayorAMenor(reservasEncontradas, ciudad);
+	}
+
+	private ArrayList<Hospedaje> ordenarArraylistMayorAMenor(ArrayList<Hospedaje> reservasEncontradas, String ciudad)
+			throws NoExistException {
+
+		Hospedaje aux = null;
+
+		for (int i = 0; i < reservasEncontradas.size(); i++) {
+			for (int j = 0; j < reservasEncontradas.size() - 1; j++) {
+				int can = getCantidadReservas(ciudad, reservasEncontradas.get(j).getId());
+				int can1 = getCantidadReservas(ciudad, reservasEncontradas.get(j + 1).getId());
+				if (can < can1) {
+					aux = reservasEncontradas.get(j);
+					reservasEncontradas.set(j, reservasEncontradas.get(j));
+					reservasEncontradas.set(j + 1, aux);
+				}
+			}
+		}
+
+		return reservasEncontradas;
 	}
 
 	/**

@@ -76,11 +76,11 @@ public class ControladorDescripcionReserva {
 			Anfitrion anfitrion;
 			anfitrion = resonance.obtenerAnfitrion(reserva.getHospedaje().getNameTagPropietario());
 	    	lbllNombreAnfitrionReserva.setText(anfitrion.getNombre());
-	    	//lblNumeroHuespedesReserva.setText(reserva.getNumHuespedes());
+	    	lblNumeroHuespedesReserva.setText(reserva.getNumeroHuespedes()+"");
 	    	lblTipoHospedajeReserva.setText(reserva.getHospedaje().getTipoHospedaje().name().toLowerCase());
 	    	lblPrecioReserva.setText(reserva.getValor()+"");
 	    	lblCalificacion.setText(reserva.getHospedaje().obtenerPromedioCalificaciones() +"");
-	    	lblDireccionHospedaje.setText(reserva.getHospedaje().getDescripcion());
+	    	lblDireccionHospedaje.setText("Ciudad: " + reserva.getHospedaje().getDireccion().getCiudad()  + " " + reserva.getHospedaje().getDireccion().getDireccion());
 	    	
 			if (reserva.getHospedaje().getUrlsFotos().size() > 0)
 	    	imgViewHospedajeReserva.setImage(new Image (reserva.getHospedaje().getUrlsFotos().get(0)));

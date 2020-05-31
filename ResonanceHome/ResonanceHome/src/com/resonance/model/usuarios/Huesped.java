@@ -37,7 +37,15 @@ public class Huesped extends Usuario{
 		reservas.add(reserva);
 	}
 	
-	
+	public int getCantidadHospedajeReservado(String idHosp) {
+		int can = 0;
+		for (int i = 0; i < reservas.size(); i++) {
+			if (reservas.get(i).getHospedaje().getId().equals(idHosp)) {
+				can++;
+			}
+		}
+		return can;
+	}
 	
 	/**
 	 * Agrega reserva a favoritos  de un hospedaje

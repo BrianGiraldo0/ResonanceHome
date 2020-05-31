@@ -16,14 +16,12 @@ import com.resonance.view.interfaz.StageR;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
@@ -112,6 +110,8 @@ public class ControladorHospedajeCompleto {
 
 		ControladorDescripcionHospedaje con = loader2.getController();
 		con.setResonance(resonance);
+		con.setDate(date);
+		con.setNumeroHuspedes(numeroHuspedes);
 		con.setStage(stage);
 		con.setHospedaje(hospedaje);
 		con.inicializar();
@@ -206,14 +206,8 @@ public class ControladorHospedajeCompleto {
 			con.setHospedaje(hospedaje);
 			con.setNumeroHuspedes(Integer.parseInt(textCantidadHuespedes.getText()));
 			con.setResonance(resonance);
-			Scene scene = new Scene(root);
-
-			stage.setResizable(false);
-			stage.setTitle("Resonance Home");
-			stage.getIcons().add(new Image(Util.LOGO_RESONANCE));
-			stage.setScene(scene);
-			stage.show();
 			con.inicializar();
+			stage.getScene().setRoot(root);
 		} else {
 
 			String[] opciones = { "Iniciar sesion", "Registrarse", "Cancelar" };
@@ -230,11 +224,10 @@ public class ControladorHospedajeCompleto {
 				}
 
 				ControladorRegistro control = loader.getController();
-				control.inicializar();
+
 				control.setResonance(resonance);
 				control.setStage(stage);
-
-				stage.setResizable(false);
+				control.inicializar();
 				stage.getScene().setRoot(root);
 
 			}

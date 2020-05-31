@@ -8,8 +8,10 @@ import java.util.Date;
 import com.resonance.model.hospedajes.Hospedaje;
 import com.resonance.model.hospedajes.Reserva;
 import com.resonance.model.principal.ResonanceHome;
+import com.resonance.model.txt.Factura;
 import com.resonance.model.txt.Tarjeta;
 import com.resonance.model.usuarios.Huesped;
+import com.resonance.model.util.MailSender;
 import com.resonance.model.util.Util;
 import com.resonance.view.interfaz.StageR;
 
@@ -181,10 +183,21 @@ public class ControladorPago {
 						txtCodigoSeguridad.getText(), txtFechaExpedicion.getText(), txtCedula.getText());
 				Reserva reserva = new Reserva(hospedaje, huesped.getNametag(), huesped.getId(), huesped.getNombre(),
 						hospedaje.getDireccion().getDireccion() + " " + hospedaje.getDireccion().toString(),
-						huesped.getEmail(), tarjeta, date, total, numeroHuspedes);
-
+						huesped.getEmail(), tarjeta, date, total, numeroHuspedes, resonance.getFecha());
+				reserva.setEmailCliente(huesped.getEmail());
 				huesped.setTarjeta(tarjeta);
 				huesped.agregarReserva(reserva);
+
+				Factura factura = new Factura(hospedaje.getNameTagPropietario(), huesped.getNametag(), reserva,
+						tarjeta);
+				factura.setNombreAnfitrion(resonance.obtenerAnfitrion(hospedaje.getNameTagPropietario()).getNombre());
+				factura.setEmailAnfitrion(resonance.obtenerAnfitrion(hospedaje.getNameTagPropietario()).getEmail());
+				factura.setNombreHuesped(stage.getUsuarioLogeado().getNametag());
+				factura.setPrecioCompleto(precioCompleto);
+				factura.setPrecioLimpieza(precioLimpieza);
+				factura.setPrecioComision(comision);
+				factura.crearPDF();
+				MailSender.enviarCorreoCompra(huesped.getEmail(), factura.getRuta(), "Factura" + resonance.getFecha());
 				abrirVentanaPrincipal();
 			}
 		});

@@ -77,4 +77,8 @@ public class Calificacion {
 		this.ubicacion = ubicacion;
 	}
 
+	public String toString() {
+		return limpieza + ", " + atencion + ", " + profesionalismoAnfitrion + ", " + ubicacion;
+	}
+
 }

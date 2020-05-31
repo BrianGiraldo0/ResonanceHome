@@ -1,6 +1,8 @@
 package com.resonance.view.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Date;
 
 import com.resonance.model.hospedajes.Hospedaje;
 import com.resonance.model.principal.ResonanceHome;
@@ -26,7 +28,9 @@ public class ControladorDescripcionHospedaje {
     	private ResonanceHome resonance;
     	
     	private StageR stage;
-    	
+	private int numeroHuspedes;
+
+	private ArrayList<Date> date;
     	private Hospedaje hospedaje;
 
         @FXML
@@ -148,6 +152,35 @@ public class ControladorDescripcionHospedaje {
 
 //				Image perfil = new Image(resonance.obtenerAnfitrion(hospedaje.getNameTagPropietario()).getURLFoto());
 //				imafenAnfitrion.setImage(perfil);
+				
+				btnInfo.setOnMouseClicked((e)->{
+					FXMLLoader loader = new FXMLLoader(getClass().getResource(Util.PANEL_GESTION_CALIFICACIONES));
+					Parent root = null;
+					try {
+						root = loader.load();
+					} catch (IOException a) {
+						// TODO Auto-generated catch block
+						a.printStackTrace();
+					}
+					
+
+					ControladorGestionCalificacion control = loader.getController();
+					control.setResonance(resonance);
+			control.setDate(date);
+			control.setNumeroHuspedes(numeroHuspedes);
+					control.setStage(stage);
+					control.setHospedaje(hospedaje);
+					
+					Scene scene = new Scene(root);
+
+					stage.setResizable(false);
+					stage.setTitle("Resonance Home");
+					stage.getIcons().add(new Image(Util.LOGO_RESONANCE));
+					stage.setScene(scene);
+					stage.show();
+					
+					control.inicializar();
+				});
 
 	    	
 	    	rellenarCalificacion();
@@ -298,6 +331,34 @@ public class ControladorDescripcionHospedaje {
 		public void setStage(StageR stage) {
 			this.stage = stage;
 		}
+
+	/**
+	 * @return the numeroHuspedes
+	 */
+	public int getNumeroHuspedes() {
+		return numeroHuspedes;
+	}
+
+	/**
+	 * @param numeroHuspedes the numeroHuspedes to set
+	 */
+	public void setNumeroHuspedes(int numeroHuspedes) {
+		this.numeroHuspedes = numeroHuspedes;
+	}
+
+	/**
+	 * @return the date
+	 */
+	public ArrayList<Date> getDate() {
+		return date;
+	}
+
+	/**
+	 * @param date the date to set
+	 */
+	public void setDate(ArrayList<Date> date) {
+		this.date = date;
+	}
 		
 
 }

@@ -1,9 +1,12 @@
 package com.resonance.model.util;
 
+import java.io.IOException;
+import java.security.GeneralSecurityException;
 import java.util.ArrayList;
 import java.util.Random;
 
 import com.resonance.model.archivos.FileManager;
+import com.resonance.model.hospedajes.Calificacion;
 import com.resonance.model.hospedajes.TipoHospedaje;
 import com.resonance.model.principal.ResonanceHome;
 import com.resonance.view.controller.ControladorComentario;
@@ -18,11 +21,11 @@ import com.resonance.view.controller.ControladorPrincipal;
 import com.resonance.view.controller.ControladorRegistro;
 import com.resonance.view.interfaz.StageR;
 
+import RStatistics.RStatistics;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.TextField;
 
 public class Util {
-
 	public static final String LOGO_RESONANCE = "/com/resonance/view/imagenes/logo_resonance.png";
 	public static final String ICON_CORAZON_BLANCO = "/com/resonance/view/imagenes/icon_corazon.png";
 	public static final String ICON_CORAZON_ROJO = "/com/resonance/view/imagenes/icon_corazonRojo.png";
@@ -44,6 +47,7 @@ public class Util {
 	public static final String PANEL_HOSPEDAJE = "/com/resonance/view/interfaz/panelHospedaje.fxml";
 	public static final String PANEL_HOSPEDAJE_COMPLETO = "/com/resonance/view/interfaz/panelHospedajeCompleto.fxml";
 	public static final String PANEL_HOSPEDAJE_PERFIL = "/com/resonance/view/interfaz/panelHospedajeEnPerfil.fxml";
+	public static final String PANEL_GESTION_CALIFICACIONES = "/com/resonance/view/interfaz/panelGestionCalificacion.fxml";
 	public static final String PANEL_LISTADO_HOSPEDAJES = "/com/resonance/view/interfaz/panelListadoHospedajes.fxml";
 	public static final String PANEL_INICIAR_SESION = "/com/resonance/view/interfaz/panellogIn.fxml";
 	public static final String PANEL_PERFIL_USUARIO   = "/com/resonance/view/interfaz/panelPerfilUsuario.fxml";
@@ -55,9 +59,11 @@ public class Util {
 	public static final String PANEL_REGPROPIEDAD_3 = "/com/resonance/view/interfaz/panelRegPropiedad3.fxml";
 	public static final String PANEL_REGPROPIEDAD_4 = "/com/resonance/view/interfaz/panelRegPropiedad4.fxml";
 	public static final String VENTANA_PRINCIPAL = "/com/resonance/view/interfaz/ventanaPrincipal.fxml";
+	public static final String PANEL_GRAFICA = "/com/resonance/view/interfaz/panelGrafica.fxml";
 	public static final String PANEL_MENSAJES = "/com/resonance/view/interfaz/panelMensajes.fxml";
 	public static ArrayList<String> listadoSugerencias = new ArrayList<>();
 
+	public static String[][] calificaciones;
 	/**
 	 * Metodo que agrega una nueva localizacion en la aplicacion
 	 * 
@@ -156,6 +162,34 @@ public class Util {
 		} else {
 			return "Habitación";
 		}
+	}
+
+	public static void loadCalificaciones() {
+		try {
+			calificaciones = RStatistics.obtenerRespuestas();
+		} catch (IOException | GeneralSecurityException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	public static ArrayList<Calificacion> obtenerCalificaciones(String id){
+		ArrayList<Calificacion> c = new ArrayList<Calificacion>();
+		int limpieza = 0;
+		int profesionalismo = 0;
+		int atencion = 0;
+		int ubicacion = 0;
+		for (int i = 0; i < calificaciones.length; i++) {
+			if (calificaciones[i][3].equals(id)) {
+				limpieza = Integer.parseInt(calificaciones[i][4]);
+				profesionalismo = Integer.parseInt(calificaciones[i][5]);
+				atencion = Integer.parseInt(calificaciones[i][6]);
+				ubicacion = Integer.parseInt(calificaciones[i][7]);
+				Calificacion ca = new Calificacion(limpieza, profesionalismo, atencion, ubicacion);
+				c.add(ca);
+			}
+
+		}
+		return c;
 	}
 
 	
