@@ -31,6 +31,12 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.StageStyle;
 
+/**
+ * Proyecto de programación - Analisis de algoritmos
+ * 
+ * @author Cesar Marquez, Brian Giraldo, Esteban Sanchez
+ *
+ */
 public class ControladorAdministrador {
 
 	private StageR stage;

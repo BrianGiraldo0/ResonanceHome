@@ -25,6 +25,12 @@ import RStatistics.RStatistics;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.TextField;
 
+/**
+ * Proyecto de programación - Analisis de algoritmos
+ * 
+ * @author Cesar Marquez, Brian Giraldo, Esteban Sanchez
+ *
+ */
 public class Util {
 	public static final String LOGO_RESONANCE = "/com/resonance/view/imagenes/logo_resonance.png";
 	public static final String ICON_CORAZON_BLANCO = "/com/resonance/view/imagenes/icon_corazon.png";

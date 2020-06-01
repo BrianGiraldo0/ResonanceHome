@@ -26,6 +26,12 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 
+/**
+ * Proyecto de programación - Analisis de algoritmos
+ * 
+ * @author Cesar Marquez, Brian Giraldo, Esteban Sanchez
+ *
+ */
 public class ControladorPago {
 
 	private ResonanceHome resonance;

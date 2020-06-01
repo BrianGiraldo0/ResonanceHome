@@ -25,6 +25,12 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.StageStyle;
 
+/**
+ * Proyecto de programación - Analisis de algoritmos
+ * 
+ * @author Cesar Marquez, Brian Giraldo, Esteban Sanchez
+ *
+ */
 public class ControladorRegPropiedad4 {
 	private StageR stage;
 

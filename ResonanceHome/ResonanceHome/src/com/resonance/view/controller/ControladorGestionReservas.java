@@ -3,7 +3,6 @@ import java.io.IOException;
 
 import com.resonance.model.excepciones.NoExistException;
 import com.resonance.model.principal.ResonanceHome;
-import com.resonance.model.util.Util;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,6 +13,12 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+/**
+ * Proyecto de programación - Analisis de algoritmos
+ * 
+ * @author Cesar Marquez, Brian Giraldo, Esteban Sanchez
+ *
+ */
 public class ControladorGestionReservas {
 
 	

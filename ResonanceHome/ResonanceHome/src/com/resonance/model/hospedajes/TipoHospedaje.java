@@ -1,5 +1,11 @@
 package com.resonance.model.hospedajes;
 
+/**
+ * Proyecto de programación - Analisis de algoritmos
+ * 
+ * @author Cesar Marquez, Brian Giraldo, Esteban Sanchez
+ *
+ */
 public enum TipoHospedaje {
 	HABITACION(0), APARTAMENTO(1);
 

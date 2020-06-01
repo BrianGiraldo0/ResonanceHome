@@ -1,5 +1,11 @@
 package com.resonance.model.txt;
 
+/**
+ * Proyecto de programación - Analisis de algoritmos
+ * 
+ * @author Cesar Marquez, Brian Giraldo, Esteban Sanchez
+ *
+ */
 public class Tarjeta {
 
 	private int numeroT;

@@ -9,6 +9,12 @@ import com.resonance.model.txt.Mensaje;
 import com.resonance.model.txt.Tarjeta;
 import com.resonance.model.util.Fecha;
 
+/**
+ * Proyecto de programación - Analisis de algoritmos
+ * 
+ * @author Cesar Marquez, Brian Giraldo, Esteban Sanchez
+ *
+ */
 public class Huesped extends Usuario{
 	
 	private ArrayList <Reserva> reservas = new ArrayList<Reserva>();	

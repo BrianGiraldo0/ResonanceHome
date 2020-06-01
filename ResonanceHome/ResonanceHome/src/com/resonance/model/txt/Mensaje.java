@@ -2,6 +2,12 @@ package com.resonance.model.txt;
 
 import java.util.Date;
 
+/**
+ * Proyecto de programación - Analisis de algoritmos
+ * 
+ * @author Cesar Marquez, Brian Giraldo, Esteban Sanchez
+ *
+ */
 public class Mensaje {
 
 	private String mensaje;

@@ -7,6 +7,12 @@ import com.resonance.model.txt.Tarjeta;
 import com.resonance.model.util.Fecha;
 import com.resonance.model.util.MailSender;
 
+/**
+ * Proyecto de programación - Analisis de algoritmos
+ * 
+ * @author Cesar Marquez, Brian Giraldo, Esteban Sanchez
+ *
+ */
 public class Reserva {
 
 	private Hospedaje hospedaje;

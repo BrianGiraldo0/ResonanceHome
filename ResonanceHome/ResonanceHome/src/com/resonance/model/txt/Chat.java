@@ -4,7 +4,12 @@ import java.util.ArrayList;
 
 import com.resonance.model.excepciones.NoExistException;
 
-
+/**
+ * Proyecto de programación - Analisis de algoritmos
+ * 
+ * @author Cesar Marquez, Brian Giraldo, Esteban Sanchez
+ *
+ */
 public class Chat {
 
 	private String emisor;

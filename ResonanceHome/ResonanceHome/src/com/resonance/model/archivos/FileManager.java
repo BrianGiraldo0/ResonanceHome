@@ -7,6 +7,12 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 
+/**
+ * Proyecto de programación - Analisis de algoritmos
+ * 
+ * @author Cesar Marquez, Brian Giraldo, Esteban Sanchez
+ *
+ */
 public class FileManager {
 	public static String urlMain = disco() + "ResonanceHome";
 	private static String urlHospedajes = urlMain + "/Hospedajes";

@@ -7,6 +7,12 @@ import com.resonance.model.txt.Mensaje;
 import com.resonance.model.util.Fecha;
 import com.resonance.model.util.Util;
 
+/**
+ * Proyecto de programación - Analisis de algoritmos
+ * 
+ * @author Cesar Marquez, Brian Giraldo, Esteban Sanchez
+ *
+ */
 public class Hospedaje {
 
 	private Prestacion prestaciones;

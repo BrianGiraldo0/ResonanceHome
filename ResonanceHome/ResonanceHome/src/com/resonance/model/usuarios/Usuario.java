@@ -5,6 +5,12 @@ import java.util.Date;
 
 import com.resonance.model.txt.Chat;
 
+/**
+ * Proyecto de programación - Analisis de algoritmos
+ * 
+ * @author Cesar Marquez, Brian Giraldo, Esteban Sanchez
+ *
+ */
 public class Usuario {
 
 	private String nombre = "";

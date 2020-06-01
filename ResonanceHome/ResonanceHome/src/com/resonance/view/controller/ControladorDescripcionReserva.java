@@ -25,7 +25,12 @@ import javafx.stage.StageStyle;
 
 
 
-
+/**
+ * Proyecto de programación - Analisis de algoritmos
+ * 
+ * @author Cesar Marquez, Brian Giraldo, Esteban Sanchez
+ *
+ */
 public class ControladorDescripcionReserva {
 
 		private Reserva reserva;

@@ -14,6 +14,12 @@ import com.itextpdf.text.pdf.PdfWriter;
 import com.resonance.model.archivos.FileManager;
 import com.resonance.model.hospedajes.Reserva;
 
+/**
+ * Proyecto de programación - Analisis de algoritmos
+ * 
+ * @author Cesar Marquez, Brian Giraldo, Esteban Sanchez
+ *
+ */
 public class Factura {
 
 	private String anfitrion;
