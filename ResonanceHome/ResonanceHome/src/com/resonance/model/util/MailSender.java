@@ -19,7 +19,7 @@ import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
 /**
- * Proyecto de programación - Analisis de algoritmos
+ * Proyecto de programaciÃ³n - Analisis de algoritmos
  * 
  * @author Cesar Marquez, Brian Giraldo, Esteban Sanchez
  *
@@ -28,7 +28,7 @@ import javax.mail.internet.MimeMultipart;
 public class MailSender implements Serializable {
 
 	private static String usuario;
-	private static String contraseña;
+	private static String contraseÃ±a;
 	private static String mensaje;
 	private static String remitente;
 	private static String asunto;
@@ -37,8 +37,8 @@ public class MailSender implements Serializable {
 		return usuario;
 	}
 
-	public String getContraseña() {
-		return contraseña;
+	public String getContraseÃ±a() {
+		return contraseÃ±a;
 	}
 
 	public String getMensaje() {
@@ -54,11 +54,11 @@ public class MailSender implements Serializable {
 	}
 
 	public static void enviarEncuestaSatisfacion(String remitente, String datos) {
-		String urlEncuesta = "https://forms.gle/FCRAEnuKYgMEgbiq6";
-		usuario = "resonance.snc@gmail.com";
-		contraseña = "bceresonance.2629";
-		asunto = "Encuesta de satisfación!";
-		mensaje = "!Hola!\n Nos coplace que hayas culminado tu estancia, te invitamos a calificar tu estadía y la atención brindada.\n"
+		String urlEncuesta = "";
+		usuario = "";
+		contraseÃ±a = "";
+		asunto = "Encuesta de satisfaciÃ³n!";
+		mensaje = "!Hola!\n Nos coplace que hayas culminado tu estancia, te invitamos a calificar tu estadÃ­a y la atenciÃ³n brindada.\n"
 				+ datos + "\n Encuesta: " + urlEncuesta;
 
 		Properties props = new Properties();
@@ -69,7 +69,7 @@ public class MailSender implements Serializable {
 
 		Session session = Session.getInstance(props, new javax.mail.Authenticator() {
 			protected PasswordAuthentication getPasswordAuthentication() {
-				return new PasswordAuthentication(usuario, contraseña);
+				return new PasswordAuthentication(usuario, contraseÃ±a);
 
 			}
 		});
@@ -87,10 +87,10 @@ public class MailSender implements Serializable {
 		}
 	}
 	public static void enviarCorreoBienvenida(String remitente, String datos) {
-		usuario = "resonance.snc@gmail.com";
-		contraseña = "bceresonance.2629";
-		mensaje = "¡Te has registrado exitosamente!" + "\n\n" + datos + "\n\n"
-				+ "Dirigete a al ménu principal para encontrar los hospedajes que más te gusten." + "\n\n"
+		usuario = "";
+		contraseÃ±a = "";
+		mensaje = "Â¡Te has registrado exitosamente!" + "\n\n" + datos + "\n\n"
+				+ "Dirigete a al mÃ©nu principal para encontrar los hospedajes que mÃ¡s te gusten." + "\n\n"
 				+ "Gracias por preferirnos.";
 		asunto = "Bienvenido a ResonanceHome!";
 
@@ -102,7 +102,7 @@ public class MailSender implements Serializable {
 
 		Session session = Session.getInstance(props, new javax.mail.Authenticator() {
 			protected PasswordAuthentication getPasswordAuthentication() {
-				return new PasswordAuthentication(usuario, contraseña);
+				return new PasswordAuthentication(usuario, contraseÃ±a);
 
 			}
 		});
@@ -121,18 +121,18 @@ public class MailSender implements Serializable {
 	}
 
 	/**
-	 * Metodo para enviar correo al huesped que realizó la reserva
+	 * Metodo para enviar correo al huesped que realizÃ³ la reserva
 	 * @param remitente correo electronico a donde se envia
 	 * @param ruta ruta del documento
 	 * @param nombreFile nombre del documento
 	 */
 	public static void enviarCorreoCompra(String remitente, String ruta, String nombreFile) {
-		usuario = "resonance.snc@gmail.com";
-		contraseña = "bceresonance.2629";
-		mensaje = "¡Reserva Exitosa!" + "\n\n"
-				+ "Te deseamos una feliz estadia, sigue disfrutando de nuestros servicios en nuestra página, también podrás observar todas tus facturas de las reservas y estadias realizadas"
+		usuario = "";
+		contraseÃ±a = "";
+		mensaje = "Â¡Reserva Exitosa!" + "\n\n"
+				+ "Te deseamos una feliz estadia, sigue disfrutando de nuestros servicios en nuestra pÃ¡gina, tambiÃ©n podrÃ¡s observar todas tus facturas de las reservas y estadias realizadas"
 				+ "\n\n" + "Gracias por preferirnos. Factura adjunta.";
-		asunto = "Resonance Home ¡Disfruta tu estadia!";
+		asunto = "Resonance Home Â¡Disfruta tu estadia!";
 
 		Properties props = new Properties();
 		props.put("mail.smtp.auth", "true");
@@ -142,7 +142,7 @@ public class MailSender implements Serializable {
 
 		Session session = Session.getInstance(props, new javax.mail.Authenticator() {
 			protected PasswordAuthentication getPasswordAuthentication() {
-				return new PasswordAuthentication(usuario, contraseña);
+				return new PasswordAuthentication(usuario, contraseÃ±a);
 
 			}
 		});
@@ -171,7 +171,7 @@ public class MailSender implements Serializable {
 
 
 	public static boolean isValido(String correo) {
-		// Patrón para validar el email
+		// PatrÃ³n para validar el email
 		Pattern pattern = Pattern.compile(
 				"^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
 
